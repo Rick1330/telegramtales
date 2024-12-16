@@ -1,8 +1,58 @@
-import { DollarSign, Users, Gift, Trophy } from "lucide-react";
+import { DollarSign, Users, Gift, Trophy, Rocket, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useState } from "react";
 
 const Index = () => {
+  const [showAllTasks, setShowAllTasks] = useState(false);
+
+  const tasks = [
+    {
+      title: "Follow DOLPHINS channel",
+      reward: "+1000 DOLPHINS",
+      action: "Join",
+      variant: "default" as const
+    },
+    {
+      title: "Follow DOLPHINS TON on X 🧀",
+      reward: "+1000 DOLPHINS",
+      action: "Open",
+      variant: "outline" as const
+    },
+    {
+      title: "Watch RoOLZ & Earn Gems",
+      reward: "+500 DOLPHINS",
+      action: "Open",
+      variant: "outline" as const
+    },
+    {
+      title: "Follow Activity on X 🚀",
+      reward: "+1000 DOLPHINS",
+      action: "Open",
+      variant: "outline" as const
+    },
+    {
+      title: "Join Activity News Channel 🚀",
+      reward: "+1000 DOLPHINS",
+      action: "Join",
+      variant: "default" as const
+    },
+    {
+      title: "Add 🐬 to nickname",
+      reward: "+3000 DOLPHINS",
+      action: "Check",
+      variant: "outline" as const
+    },
+    {
+      title: "Join DOLPHINS Instagram",
+      reward: "+500 DOLPHINS",
+      action: "Open",
+      variant: "outline" as const
+    }
+  ];
+
+  const visibleTasks = showAllTasks ? tasks : tasks.slice(0, 4);
+
   return (
     <div className="pb-20">
       <div className="gradient-bg text-white p-8 rounded-b-[2rem] mb-6">
@@ -63,6 +113,34 @@ const Index = () => {
               Create
             </Button>
           </Card>
+        </div>
+
+        <div className="space-y-3">
+          <div className="flex items-center space-x-2 mb-4">
+            <span className="text-xl">🎯</span>
+            <h2 className="text-xl font-bold">Tasks</h2>
+          </div>
+
+          {visibleTasks.map((task, index) => (
+            <Card key={index} className="p-4 flex items-center justify-between">
+              <div>
+                <p className="font-semibold">{task.title}</p>
+                <p className="text-red-500 font-medium">{task.reward}</p>
+              </div>
+              <Button variant={task.variant} className="min-w-[80px]">
+                {task.action}
+              </Button>
+            </Card>
+          ))}
+
+          <Button 
+            variant="ghost" 
+            className="w-full text-primary flex items-center gap-2"
+            onClick={() => setShowAllTasks(!showAllTasks)}
+          >
+            {showAllTasks ? "Show less tasks" : "Show more tasks"}
+            <ChevronDown className={`transition-transform ${showAllTasks ? "rotate-180" : ""}`} />
+          </Button>
         </div>
       </div>
     </div>
