@@ -1,4 +1,4 @@
-import { Gamepad2, Puzzle, Diamond, MousePointer, Dice } from "lucide-react";
+import { Gamepad2, Puzzle, Diamond, MousePointer, Dice1, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -27,7 +27,7 @@ const Games = () => {
       color: "bg-pink-500"
     },
     { 
-      icon: Dice,
+      icon: Dice1,
       name: "Dolphins Roulette",
       color: "bg-orange-500"
     }
