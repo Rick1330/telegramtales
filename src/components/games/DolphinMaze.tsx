@@ -135,8 +135,11 @@ const DolphinMaze = () => {
   }, [gameStarted]);
 
   const startGame = async () => {
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-      try {
+    try {
+      // Cast to our custom type that includes requestPermission
+      const DeviceOrientationEvent = window.DeviceOrientationEvent as unknown as DeviceOrientationEventStatic;
+      
+      if (typeof DeviceOrientationEvent.requestPermission === 'function') {
         const permission = await DeviceOrientationEvent.requestPermission();
         if (permission === 'granted') {
           setGameStarted(true);
@@ -144,14 +147,15 @@ const DolphinMaze = () => {
           setIsGameOver(false);
           ballRef.current = { x: 30, y: 550 };
         }
-      } catch (error) {
-        toast.error("Please enable device orientation permissions to play");
+      } else {
+        // For non-iOS devices or when permission is not required
+        setGameStarted(true);
+        setTimeLeft(60);
+        setIsGameOver(false);
+        ballRef.current = { x: 30, y: 550 };
       }
-    } else {
-      setGameStarted(true);
-      setTimeLeft(60);
-      setIsGameOver(false);
-      ballRef.current = { x: 30, y: 550 };
+    } catch (error) {
+      toast.error("Please enable device orientation permissions to play");
     }
   };
 
