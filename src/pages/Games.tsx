@@ -1,4 +1,4 @@
-import { Gamepad2, Puzzle, Diamond, MousePointer, Dice1, Gift, Flask } from "lucide-react";
+import { Gamepad2, Puzzle, Diamond, MousePointer, Dice1, Gift, Droplets } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -16,7 +16,7 @@ const Games = () => {
       route: "/games/maze"
     },
     { 
-      icon: Flask,
+      icon: Droplets,
       name: "Water Sort",
       isNew: true,
       color: "bg-cyan-500",
