@@ -2,14 +2,18 @@ import { Gamepad2, Puzzle, Diamond, MousePointer, Dice1, Gift } from "lucide-rea
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useNavigate } from "react-router-dom";
 
 const Games = () => {
+  const navigate = useNavigate();
+  
   const games = [
     { 
       icon: Gamepad2,
       name: "Dolphin Maze",
       isNew: true,
-      color: "bg-blue-500"
+      color: "bg-blue-500",
+      route: "/games/maze"
     },
     { 
       icon: Puzzle,
@@ -69,7 +73,12 @@ const Games = () => {
                   )}
                 </div>
               </div>
-              <Button>Play</Button>
+              <Button 
+                onClick={() => game.route && navigate(game.route)}
+                disabled={!game.route}
+              >
+                Play
+              </Button>
             </div>
           </Card>
         ))}
