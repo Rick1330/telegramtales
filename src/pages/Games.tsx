@@ -1,4 +1,4 @@
-import { Gamepad2, Puzzle, Diamond, MousePointer, Dice1, Gift } from "lucide-react";
+import { Gamepad2, Puzzle, Diamond, MousePointer, Dice1, Gift, Flask } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,9 +11,16 @@ const Games = () => {
     { 
       icon: Gamepad2,
       name: "Dolphin Maze",
-      isNew: true,
+      isNew: false,
       color: "bg-blue-500",
       route: "/games/maze"
+    },
+    { 
+      icon: Flask,
+      name: "Water Sort",
+      isNew: true,
+      color: "bg-cyan-500",
+      route: "/games/water-sort"
     },
     { 
       icon: Puzzle,
@@ -44,7 +51,7 @@ const Games = () => {
           <div className="relative">
             <Gift className="w-12 h-12 text-primary" />
             <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-              5
+              6
             </span>
           </div>
         </div>
