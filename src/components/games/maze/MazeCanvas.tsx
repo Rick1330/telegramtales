@@ -32,32 +32,35 @@ const MazeCanvas = ({ gameStarted, onWin, ballRef }: MazeCanvasProps) => {
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
       
-      // Define maze paths
+      // Define more complex maze paths
       ctx.beginPath();
+      
       // Outer border
       ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
       
-      // Horizontal lines
+      // Horizontal lines (more complex pattern)
       const horizontalPaths = [
-        [20, 100, 150, 100],
-        [200, 100, 330, 100],
-        [20, 180, 100, 180],
-        [150, 180, 330, 180],
-        [20, 260, 250, 260],
-        [300, 260, 330, 260],
-        [20, 340, 180, 340],
-        [230, 340, 330, 340],
+        [20, 80, 150, 80],
+        [200, 80, 330, 80],
+        [20, 140, 100, 140],
+        [150, 140, 250, 140],
+        [20, 200, 180, 200],
+        [230, 200, 330, 200],
+        [60, 260, 280, 260],
+        [20, 320, 150, 320],
+        [200, 320, 330, 320],
       ];
 
-      // Vertical lines
+      // Vertical lines (more complex pattern)
       const verticalPaths = [
-        [100, 20, 100, 80],
-        [100, 120, 100, 160],
-        [180, 20, 180, 150],
-        [250, 180, 250, 240],
-        [180, 280, 180, 320],
-        [100, 360, 100, 460],
-        [250, 360, 250, 460],
+        [80, 20, 80, 120],
+        [150, 80, 150, 180],
+        [220, 20, 220, 80],
+        [280, 80, 280, 180],
+        [80, 200, 80, 300],
+        [150, 220, 150, 340],
+        [220, 200, 220, 280],
+        [280, 280, 280, 340],
       ];
 
       // Draw paths
@@ -74,8 +77,8 @@ const MazeCanvas = ({ gameStarted, onWin, ballRef }: MazeCanvasProps) => {
       ctx.fill();
 
       // Draw star (goal)
-      const starX = canvas.width / 2;
-      const starY = canvas.height / 2;
+      const starX = canvas.width - 40;
+      const starY = canvas.height - 40;
       drawStar(ctx, starX, starY, 5, 12, 6);
 
       // Check if ball reached the star
@@ -129,10 +132,34 @@ const MazeCanvas = ({ gameStarted, onWin, ballRef }: MazeCanvasProps) => {
       drawMaze();
     };
 
+    // Handle keyboard controls
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!gameStarted) return;
+
+      const speed = 5;
+      switch (event.key) {
+        case 'ArrowUp':
+          ballRef.current.y = Math.max(20, ballRef.current.y - speed);
+          break;
+        case 'ArrowDown':
+          ballRef.current.y = Math.min(canvas.height - 20, ballRef.current.y + speed);
+          break;
+        case 'ArrowLeft':
+          ballRef.current.x = Math.max(20, ballRef.current.x - speed);
+          break;
+        case 'ArrowRight':
+          ballRef.current.x = Math.min(canvas.width - 20, ballRef.current.x + speed);
+          break;
+      }
+      drawMaze();
+    };
+
     if (gameStarted) {
       window.addEventListener('deviceorientation', handleOrientation);
+      window.addEventListener('keydown', handleKeyDown);
       return () => {
         window.removeEventListener('deviceorientation', handleOrientation);
+        window.removeEventListener('keydown', handleKeyDown);
       };
     }
 
