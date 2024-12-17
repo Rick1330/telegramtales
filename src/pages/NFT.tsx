@@ -1,96 +1,80 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card } from "@/components/ui/card";
+import { Search, Grid, TrendingUp, Rocket } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Search, Diamond, Wallet } from "lucide-react";
-import { useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const NFT = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-
   const nfts = [
-    {
-      id: 1,
-      name: "Crypto Punk #1234",
-      price: "2.5 ETH",
-      owner: "JustinN",
-      image: "/placeholder.svg",
-      rarity: "Legendary"
-    },
-    {
-      id: 2,
-      name: "Bored Ape #5678",
-      price: "1.8 ETH",
-      owner: "spasecex",
-      image: "/placeholder.svg",
-      rarity: "Epic"
-    },
-    {
-      id: 3,
-      name: "Doodle #9012",
-      price: "0.8 ETH",
-      owner: "toanngu",
-      image: "/placeholder.svg",
-      rarity: "Rare"
-    }
+    { id: 1, name: "Cosmic Dolphin #1", price: "2,500", rarity: "Legendary", likes: 245 },
+    { id: 2, name: "Ocean Master #12", price: "1,800", rarity: "Epic", likes: 189 },
+    { id: 3, name: "Wave Rider #33", price: "1,200", rarity: "Rare", likes: 156 },
+    { id: 4, name: "Deep Blue #7", price: "950", rarity: "Uncommon", likes: 134 },
+    { id: 5, name: "Sea Spirit #21", price: "750", rarity: "Common", likes: 98 },
   ];
 
-  const filteredNFTs = nfts.filter(nft =>
-    nft.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const getRarityColor = (rarity: string) => {
+    const colors = {
+      Legendary: "bg-yellow-500",
+      Epic: "bg-purple-500",
+      Rare: "bg-blue-500",
+      Uncommon: "bg-green-500",
+      Common: "bg-gray-500"
+    };
+    return colors[rarity as keyof typeof colors] || "bg-gray-500";
+  };
 
   return (
     <div className="pb-20">
-      {/* Stats Section */}
       <div className="gradient-bg text-white p-8 rounded-b-[2rem] mb-6">
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-2xl font-bold">NFT Collection</h1>
+          <Grid className="w-6 h-6" />
+        </div>
+        
         <div className="grid grid-cols-2 gap-4 mb-6">
-          <div className="text-center">
-            <div className="flex items-center justify-center mb-2">
-              <Diamond className="w-5 h-5 text-yellow-300" />
-            </div>
-            <div className="text-sm opacity-80">NFTs Owned</div>
-            <div className="font-bold">3</div>
+          <div className="bg-white/20 rounded-xl p-4">
+            <TrendingUp className="w-6 h-6 mb-2" />
+            <p className="text-2xl font-bold">1.2k</p>
+            <p className="text-sm opacity-80">Total NFTs</p>
           </div>
-          <div className="text-center">
-            <div className="flex items-center justify-center mb-2">
-              <Wallet className="w-5 h-5 text-yellow-300" />
-            </div>
-            <div className="text-sm opacity-80">Total Value</div>
-            <div className="font-bold">5.1 ETH</div>
+          <div className="bg-white/20 rounded-xl p-4">
+            <Rocket className="w-6 h-6 mb-2" />
+            <p className="text-2xl font-bold">85</p>
+            <p className="text-sm opacity-80">New Today</p>
           </div>
         </div>
       </div>
 
-      {/* Search Bar */}
-      <div className="px-4 mb-6">
-        <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-          <Input
-            placeholder="Search NFTs"
+      <div className="px-4">
+        <div className="relative mb-6">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <Input 
+            placeholder="Search NFTs..." 
             className="pl-10 bg-white"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-      </div>
 
-      {/* NFTs Grid */}
-      <div className="px-4 grid grid-cols-2 gap-4">
-        {filteredNFTs.map((nft) => (
-          <Card key={nft.id} className="overflow-hidden">
-            <img src={nft.image} alt={nft.name} className="w-full aspect-square object-cover" />
-            <div className="p-3">
-              <h3 className="font-semibold text-sm truncate">{nft.name}</h3>
-              <div className="flex items-center justify-between mt-2">
-                <span className="text-primary text-sm font-medium">{nft.price}</span>
-                <span className="text-xs text-gray-500">Owned by {nft.owner}</span>
+        <div className="grid grid-cols-2 gap-4">
+          {nfts.map((nft) => (
+            <Card key={nft.id} className="overflow-hidden">
+              <div className="aspect-square bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                <span className="text-4xl">🐬</span>
               </div>
-              <Button className="w-full mt-3 text-xs" size="sm">
-                View Details
-              </Button>
-            </div>
-          </Card>
-        ))}
+              <div className="p-3">
+                <div className="flex items-center justify-between mb-2">
+                  <h3 className="font-semibold text-sm">{nft.name}</h3>
+                  <Badge variant="secondary" className={`${getRarityColor(nft.rarity)} text-white`}>
+                    {nft.rarity}
+                  </Badge>
+                </div>
+                <div className="flex items-center justify-between">
+                  <p className="text-primary font-bold">${nft.price}</p>
+                  <p className="text-sm text-gray-500">❤️ {nft.likes}</p>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   );
