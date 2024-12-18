@@ -1,10 +1,9 @@
 export const COLORS = [
-  '#FF6B6B', // Vibrant Red
-  '#4ECDC4', // Turquoise
-  '#45B7D1', // Ocean Blue
-  '#96CEB4', // Mint Green
-  '#FFBE0B', // Bright Yellow
-  '#FF006E', // Hot Pink
+  '#0EA5E9', // Vibrant Blue
+  '#ea384c', // Vibrant Red
+  '#F97316', // Vibrant Yellow/Orange
+  '#22c55e', // Vibrant Green
+  '#171717', // Rich Black
 ];
 
 export const GAME_SETTINGS = {

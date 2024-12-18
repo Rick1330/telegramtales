@@ -43,7 +43,7 @@ const WaterSort = () => {
 
   const initializeTubes = () => {
     const initialTubes: Tube[] = Array(8).fill(null).map((_, index) => ({
-      colors: index < 6 ? shuffle([...COLORS].slice(0, 4)) : [],
+      colors: index < 6 ? shuffle([...COLORS, ...COLORS, ...COLORS, ...COLORS].slice(0, 4)) : [],
       selected: false,
       animating: false
     }));
