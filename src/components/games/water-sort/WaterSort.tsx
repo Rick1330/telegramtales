@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 import { COLORS, GAME_SETTINGS } from './constants';
 import { shuffle } from './utils';
 import Timer from './Timer';
 import GameCanvas from './GameCanvas';
+import GameHeader from './GameHeader';
 
 interface Tube {
   colors: string[];
@@ -106,13 +105,7 @@ const WaterSort = () => {
 
   return (
     <div className="min-h-screen bg-[#1A1F2C] pb-20">
-      <div className="bg-gradient-to-r from-blue-600 to-blue-400 p-4 flex items-center gap-4 text-white">
-        <Link to="/games">
-          <ArrowLeft className="h-6 w-6" />
-        </Link>
-        <h1 className="text-xl font-bold">Water Sort</h1>
-      </div>
-
+      <GameHeader />
       <div className="p-4 flex flex-col items-center">
         <GameCanvas tubes={tubes} onTubeClick={handleTubeClick} />
         <Timer timeLeft={timeLeft} moves={moves} />

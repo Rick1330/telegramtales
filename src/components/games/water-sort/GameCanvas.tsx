@@ -28,34 +28,34 @@ const GameCanvas = ({ tubes, onTubeClick }: GameCanvasProps) => {
       const x = (index % 4) * 100 + 50;
       const y = Math.floor(index / 4) * 200 + 100;
 
-      // Draw tube with enhanced glass effect
+      // Enhanced glass effect with shadows
       ctx.save();
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
-      ctx.shadowBlur = 12;
-      ctx.shadowOffsetY = 4;
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+      ctx.shadowBlur = 15;
+      ctx.shadowOffsetY = 5;
 
-      // Draw tube body with more pronounced rounded corners
+      // Draw tube body with enhanced rounded corners
       ctx.beginPath();
-      const cornerRadius = 8;
+      const cornerRadius = 10;
 
       // Enhanced tube shape with curved bottom
       ctx.moveTo(x - GAME_SETTINGS.TUBE_WIDTH/2 + cornerRadius, y);
       ctx.lineTo(x + GAME_SETTINGS.TUBE_WIDTH/2 - cornerRadius, y);
       ctx.quadraticCurveTo(x + GAME_SETTINGS.TUBE_WIDTH/2, y, x + GAME_SETTINGS.TUBE_WIDTH/2, y + cornerRadius);
       ctx.lineTo(x + GAME_SETTINGS.TUBE_WIDTH/2, y + GAME_SETTINGS.TUBE_HEIGHT - cornerRadius);
-      ctx.quadraticCurveTo(x + GAME_SETTINGS.TUBE_WIDTH/2, y + GAME_SETTINGS.TUBE_HEIGHT, x, y + GAME_SETTINGS.TUBE_HEIGHT + 5);
+      ctx.quadraticCurveTo(x + GAME_SETTINGS.TUBE_WIDTH/2, y + GAME_SETTINGS.TUBE_HEIGHT, x, y + GAME_SETTINGS.TUBE_HEIGHT + 8);
       ctx.quadraticCurveTo(x - GAME_SETTINGS.TUBE_WIDTH/2, y + GAME_SETTINGS.TUBE_HEIGHT, x - GAME_SETTINGS.TUBE_WIDTH/2, y + GAME_SETTINGS.TUBE_HEIGHT - cornerRadius);
       ctx.lineTo(x - GAME_SETTINGS.TUBE_WIDTH/2, y + cornerRadius);
       ctx.quadraticCurveTo(x - GAME_SETTINGS.TUBE_WIDTH/2, y, x - GAME_SETTINGS.TUBE_WIDTH/2 + cornerRadius, y);
 
       // Enhanced glass effect gradient
       const glassGradient = ctx.createLinearGradient(x - GAME_SETTINGS.TUBE_WIDTH/2, y, x + GAME_SETTINGS.TUBE_WIDTH/2, y);
-      glassGradient.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+      glassGradient.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
       glassGradient.addColorStop(0.2, 'rgba(255, 255, 255, 0.2)');
       glassGradient.addColorStop(0.8, 'rgba(255, 255, 255, 0.2)');
-      glassGradient.addColorStop(1, 'rgba(255, 255, 255, 0.9)');
+      glassGradient.addColorStop(1, 'rgba(255, 255, 255, 0.95)');
 
-      ctx.strokeStyle = tube.selected ? '#0088CC' : 'rgba(255, 255, 255, 0.5)';
+      ctx.strokeStyle = tube.selected ? '#0088CC' : 'rgba(255, 255, 255, 0.6)';
       ctx.lineWidth = tube.selected ? 3 : 2;
       ctx.fillStyle = glassGradient;
       ctx.fill();
@@ -71,6 +71,7 @@ const GameCanvas = ({ tubes, onTubeClick }: GameCanvasProps) => {
           segmentY += Math.sin(Date.now() / 200 + colorIndex) * 3;
         }
 
+        // Enhanced liquid gradient
         const liquidGradient = ctx.createLinearGradient(x - GAME_SETTINGS.TUBE_WIDTH/2, segmentY, x + GAME_SETTINGS.TUBE_WIDTH/2, segmentY + segmentHeight);
         liquidGradient.addColorStop(0, color);
         liquidGradient.addColorStop(1, adjustColor(color, -20));
@@ -81,6 +82,15 @@ const GameCanvas = ({ tubes, onTubeClick }: GameCanvasProps) => {
         ctx.lineTo(x - GAME_SETTINGS.TUBE_WIDTH/2 + 2, segmentY + segmentHeight);
         ctx.lineTo(x + GAME_SETTINGS.TUBE_WIDTH/2 - 2, segmentY + segmentHeight);
         ctx.lineTo(x + GAME_SETTINGS.TUBE_WIDTH/2 - 2, segmentY);
+        
+        // Add liquid shine effect
+        const shine = ctx.createLinearGradient(x - GAME_SETTINGS.TUBE_WIDTH/2, segmentY, x + GAME_SETTINGS.TUBE_WIDTH/2, segmentY);
+        shine.addColorStop(0.4, 'rgba(255, 255, 255, 0)');
+        shine.addColorStop(0.5, 'rgba(255, 255, 255, 0.1)');
+        shine.addColorStop(0.6, 'rgba(255, 255, 255, 0)');
+        
+        ctx.fill();
+        ctx.fillStyle = shine;
         ctx.fill();
       });
     });
