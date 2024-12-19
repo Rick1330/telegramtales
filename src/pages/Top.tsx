@@ -1,21 +1,20 @@
-import { Search, Trophy, TrendingUp, Users, DollarSign } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { Trophy, TrendingUp, Users, DollarSign } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const Top = () => {
-  const topUsers = [
-    { id: 1, name: "Alex Thompson", balance: "45,230", rank: 1, verified: true },
-    { id: 2, name: "Sarah Wilson", balance: "38,450", rank: 2, verified: true },
-    { id: 3, name: "Mike Johnson", balance: "32,180", rank: 3, verified: false },
-    { id: 4, name: "Emma Davis", balance: "28,900", rank: 4, verified: true },
-    { id: 5, name: "Chris Martin", balance: "25,670", rank: 5, verified: false },
-  ];
+  const topUsers = Array.from({ length: 100 }, (_, i) => ({
+    id: i + 1,
+    name: `Player ${i + 1}`,
+    balance: (100000 - (i * 750)).toLocaleString(),
+    rank: i + 1,
+    verified: Math.random() > 0.7
+  }));
 
   return (
     <div className="pb-20">
       <div className="gradient-bg text-white p-8 rounded-b-[2rem] mb-6">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold">Top Players</h1>
+          <h1 className="text-2xl font-bold">Top 100 Players</h1>
           <TrendingUp className="w-6 h-6" />
         </div>
         
@@ -39,14 +38,6 @@ const Top = () => {
       </div>
 
       <div className="px-4">
-        <div className="relative mb-6">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-          <Input 
-            placeholder="Search players..." 
-            className="pl-10 bg-white"
-          />
-        </div>
-
         <div className="space-y-4">
           {topUsers.map((user) => (
             <Card key={user.id} className="p-4">

@@ -48,6 +48,54 @@ const Index = () => {
       reward: "+500 DOLPHINS",
       action: "Open",
       variant: "outline" as const
+    },
+    {
+      title: "Share DOLPHINS on Twitter",
+      reward: "+2000 DOLPHINS",
+      action: "Share",
+      variant: "default" as const
+    },
+    {
+      title: "Complete Daily Quiz",
+      reward: "+1500 DOLPHINS",
+      action: "Start",
+      variant: "default" as const
+    },
+    {
+      title: "Invite 3 Friends",
+      reward: "+5000 DOLPHINS",
+      action: "Invite",
+      variant: "outline" as const
+    },
+    {
+      title: "Play Dolphin Maze Game",
+      reward: "+2000 DOLPHINS",
+      action: "Play",
+      variant: "default" as const
+    },
+    {
+      title: "Complete Water Sort Challenge",
+      reward: "+2500 DOLPHINS",
+      action: "Play",
+      variant: "default" as const
+    },
+    {
+      title: "Subscribe to Newsletter",
+      reward: "+1000 DOLPHINS",
+      action: "Subscribe",
+      variant: "outline" as const
+    },
+    {
+      title: "Join Discord Community",
+      reward: "+2000 DOLPHINS",
+      action: "Join",
+      variant: "default" as const
+    },
+    {
+      title: "Complete Profile",
+      reward: "+1500 DOLPHINS",
+      action: "Complete",
+      variant: "outline" as const
     }
   ];
 
