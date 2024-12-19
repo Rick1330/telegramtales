@@ -1,4 +1,4 @@
-import { Home, Gamepad2, Trophy, Flag, User } from "lucide-react";
+import { Home, Trophy, Flag, User, Cat } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const Navigation = () => {
@@ -7,10 +7,10 @@ const Navigation = () => {
 
   const navItems = [
     { icon: Home, label: "Home", path: "/" },
-    { icon: Gamepad2, label: "Games", path: "/games", badge: "5" },
-    { icon: Trophy, label: "Top", path: "/top" },
-    { icon: Flag, label: "NFT", path: "/nft" },
-    { icon: User, label: "Profile", path: "/profile", badge: "1" },
+    { icon: Trophy, label: "Leaderboard", path: "/top" },
+    { icon: Flag, label: "Friends", path: "/nft" },
+    { icon: Cat, label: "Avatar", path: "/avatar", badge: "5" },
+    { icon: User, label: "Craft", path: "/profile" },
   ];
 
   return (
