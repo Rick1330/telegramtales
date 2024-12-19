@@ -39,20 +39,8 @@
 
 .gradient-bg {
   background: linear-gradient(180deg, #0088CC 0%, #0099FF 100%);
-  background-image: linear-gradient(180deg, #0088CC 0%, #0099FF 100%);
 }
 
 .card-shadow {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-/* Enhanced backdrop blur effects */
-.backdrop-blur {
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-/* Smooth transitions */
-.transition-all {
-  transition: all 0.3s ease-in-out;
 }
