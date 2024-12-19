@@ -1,4 +1,4 @@
-import { DollarSign, Users, Gift, Trophy, Rocket, ChevronDown } from "lucide-react";
+import { Cat, Trophy, Users, DollarSign, Gift, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useState } from "react";
@@ -8,15 +8,16 @@ const Index = () => {
 
   const tasks = [
     {
-      title: "Follow DOLPHINS channel",
-      reward: "+1000 DOLPHINS",
-      action: "Join",
-      variant: "default" as const
+      title: "Watch our last update!",
+      reward: "+2000 DOLPHINS",
+      action: "Meeoow!",
+      variant: "default" as const,
+      isHighlighted: true
     },
     {
-      title: "Follow DOLPHINS TON on X 🧀",
-      reward: "+1000 DOLPHINS",
-      action: "Open",
+      title: "Complete avatar task",
+      reward: "+6000 DOLPHINS",
+      action: "Start",
       variant: "outline" as const
     },
     {
@@ -103,92 +104,107 @@ const Index = () => {
 
   return (
     <div className="pb-20">
-      <div className="gradient-bg text-white p-8 rounded-b-[2rem] mb-6">
-        <h1 className="text-4xl font-bold mb-2">21,258</h1>
+      <div className="bg-gradient-to-b from-[#FF5F1F] to-[#FF8C00] text-white p-6 rounded-b-[2rem] mb-6">
+        <div className="flex items-center gap-2 mb-4">
+          <Cat className="w-6 h-6" />
+          <h1 className="text-2xl font-bold">DOLPHINS</h1>
+        </div>
+        
+        <Card className="bg-white/10 backdrop-blur-sm border-none p-4 mb-6">
+          <p className="text-sm mb-2">Watch our last update!</p>
+          <Button variant="default" className="bg-white text-black hover:bg-white/90 w-full">
+            Meeoow!
+          </Button>
+        </Card>
+
+        <Card className="bg-white/5 backdrop-blur-sm border-none p-4 mb-6">
+          <div className="flex items-center gap-2 mb-2">
+            <Cat className="w-5 h-5" />
+            <p>Access exclusive streams with OG Pass</p>
+          </div>
+        </Card>
+
+        <h2 className="text-4xl font-bold mb-2">21,258</h2>
         <p className="text-xl mb-8">DOLPHINS</p>
         
         <div className="grid grid-cols-3 gap-4">
           <div className="bg-white/20 rounded-xl p-4">
-            <p className="text-2xl font-bold">+707</p>
+            <div className="flex items-center gap-2">
+              <p className="text-2xl font-bold">+707</p>
+              <Cat className="w-4 h-4" />
+            </div>
             <p className="text-sm">Rewards</p>
           </div>
           <div className="bg-white/20 rounded-xl p-4">
-            <p className="text-2xl font-bold">+20.5k</p>
+            <div className="flex items-center gap-2">
+              <p className="text-2xl font-bold">+22k</p>
+              <Cat className="w-4 h-4" />
+            </div>
             <p className="text-sm">Tasks</p>
           </div>
           <div className="bg-white/20 rounded-xl p-4">
-            <p className="text-2xl font-bold">+51</p>
+            <div className="flex items-center gap-2">
+              <p className="text-2xl font-bold">+51</p>
+              <Cat className="w-4 h-4" />
+            </div>
             <p className="text-sm">Invites</p>
           </div>
         </div>
       </div>
 
       <div className="px-4 space-y-4">
-        <Card className="p-4 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <span className="text-xl">🐬</span>
-            <div>
-              <p className="font-semibold">OG Pass</p>
-              <p className="text-sm text-gray-500">Access exclusive streams</p>
-            </div>
-          </div>
-          <Button variant="link" className="text-primary">
-            Learn More
-          </Button>
-        </Card>
-
         <div>
           <div className="flex items-center space-x-2 mb-4">
-            <span className="text-xl">🐬</span>
-            <h2 className="text-xl font-bold">Rewards</h2>
+            <Cat className="w-6 h-6" />
+            <h2 className="text-xl font-bold">Daily Tasks</h2>
           </div>
 
-          <Card className="bg-primary text-white p-6 mb-4">
-            <h3 className="text-xl font-bold mb-2">Private Group for Top Holders</h3>
-            <p className="mb-4">Join the elite DOLPHINS community</p>
-            <Button variant="secondary" className="w-24">Join</Button>
-          </Card>
-
-          <Card className="p-4 flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <Trophy className="w-6 h-6 text-primary" />
+          <Card className="p-4 mb-6">
+            <div className="flex justify-between items-center">
               <div>
-                <p className="font-semibold">Telegram Business Card</p>
-                <p className="text-sm text-gray-500">Show off your DOLPHINS</p>
+                <p className="font-semibold">Make TON Great Again</p>
+                <p className="text-red-500 font-medium">+2000 DOLPHINS</p>
               </div>
+              <Button variant="default" className="min-w-[80px]">
+                Join
+              </Button>
             </div>
-            <Button variant="outline" className="text-primary">
-              Create
-            </Button>
           </Card>
         </div>
 
-        <div className="space-y-3">
+        <div>
           <div className="flex items-center space-x-2 mb-4">
-            <span className="text-xl">🎯</span>
+            <Gift className="w-6 h-6" />
             <h2 className="text-xl font-bold">Tasks</h2>
           </div>
 
-          {visibleTasks.map((task, index) => (
-            <Card key={index} className="p-4 flex items-center justify-between">
-              <div>
-                <p className="font-semibold">{task.title}</p>
-                <p className="text-red-500 font-medium">{task.reward}</p>
-              </div>
-              <Button variant={task.variant} className="min-w-[80px]">
-                {task.action}
-              </Button>
-            </Card>
-          ))}
+          <div className="space-y-3">
+            {visibleTasks.map((task, index) => (
+              <Card 
+                key={index} 
+                className={`p-4 ${task.isHighlighted ? 'bg-gradient-to-r from-blue-50 to-blue-100' : ''}`}
+              >
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="font-semibold">{task.title}</p>
+                    <p className="text-red-500 font-medium">{task.reward}</p>
+                  </div>
+                  <Button variant={task.variant} className="min-w-[80px]">
+                    {task.action}
+                  </Button>
+                </div>
+              </Card>
+            ))}
 
-          <Button 
-            variant="ghost" 
-            className="w-full text-primary flex items-center gap-2"
-            onClick={() => setShowAllTasks(!showAllTasks)}
-          >
-            {showAllTasks ? "Show less tasks" : "Show more tasks"}
-            <ChevronDown className={`transition-transform ${showAllTasks ? "rotate-180" : ""}`} />
-          </Button>
+            <Button 
+              variant="ghost" 
+              className="w-full text-primary flex items-center gap-2"
+              onClick={() => setShowAllTasks(!showAllTasks)}
+            >
+              {showAllTasks ? "Show less tasks" : "Show more tasks"}
+              <ChevronDown className={`transition-transform ${showAllTasks ? "rotate-180" : ""}`} />
+            </Button>
+          </div>
         </div>
       </div>
     </div>
