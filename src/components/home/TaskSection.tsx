@@ -16,11 +16,17 @@ const TaskSection = () => {
 
   const tasks: Task[] = [
     {
-      title: "Watch our last update!",
-      reward: "+2000 DOLPHINS",
-      action: "Meeoow!",
+      title: "Complete Ocean Guardian Challenge",
+      reward: "+5000 DOLPHINS",
+      action: "Start",
       variant: "default",
       isHighlighted: true
+    },
+    {
+      title: "Daily Wave Rider Task",
+      reward: "+2000 DOLPHINS",
+      action: "Play",
+      variant: "outline"
     },
     {
       title: "Complete avatar task",
@@ -111,26 +117,19 @@ const TaskSection = () => {
   const visibleTasks = showAllTasks ? tasks : tasks.slice(0, 4);
 
   return (
-    <div>
-      <div className="flex items-center space-x-2 mb-4">
-        <Gift className="w-6 h-6" />
-        <h2 className="text-xl font-bold">Tasks</h2>
-      </div>
+    <div className="space-y-4">
+      {visibleTasks.map((task, index) => (
+        <TaskCard key={index} {...task} />
+      ))}
 
-      <div className="space-y-3">
-        {visibleTasks.map((task, index) => (
-          <TaskCard key={index} {...task} />
-        ))}
-
-        <Button
-          variant="ghost"
-          className="w-full text-primary flex items-center gap-2"
-          onClick={() => setShowAllTasks(!showAllTasks)}
-        >
-          {showAllTasks ? "Show less tasks" : "Show more tasks"}
-          <span className={`transition-transform ${showAllTasks ? "rotate-180" : ""}`}>↓</span>
-        </Button>
-      </div>
+      <Button
+        variant="ghost"
+        className="w-full text-blue-600 hover:text-blue-700 hover:bg-blue-50 flex items-center gap-2 mt-4"
+        onClick={() => setShowAllTasks(!showAllTasks)}
+      >
+        {showAllTasks ? "Show less tasks" : "Show more tasks"}
+        <span className={`transition-transform ${showAllTasks ? "rotate-180" : ""}`}>↓</span>
+      </Button>
     </div>
   );
 };
