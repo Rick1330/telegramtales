@@ -1,4 +1,4 @@
-import { Wave, Droplets, Sparkles } from "lucide-react";
+import { Waves, Droplets, Sparkles } from "lucide-react";
 
 export const getBackgroundOptions = () => [
   {
@@ -9,7 +9,7 @@ export const getBackgroundOptions = () => [
     rarity: "legendary",
     description: "Deep blue ocean background with shimmering waves",
     effect: "Wave animation",
-    icon: <Wave className="w-4 h-4" />
+    icon: <Waves className="w-4 h-4" />
   },
   {
     name: "Coral Reef",
