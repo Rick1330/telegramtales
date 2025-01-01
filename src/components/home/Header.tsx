@@ -1,4 +1,4 @@
-import { Sparkles, Trophy, Users, Cat } from "lucide-react";
+import { Fish, Trophy, Users, Sparkles } from "lucide-react";
 
 const Header = () => {
   return (
@@ -13,7 +13,7 @@ const Header = () => {
 
       <div className="grid grid-cols-3 gap-4">
         <StatsCard title="Rewards" value="+707" icon={Trophy} />
-        <StatsCard title="Tasks" value="+22k" icon={Cat} />
+        <StatsCard title="Tasks" value="+22k" icon={Fish} />
         <StatsCard title="Invites" value="+51" icon={Users} />
       </div>
     </div>
