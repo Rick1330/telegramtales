@@ -1,15 +1,8 @@
-import { Cat, Sparkles, Trophy, Users } from "lucide-react";
+import { Sparkles, Trophy, Users, Cat } from "lucide-react";
 
 const Header = () => {
   return (
     <div className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white p-8 rounded-b-[2.5rem] mb-6 shadow-lg">
-      <div className="flex items-center gap-3 mb-8">
-        <div className="p-2 bg-white/20 rounded-xl">
-          <Cat className="w-8 h-8" />
-        </div>
-        <h1 className="text-3xl font-bold">DOLPHINS</h1>
-      </div>
-
       <div className="text-center mb-10">
         <div className="flex items-center justify-center gap-2 mb-2">
           <h2 className="text-4xl font-bold">21,258</h2>
