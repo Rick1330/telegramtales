@@ -1,4 +1,4 @@
-import { Trophy, TrendingUp, Users, DollarSign, Waves } from "lucide-react";
+import { Trophy, TrendingUp, Users, DollarSign, Crown } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const Top = () => {
@@ -10,33 +10,58 @@ const Top = () => {
     verified: Math.random() > 0.7
   }));
 
+  // Mock current player data
+  const currentPlayer = {
+    rank: 42,
+    points: "74,250",
+    totalWinners: 500
+  };
+
   return (
     <div className="pb-20">
-      <div className="bg-gradient-to-br from-blue-600 via-cyan-500 to-blue-500 text-white p-8 rounded-b-[2.5rem] mb-6 shadow-lg">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-gradient-to-br from-purple-600 via-purple-500 to-indigo-500 text-white p-8 rounded-b-[2.5rem] mb-6 shadow-lg">
+        <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-white/20 rounded-xl">
               <Trophy className="w-8 h-8" />
             </div>
             <h1 className="text-2xl font-bold">Ocean Leaders</h1>
           </div>
-          <TrendingUp className="w-6 h-6" />
+          <div className="flex items-center gap-2">
+            <TrendingUp className="w-5 h-5" />
+            <span className="text-sm font-medium">Live Rankings</span>
+          </div>
+        </div>
+
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 mb-6">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+              <Crown className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <p className="text-lg opacity-90">Your Current Rank</p>
+              <div className="flex items-baseline gap-2">
+                <span className="text-3xl font-bold">#{currentPlayer.rank}</span>
+                <span className="text-sm opacity-75">of {topUsers.length}</span>
+              </div>
+            </div>
+          </div>
         </div>
         
-        <div className="grid grid-cols-3 gap-4 mb-6">
-          <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 hover:bg-white/30 transition-all">
-            <DollarSign className="w-6 h-6 mb-2" />
-            <p className="text-2xl font-bold">$1.2M</p>
-            <p className="text-sm opacity-80">Total Value</p>
+        <div className="grid grid-cols-3 gap-4">
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-all">
+            <DollarSign className="w-6 h-6 mb-2 opacity-80" />
+            <p className="text-2xl font-bold">{currentPlayer.points}</p>
+            <p className="text-sm opacity-80">Your Points</p>
           </div>
-          <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 hover:bg-white/30 transition-all">
-            <Users className="w-6 h-6 mb-2" />
-            <p className="text-2xl font-bold">2.5k</p>
-            <p className="text-sm opacity-80">Players</p>
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-all">
+            <Users className="w-6 h-6 mb-2 opacity-80" />
+            <p className="text-2xl font-bold">{topUsers.length}</p>
+            <p className="text-sm opacity-80">Total Players</p>
           </div>
-          <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 hover:bg-white/30 transition-all">
-            <Trophy className="w-6 h-6 mb-2" />
-            <p className="text-2xl font-bold">500</p>
+          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-all">
+            <Trophy className="w-6 h-6 mb-2 opacity-80" />
+            <p className="text-2xl font-bold">{currentPlayer.totalWinners}</p>
             <p className="text-sm opacity-80">Winners</p>
           </div>
         </div>
