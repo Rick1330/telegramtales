@@ -8,7 +8,7 @@ const Navigation = () => {
   const navItems = [
     { icon: Home, label: "Home", path: "/" },
     { icon: Trophy, label: "Leaderboard", path: "/top" },
-    { icon: Flag, label: "Friends", path: "/nft" },
+    { icon: Flag, label: "NFT", path: "/nft" },
     { icon: Fish, label: "Avatar", path: "/avatar", badge: "5" },
     { icon: User, label: "Craft", path: "/profile" },
   ];
