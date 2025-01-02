@@ -1,4 +1,4 @@
-import { Waves, Droplets, Sparkles } from "lucide-react";
+import { Waves, Droplets, Sparkles, Compass, Mountain, Cloud, Sun } from "lucide-react";
 
 export const getBackgroundOptions = () => [
   {
@@ -29,5 +29,35 @@ export const getBackgroundOptions = () => [
     rarity: "rare",
     effect: "Glowing particles",
     icon: <Sparkles className="w-4 h-4" />
+  },
+  {
+    name: "Deep Sea Trench",
+    price: 4,
+    currency: "diamonds",
+    image: "/placeholder.svg",
+    rarity: "legendary",
+    description: "Mysterious deep sea environment",
+    effect: "Pressure waves",
+    icon: <Compass className="w-4 h-4" />
+  },
+  {
+    name: "Underwater Mountain",
+    price: 4500,
+    currency: "coins",
+    image: "/placeholder.svg",
+    rarity: "epic",
+    description: "Majestic underwater mountain range",
+    effect: "Current flows",
+    icon: <Mountain className="w-4 h-4" />
+  },
+  {
+    name: "Sunlit Shallows",
+    price: 3500,
+    currency: "coins",
+    image: "/placeholder.svg",
+    rarity: "rare",
+    description: "Crystal clear waters with dancing sunlight",
+    effect: "Light rays",
+    icon: <Sun className="w-4 h-4" />
   }
 ];

@@ -1,4 +1,4 @@
-import { Sun, Moon, Star } from "lucide-react";
+import { Sun, Moon, Star, Eye, Zap, Heart, Sparkles } from "lucide-react";
 
 export const getEyesOptions = () => [
   {
@@ -29,5 +29,35 @@ export const getEyesOptions = () => [
     rarity: "rare",
     description: "Twinkling eye effect",
     icon: <Star className="w-4 h-4" />
+  },
+  {
+    name: "Bioluminescent Eyes",
+    price: 3,
+    currency: "diamonds",
+    image: "/placeholder.svg",
+    rarity: "legendary",
+    description: "Naturally glowing eyes",
+    effect: "Color shift",
+    icon: <Eye className="w-4 h-4" />
+  },
+  {
+    name: "Electric Eyes",
+    price: 4000,
+    currency: "coins",
+    image: "/placeholder.svg",
+    rarity: "epic",
+    description: "Lightning-charged eyes",
+    effect: "Electric sparks",
+    icon: <Zap className="w-4 h-4" />
+  },
+  {
+    name: "Heart Eyes",
+    price: 2500,
+    currency: "coins",
+    image: "/placeholder.svg",
+    rarity: "rare",
+    description: "Adorable heart-shaped eyes",
+    effect: "Love sparkles",
+    icon: <Heart className="w-4 h-4" />
   }
 ];

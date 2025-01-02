@@ -1,4 +1,4 @@
-import { Shell, Crown, Sparkles } from "lucide-react";
+import { Shell, Crown, Sparkles, Diamond, Star, Heart, Gem } from "lucide-react";
 
 export const getAccessoryOptions = () => [
   {
@@ -29,5 +29,35 @@ export const getAccessoryOptions = () => [
     rarity: "rare",
     description: "Crown made of eternal bubbles",
     icon: <Sparkles className="w-4 h-4" />
+  },
+  {
+    name: "Diamond Tiara",
+    price: 5,
+    currency: "diamonds",
+    image: "/placeholder.svg",
+    rarity: "legendary",
+    description: "Precious underwater tiara",
+    effect: "Diamond sparkle",
+    icon: <Diamond className="w-4 h-4" />
+  },
+  {
+    name: "Starfish Crown",
+    price: 4500,
+    currency: "coins",
+    image: "/placeholder.svg",
+    rarity: "epic",
+    description: "Living starfish crown",
+    effect: "Star glow",
+    icon: <Star className="w-4 h-4" />
+  },
+  {
+    name: "Coral Heart",
+    price: 3000,
+    currency: "coins",
+    image: "/placeholder.svg",
+    rarity: "rare",
+    description: "Heart-shaped coral accessory",
+    effect: "Love aura",
+    icon: <Heart className="w-4 h-4" />
   }
 ];
