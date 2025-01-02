@@ -19,23 +19,23 @@ const Top = () => {
 
   return (
     <div className="pb-20">
-      <div className="bg-gradient-to-br from-purple-600 via-purple-500 to-indigo-500 text-white p-8 rounded-b-[2.5rem] mb-6 shadow-lg">
+      <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-400 text-white p-8 rounded-b-[2.5rem] mb-6 shadow-lg">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-white/20 rounded-xl">
+            <div className="p-2 glass-effect rounded-xl">
               <Trophy className="w-8 h-8" />
             </div>
             <h1 className="text-2xl font-bold">Ocean Leaders</h1>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 glass-effect px-3 py-1.5 rounded-xl">
             <TrendingUp className="w-5 h-5" />
             <span className="text-sm font-medium">Live Rankings</span>
           </div>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 mb-6">
+        <div className="glass-effect rounded-2xl p-6 mb-6">
           <div className="flex items-center gap-4 mb-4">
-            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center">
+            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-400 to-cyan-300 flex items-center justify-center">
               <Crown className="w-8 h-8 text-white" />
             </div>
             <div>
@@ -49,17 +49,17 @@ const Top = () => {
         </div>
         
         <div className="grid grid-cols-3 gap-4">
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-all">
+          <div className="glass-effect rounded-xl p-4 hover:bg-white/20 transition-all">
             <DollarSign className="w-6 h-6 mb-2 opacity-80" />
             <p className="text-2xl font-bold">{currentPlayer.points}</p>
             <p className="text-sm opacity-80">Your Points</p>
           </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-all">
+          <div className="glass-effect rounded-xl p-4 hover:bg-white/20 transition-all">
             <Users className="w-6 h-6 mb-2 opacity-80" />
             <p className="text-2xl font-bold">{topUsers.length}</p>
             <p className="text-sm opacity-80">Total Players</p>
           </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-all">
+          <div className="glass-effect rounded-xl p-4 hover:bg-white/20 transition-all">
             <Trophy className="w-6 h-6 mb-2 opacity-80" />
             <p className="text-2xl font-bold">{currentPlayer.totalWinners}</p>
             <p className="text-sm opacity-80">Winners</p>
