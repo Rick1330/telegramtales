@@ -23,10 +23,10 @@ const Wallet = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background pb-20">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50 pb-24">
       {/* Header */}
-      <div className="bg-gradient-to-br from-primary to-primary/80 p-6 rounded-b-[2rem]">
-        <h1 className="text-2xl font-bold text-white">Connect Wallet</h1>
+      <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-400 text-white p-6 rounded-b-[2rem] shadow-lg">
+        <h1 className="text-3xl font-bold">Connect Wallet</h1>
       </div>
 
       {/* Popular Wallets */}
@@ -38,20 +38,22 @@ const Wallet = () => {
               <Button
                 key={wallet.id}
                 variant="ghost"
-                className="w-full justify-between h-auto py-3 hover:bg-primary/5"
+                className="w-full justify-between h-auto py-3 hover:bg-primary/5 group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center group-hover:from-blue-500/30 group-hover:to-cyan-500/20 transition-colors">
                     <wallet.icon className="w-5 h-5 text-primary" />
                   </div>
                   <div className="text-left">
                     <p className="font-medium">{wallet.name}</p>
                     {wallet.popular && (
-                      <Badge variant="secondary" className="mt-1">Popular</Badge>
+                      <Badge variant="secondary" className="mt-1 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 text-primary">
+                        Popular
+                      </Badge>
                     )}
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
               </Button>
             ))}
           </div>
@@ -65,10 +67,10 @@ const Wallet = () => {
           {otherWallets.map((wallet) => (
             <Card 
               key={wallet.id}
-              className="p-4 hover:bg-primary/5 transition-colors cursor-pointer border-primary/10"
+              className="p-4 hover:bg-primary/5 transition-all duration-200 border-primary/10 hover:scale-105 cursor-pointer"
             >
               <div className="flex flex-col items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center">
                   <wallet.icon className="w-6 h-6 text-primary" />
                 </div>
                 <p className="text-sm font-medium text-center">{wallet.name}</p>
@@ -80,16 +82,16 @@ const Wallet = () => {
 
       {/* TON Connect Section */}
       <div className="px-4 mt-6">
-        <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-none p-4">
+        <Card className="bg-gradient-to-br from-blue-500/10 to-cyan-500/5 border-none p-4">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center">
               <Shield className="w-5 h-5 text-primary" />
             </div>
             <div className="flex-1">
               <h3 className="font-semibold">TON Connect</h3>
               <p className="text-sm text-muted-foreground">Secure wallet connection</p>
             </div>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" className="hover:bg-blue-500/10">
               <ChevronRight className="w-5 h-5" />
             </Button>
           </div>
