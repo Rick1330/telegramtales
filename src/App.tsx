@@ -7,7 +7,7 @@ import Navigation from "./components/Navigation";
 import Index from "./pages/Index";
 import Avatar from "./pages/Avatar";
 import Top from "./pages/Top";
-import NFT from "./pages/NFT";
+import Wallet from "./pages/Wallet";
 import Profile from "./pages/Profile";
 
 const queryClient = new QueryClient();
@@ -24,7 +24,7 @@ function App() {
               <Route path="/" element={<Index />} />
               <Route path="/avatar" element={<Avatar />} />
               <Route path="/top" element={<Top />} />
-              <Route path="/nft" element={<NFT />} />
+              <Route path="/wallet" element={<Wallet />} />
               <Route path="/profile" element={<Profile />} />
             </Routes>
             <Navigation />
