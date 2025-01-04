@@ -1,43 +1,32 @@
-import { Search, Wallet as WalletIcon, X, ChevronRight, Shield, Scan } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { Wallet as WalletIcon, ChevronRight, Shield, Scan, Smartphone, Coins, Landmark } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 const Wallet = () => {
   const wallets = [
-    { id: 1, name: "Wallet On Telegram", popular: false, icon: WalletIcon },
+    { id: 1, name: "Wallet On Telegram", popular: true, icon: WalletIcon },
     { id: 2, name: "Tonkeeper", popular: true, icon: Shield },
-    { id: 3, name: "MyTonWallet", popular: false, icon: WalletIcon },
+    { id: 3, name: "MyTonWallet", popular: true, icon: WalletIcon },
     { id: 4, name: "Tonhub", popular: false, icon: Scan },
+    { id: 5, name: "OpenMask", popular: false, icon: Shield },
+    { id: 6, name: "TON Chrome Wallet", popular: false, icon: WalletIcon },
   ];
 
   const otherWallets = [
-    { id: 5, name: "Bitget Wallet" },
-    { id: 6, name: "OKX Mini" },
-    { id: 7, name: "Binance Wallet" },
-    { id: 8, name: "Fintopio" },
+    { id: 7, name: "Bitget Wallet", icon: Coins },
+    { id: 8, name: "OKX Mini", icon: Smartphone },
+    { id: 9, name: "Binance Wallet", icon: Landmark },
+    { id: 10, name: "Fintopio", icon: WalletIcon },
+    { id: 11, name: "TonFlow", icon: Shield },
+    { id: 12, name: "Metamask", icon: WalletIcon },
   ];
 
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Header */}
       <div className="bg-gradient-to-br from-primary to-primary/80 p-6 rounded-b-[2rem]">
-        <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-white">Connect Wallet</h1>
-            <Button variant="ghost" size="icon" className="text-white">
-              <X className="w-5 h-5" />
-            </Button>
-          </div>
-          <div className="relative">
-            <Input 
-              placeholder="Search wallets..." 
-              className="pl-10 bg-white/10 border-white/20 text-white placeholder:text-white/60"
-            />
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-white/60" />
-          </div>
-        </div>
+        <h1 className="text-2xl font-bold text-white">Connect Wallet</h1>
       </div>
 
       {/* Popular Wallets */}
@@ -80,7 +69,7 @@ const Wallet = () => {
             >
               <div className="flex flex-col items-center gap-3">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
-                  <WalletIcon className="w-6 h-6 text-primary" />
+                  <wallet.icon className="w-6 h-6 text-primary" />
                 </div>
                 <p className="text-sm font-medium text-center">{wallet.name}</p>
               </div>
