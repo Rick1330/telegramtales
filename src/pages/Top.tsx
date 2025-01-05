@@ -1,4 +1,4 @@
-import { Trophy, Users, DollarSign, Crown } from "lucide-react";
+import { Trophy, Users } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const Top = () => {
@@ -14,7 +14,6 @@ const Top = () => {
   const currentPlayer = {
     rank: 42,
     points: "74,250",
-    totalWinners: 500
   };
 
   return (
@@ -35,10 +34,10 @@ const Top = () => {
           </div>
         </div>
 
-        <div className="glass-effect rounded-2xl p-6 mb-6">
+        <div className="glass-effect rounded-2xl p-6">
           <div className="flex items-center gap-4">
             <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-400 to-cyan-300 flex items-center justify-center">
-              <Crown className="w-8 h-8 text-white" />
+              <Trophy className="w-8 h-8 text-white" />
             </div>
             <div className="flex gap-8">
               <div>
@@ -51,12 +50,6 @@ const Top = () => {
               </div>
             </div>
           </div>
-        </div>
-        
-        <div className="glass-effect rounded-xl p-4">
-          <Trophy className="w-6 h-6 mb-2 opacity-80" />
-          <p className="text-2xl font-bold">{currentPlayer.totalWinners}</p>
-          <p className="text-sm opacity-80">Winners</p>
         </div>
       </div>
 
