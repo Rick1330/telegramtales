@@ -1,4 +1,4 @@
-import { Trophy, TrendingUp, Users, DollarSign, Crown } from "lucide-react";
+import { Trophy, Users, DollarSign, Crown } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const Top = () => {
@@ -27,43 +27,36 @@ const Top = () => {
             </div>
             <h1 className="text-2xl font-bold">Ocean Leaders</h1>
           </div>
-          <div className="flex items-center gap-2 glass-effect px-3 py-1.5 rounded-xl">
-            <TrendingUp className="w-5 h-5" />
-            <span className="text-sm font-medium">Live Rankings</span>
+          <div className="glass-effect px-3 py-1.5 rounded-xl">
+            <div className="flex items-center gap-2">
+              <Users className="w-5 h-5" />
+              <span className="text-sm font-medium">{topUsers.length} Players</span>
+            </div>
           </div>
         </div>
 
         <div className="glass-effect rounded-2xl p-6 mb-6">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-4">
             <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-400 to-cyan-300 flex items-center justify-center">
               <Crown className="w-8 h-8 text-white" />
             </div>
-            <div>
-              <p className="text-lg opacity-90">Your Current Rank</p>
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold">#{currentPlayer.rank}</span>
-                <span className="text-sm opacity-75">of {topUsers.length}</span>
+            <div className="flex gap-8">
+              <div>
+                <p className="text-lg opacity-90">Current Rank</p>
+                <p className="text-3xl font-bold">#{currentPlayer.rank}</p>
+              </div>
+              <div>
+                <p className="text-lg opacity-90">Your Points</p>
+                <p className="text-3xl font-bold">{currentPlayer.points}</p>
               </div>
             </div>
           </div>
         </div>
         
-        <div className="grid grid-cols-3 gap-4">
-          <div className="glass-effect rounded-xl p-4 hover:bg-white/20 transition-all">
-            <DollarSign className="w-6 h-6 mb-2 opacity-80" />
-            <p className="text-2xl font-bold">{currentPlayer.points}</p>
-            <p className="text-sm opacity-80">Your Points</p>
-          </div>
-          <div className="glass-effect rounded-xl p-4 hover:bg-white/20 transition-all">
-            <Users className="w-6 h-6 mb-2 opacity-80" />
-            <p className="text-2xl font-bold">{topUsers.length}</p>
-            <p className="text-sm opacity-80">Total Players</p>
-          </div>
-          <div className="glass-effect rounded-xl p-4 hover:bg-white/20 transition-all">
-            <Trophy className="w-6 h-6 mb-2 opacity-80" />
-            <p className="text-2xl font-bold">{currentPlayer.totalWinners}</p>
-            <p className="text-sm opacity-80">Winners</p>
-          </div>
+        <div className="glass-effect rounded-xl p-4">
+          <Trophy className="w-6 h-6 mb-2 opacity-80" />
+          <p className="text-2xl font-bold">{currentPlayer.totalWinners}</p>
+          <p className="text-sm opacity-80">Winners</p>
         </div>
       </div>
 
