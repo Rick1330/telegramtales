@@ -1,101 +1,97 @@
-import { Trophy, TrendingUp, Users, DollarSign, Crown } from "lucide-react";
+import { Trophy, Star } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
 
 const Top = () => {
   const topUsers = Array.from({ length: 100 }, (_, i) => ({
     id: i + 1,
-    name: `Dolphin ${i + 1}`,
-    balance: (100000 - (i * 750)).toLocaleString(),
+    name: i < 7 ? [
+      "durov💎",
+      "attaches✍️",
+      "lastify_la",
+      "battlesjam✨",
+      "clayton",
+      "TV_bonus⭐",
+      "roxman💎"
+    ][i] : `User_${i + 1}`,
+    points: Math.floor(1000000 / (i + 1)).toLocaleString(),
     rank: i + 1,
-    verified: Math.random() > 0.7
+    verified: Math.random() > 0.7,
+    avatar: `/placeholder.svg` // Using placeholder for demo
   }));
 
-  // Mock current player data
-  const currentPlayer = {
-    rank: 42,
-    points: "74,250",
-    totalWinners: 500
-  };
-
   return (
-    <div className="pb-20">
-      <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-400 text-white p-8 rounded-b-[2.5rem] mb-6 shadow-lg">
+    <div className="min-h-screen bg-[#111111] text-white pb-20">
+      {/* Header Section */}
+      <div className="bg-gradient-to-br from-[#1a1a1a] to-[#222222] p-8 rounded-b-[2.5rem] shadow-lg mb-6">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
-            <div className="p-2 glass-effect rounded-xl">
-              <Trophy className="w-8 h-8" />
+            <div className="p-2 bg-blue-500/10 rounded-xl">
+              <Trophy className="w-8 h-8 text-blue-400" />
             </div>
-            <h1 className="text-2xl font-bold">Ocean Leaders</h1>
-          </div>
-          <div className="flex items-center gap-2 glass-effect px-3 py-1.5 rounded-xl">
-            <TrendingUp className="w-5 h-5" />
-            <span className="text-sm font-medium">Live Rankings</span>
+            <h1 className="text-2xl font-bold">Top Holders</h1>
           </div>
         </div>
 
-        <div className="glass-effect rounded-2xl p-6 mb-6">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-400 to-cyan-300 flex items-center justify-center">
-              <Crown className="w-8 h-8 text-white" />
-            </div>
-            <div>
-              <p className="text-lg opacity-90">Your Current Rank</p>
-              <div className="flex items-baseline gap-2">
-                <span className="text-3xl font-bold">#{currentPlayer.rank}</span>
-                <span className="text-sm opacity-75">of {topUsers.length}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
+        {/* Stats Cards */}
         <div className="grid grid-cols-3 gap-4">
-          <div className="glass-effect rounded-xl p-4 hover:bg-white/20 transition-all">
-            <DollarSign className="w-6 h-6 mb-2 opacity-80" />
-            <p className="text-2xl font-bold">{currentPlayer.points}</p>
-            <p className="text-sm opacity-80">Your Points</p>
+          <div className="bg-[#1a1a1a]/50 backdrop-blur-sm rounded-xl p-4 border border-white/5">
+            <Star className="w-6 h-6 mb-2 text-yellow-500 opacity-80" />
+            <p className="text-2xl font-bold">1.2M</p>
+            <p className="text-sm text-gray-400">Total Points</p>
           </div>
-          <div className="glass-effect rounded-xl p-4 hover:bg-white/20 transition-all">
-            <Users className="w-6 h-6 mb-2 opacity-80" />
+          <div className="bg-[#1a1a1a]/50 backdrop-blur-sm rounded-xl p-4 border border-white/5">
+            <Trophy className="w-6 h-6 mb-2 text-blue-400 opacity-80" />
             <p className="text-2xl font-bold">{topUsers.length}</p>
-            <p className="text-sm opacity-80">Total Players</p>
+            <p className="text-sm text-gray-400">Participants</p>
           </div>
-          <div className="glass-effect rounded-xl p-4 hover:bg-white/20 transition-all">
-            <Trophy className="w-6 h-6 mb-2 opacity-80" />
-            <p className="text-2xl font-bold">{currentPlayer.totalWinners}</p>
-            <p className="text-sm opacity-80">Winners</p>
+          <div className="bg-[#1a1a1a]/50 backdrop-blur-sm rounded-xl p-4 border border-white/5">
+            <Star className="w-6 h-6 mb-2 text-purple-400 opacity-80" />
+            <p className="text-2xl font-bold">24.5K</p>
+            <p className="text-sm text-gray-400">Average</p>
           </div>
         </div>
       </div>
 
-      <div className="px-4">
-        <div className="space-y-4">
-          {topUsers.map((user) => (
-            <Card key={user.id} className="p-4 hover:shadow-lg transition-all duration-300 border-blue-100">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className="relative">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-cyan-50 rounded-full flex items-center justify-center">
-                      <span className="text-xl font-bold text-blue-600">#{user.rank}</span>
-                    </div>
-                    {user.verified && (
-                      <div className="absolute -top-1 -right-1 bg-blue-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs animate-pulse">
-                        ✓
-                      </div>
-                    )}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-800">{user.name}</p>
-                    <p className="text-sm text-gray-500">Rank #{user.rank}</p>
+      {/* Leaderboard List */}
+      <div className="px-4 space-y-3">
+        {topUsers.map((user) => (
+          <Card 
+            key={user.id} 
+            className="bg-[#1a1a1a] hover:bg-[#222222] transition-all duration-300 border-white/5"
+          >
+            <div className="p-4 flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <div className="relative">
+                  <Avatar className="w-12 h-12 border-2 border-blue-500/20">
+                    <AvatarImage src={user.avatar} alt={user.name} />
+                    <AvatarFallback className="bg-blue-500/10 text-blue-400">
+                      {user.name.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-[#333] flex items-center justify-center text-sm font-bold">
+                    {user.rank}
                   </div>
                 </div>
-                <div className="text-right">
-                  <p className="font-bold text-blue-600">${user.balance}</p>
-                  <p className="text-sm text-gray-500">DOLPHINS</p>
+                <div>
+                  <p className="font-semibold text-white flex items-center gap-1">
+                    {user.name}
+                    {user.verified && (
+                      <span className="text-blue-400 text-sm">✓</span>
+                    )}
+                  </p>
+                  <div className="flex items-center gap-1 text-sm text-gray-400">
+                    <Star className="w-4 h-4 text-yellow-500" />
+                    {user.points}
+                  </div>
                 </div>
               </div>
-            </Card>
-          ))}
-        </div>
+              <div className="text-2xl font-bold text-gray-500">
+                #{user.rank}
+              </div>
+            </div>
+          </Card>
+        ))}
       </div>
     </div>
   );
