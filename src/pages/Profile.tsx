@@ -1,4 +1,4 @@
-import { Settings, Crown, Sparkles, Trophy, Palette, Gem, Shell, Users, Link, Share2, Gift } from "lucide-react";
+import { Crown, Sparkles, Trophy, Shell, Users, Link, Share2, Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -16,32 +16,32 @@ const Profile = () => {
       gradient: "from-blue-500 to-cyan-400"
     },
     {
-      title: "NFT Collection",
-      value: "12",
-      subtext: "3 Legendary",
-      icon: Gem,
-      gradient: "from-purple-500 to-pink-400"
-    },
-    {
-      title: "Avatar Level",
-      value: "28",
-      subtext: "Expert",
-      icon: Palette,
-      gradient: "from-amber-500 to-orange-400"
-    },
-    {
       title: "Total Points",
       value: "74,250",
       subtext: "+2,500 today",
       icon: Shell,
       gradient: "from-emerald-500 to-teal-400"
+    },
+    {
+      title: "Games Played",
+      value: "28",
+      subtext: "This week",
+      icon: Sparkles,
+      gradient: "from-amber-500 to-orange-400"
+    },
+    {
+      title: "Achievements",
+      value: "12",
+      subtext: "3 New",
+      icon: Gift,
+      gradient: "from-purple-500 to-pink-400"
     }
   ];
 
   const achievements = [
-    { title: "Speed Champion", description: "Won 5 races in a row", date: "2 days ago" },
-    { title: "NFT Master", description: "Collected 10 rare items", date: "1 week ago" },
-    { title: "Avatar Expert", description: "Unlocked all basic customizations", date: "2 weeks ago" }
+    { title: "Maze Master", description: "Completed 5 mazes under 1 minute", date: "2 days ago" },
+    { title: "Water Sort Pro", description: "Solved 10 puzzles", date: "1 week ago" },
+    { title: "Speed Runner", description: "Top 100 in weekly ranking", date: "2 weeks ago" }
   ];
 
   const referralInfo = {
@@ -68,14 +68,8 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50 pb-24">
       {/* Header Section */}
-      <div className="bg-gradient-to-br from-blue-500 to-cyan-400 text-white p-6 rounded-b-[2.5rem] relative">
-        <div className="flex justify-end mb-2">
-          <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
-            <Settings className="w-5 h-5" />
-          </Button>
-        </div>
-        
-        <div className="flex flex-col items-center">
+      <div className="bg-gradient-to-br from-blue-500 to-cyan-400 text-white p-6 rounded-b-[2.5rem] mb-12">
+        <div className="flex flex-col items-center pt-4">
           <div className="relative mb-3">
             <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-4xl hover:bg-white/30 transition-all">
               🐬
@@ -92,7 +86,7 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="px-4 -mt-8 space-y-6">
+      <div className="px-4 space-y-6">
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-4">
           {stats.map((stat, index) => (
