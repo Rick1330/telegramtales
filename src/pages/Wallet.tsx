@@ -1,25 +1,25 @@
-import { Wallet as WalletIcon, ChevronRight, Shield, Scan, Smartphone, Coins, Landmark } from "lucide-react";
+import { Diamond, Shield, Wallet as WalletIcon, Coins, Smartphone, Landmark } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ChevronRight } from "lucide-react";
 
 const Wallet = () => {
   const wallets = [
-    { id: 1, name: "Wallet On Telegram", popular: true, icon: WalletIcon },
+    { id: 1, name: "MyTonWallet", popular: true, icon: Diamond },
     { id: 2, name: "Tonkeeper", popular: true, icon: Shield },
-    { id: 3, name: "MyTonWallet", popular: true, icon: WalletIcon },
-    { id: 4, name: "Tonhub", popular: false, icon: Scan },
-    { id: 5, name: "OpenMask", popular: false, icon: Shield },
-    { id: 6, name: "TON Chrome Wallet", popular: false, icon: WalletIcon },
+    { id: 3, name: "Tonhub", popular: true, icon: Diamond },
   ];
 
   const otherWallets = [
-    { id: 7, name: "Bitget Wallet", icon: Coins },
-    { id: 8, name: "OKX Mini", icon: Smartphone },
-    { id: 9, name: "Binance Wallet", icon: Landmark },
-    { id: 10, name: "Fintopio", icon: WalletIcon },
-    { id: 11, name: "TonFlow", icon: Shield },
-    { id: 12, name: "Metamask", icon: WalletIcon },
+    { id: 4, name: "Binance Wallet", icon: Diamond },
+    { id: 5, name: "Bitget Wallet", icon: Coins },
+    { id: 6, name: "Fintopio", icon: WalletIcon },
+    { id: 7, name: "OKX", icon: Smartphone },
+    { id: 8, name: "Phantom", icon: Shield },
+    { id: 9, name: "MetaMask", icon: WalletIcon },
+    { id: 10, name: "Bybit", icon: Landmark },
+    { id: 11, name: "Blockchain", icon: Diamond },
   ];
 
   return (
