@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 import Navigation from "./components/Navigation";
 import Index from "./pages/Index";
 import Avatar from "./pages/Avatar";
@@ -13,6 +14,16 @@ import Profile from "./pages/Profile";
 const queryClient = new QueryClient();
 
 function App() {
+  useEffect(() => {
+    const telegram = window.Telegram?.WebApp;
+
+    if (telegram) {
+      telegram.ready();
+      telegram.setHeaderColor('bg_color', '#0284c7'); // Using our primary color
+      telegram.expand();
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
