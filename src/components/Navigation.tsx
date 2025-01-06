@@ -10,7 +10,7 @@ const Navigation = () => {
     { icon: Trophy, label: "Leaderboard", path: "/top" },
     { icon: Wallet, label: "Wallet", path: "/wallet" },
     { icon: Fish, label: "Avatar", path: "/avatar", badge: "5" },
-    { icon: User, label: "Personal", path: "/profile" },
+    { icon: User, label: "Profile", path: "/profile" },
   ];
 
   return (
