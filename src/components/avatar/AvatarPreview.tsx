@@ -8,7 +8,11 @@ const AvatarPreview = () => {
       <div className="flex gap-8 mb-6">
         <Card className="w-40 h-40 flex items-center justify-center bg-white shadow-lg border-0 relative overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10" />
-          <img src="/placeholder.svg" alt="Avatar preview" className="w-32 h-32 relative z-10 transition-transform group-hover:scale-110" />
+          <img 
+            src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7" 
+            alt="Avatar preview" 
+            className="w-32 h-32 relative z-10 transition-transform group-hover:scale-110 object-cover rounded-full" 
+          />
           <div className="absolute top-2 right-2">
             <Crown className="w-5 h-5 text-yellow-500" />
           </div>

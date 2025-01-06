@@ -5,7 +5,7 @@ export const getEyesOptions = () => [
     name: "Sonar Vision",
     price: 2,
     currency: "diamonds",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1",
     rarity: "legendary",
     description: "Echo-location enhanced eyes",
     effect: "Pulse effect",
