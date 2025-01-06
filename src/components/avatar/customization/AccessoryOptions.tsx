@@ -5,7 +5,7 @@ export const getAccessoryOptions = () => [
     name: "Royal Shell Crown",
     price: 4,
     currency: "diamonds",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+    image: "/placeholder.svg",
     rarity: "legendary",
     description: "Ancient underwater crown",
     effect: "Royal aura",

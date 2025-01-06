@@ -5,7 +5,7 @@ export const getFinsOptions = () => [
     name: "Prismatic Fins",
     price: 3,
     currency: "diamonds",
-    image: "https://images.unsplash.com/photo-1582562124811-c09040d0a901",
+    image: "/placeholder.svg",
     rarity: "legendary",
     description: "Rainbow-colored dolphin fins",
     effect: "Color shift",

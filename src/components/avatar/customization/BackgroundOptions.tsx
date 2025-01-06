@@ -5,7 +5,7 @@ export const getBackgroundOptions = () => [
     name: "Ocean Depths",
     price: 5000,
     currency: "coins",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e",
+    image: "/placeholder.svg",
     rarity: "legendary",
     description: "Deep blue ocean background with shimmering waves",
     effect: "Wave animation",
