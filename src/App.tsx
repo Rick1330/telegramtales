@@ -16,17 +16,19 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <div className="max-w-md mx-auto min-h-screen bg-background">
+        <div className="min-h-screen w-full bg-background flex flex-col">
           <Toaster />
           <Sonner />
           <Router>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/avatar" element={<Avatar />} />
-              <Route path="/top" element={<Top />} />
-              <Route path="/wallet" element={<Wallet />} />
-              <Route path="/profile" element={<Profile />} />
-            </Routes>
+            <div className="flex-1 overflow-y-auto pb-20">
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/avatar" element={<Avatar />} />
+                <Route path="/top" element={<Top />} />
+                <Route path="/wallet" element={<Wallet />} />
+                <Route path="/profile" element={<Profile />} />
+              </Routes>
+            </div>
             <Navigation />
           </Router>
         </div>
