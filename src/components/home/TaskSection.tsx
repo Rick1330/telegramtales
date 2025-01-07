@@ -1,78 +1,125 @@
-import { Star, Calendar, MessageSquare, List, Trophy, Sparkles } from "lucide-react";
+import { Gift, Sparkles, Share2, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import TaskCard from "./TaskCard";
+import { useState } from "react";
+
+interface Task {
+  title: string;
+  reward: string;
+  action: string;
+  variant: "default" | "outline";
+  isHighlighted?: boolean;
+  category: "featured" | "daily" | "social" | "other";
+}
 
 const TaskSection = () => {
-  const tasks = {
-    daily: [
-      {
-        title: "Daily Wave Rider Task",
-        reward: "+2000 DOLPHINS",
-        action: "Play",
-        variant: "outline",
-        category: "daily"
-      },
-      {
-        title: "Complete Daily Quiz",
-        reward: "+1500 DOLPHINS",
-        action: "Start",
-        variant: "default",
-        category: "daily"
-      }
-    ],
-    social: [
-      {
-        title: "Follow Activity on X 🚀",
-        reward: "+1000 DOLPHINS",
-        action: "Open",
-        variant: "outline",
-        category: "social"
-      },
-      {
-        title: "Join Activity News Channel 🚀",
-        reward: "+1000 DOLPHINS",
-        action: "Join",
-        variant: "default",
-        category: "social"
-      }
-    ],
-    other: [
-      {
-        title: "Watch RoOLZ & Earn Gems",
-        reward: "+500 DOLPHINS",
-        action: "Open",
-        variant: "outline",
-        category: "other"
-      },
-      {
-        title: "Play Dolphin Maze Game",
-        reward: "+2000 DOLPHINS",
-        action: "Play",
-        variant: "default",
-        category: "other"
-      }
-    ]
-  };
+  const [showAllTasks, setShowAllTasks] = useState(false);
 
-  const renderTaskSection = (
-    title: string, 
-    icon: any, 
-    tasks: any[], 
-    gradientClass: string,
-    iconColorClass: string
-  ) => {
-    if (tasks.length === 0) return null;
+  const tasks: Task[] = [
+    {
+      title: "Complete Ocean Guardian Challenge",
+      reward: "+5000 DOLPHINS",
+      action: "Start",
+      variant: "default",
+      isHighlighted: true,
+      category: "featured"
+    },
+    {
+      title: "Daily Wave Rider Task",
+      reward: "+2000 DOLPHINS",
+      action: "Play",
+      variant: "outline",
+      category: "daily"
+    },
+    {
+      title: "Complete avatar task",
+      reward: "+6000 DOLPHINS",
+      action: "Start",
+      variant: "outline",
+      category: "daily"
+    },
+    {
+      title: "Watch RoOLZ & Earn Gems",
+      reward: "+500 DOLPHINS",
+      action: "Open",
+      variant: "outline",
+      category: "other"
+    },
+    {
+      title: "Follow Activity on X 🚀",
+      reward: "+1000 DOLPHINS",
+      action: "Open",
+      variant: "outline",
+      category: "social"
+    },
+    {
+      title: "Join Activity News Channel 🚀",
+      reward: "+1000 DOLPHINS",
+      action: "Join",
+      variant: "default",
+      category: "social"
+    },
+    {
+      title: "Add 🐬 to nickname",
+      reward: "+3000 DOLPHINS",
+      action: "Check",
+      variant: "outline",
+      category: "other"
+    },
+    {
+      title: "Join DOLPHINS Instagram",
+      reward: "+500 DOLPHINS",
+      action: "Open",
+      variant: "outline",
+      category: "social"
+    },
+    {
+      title: "Share DOLPHINS on Twitter",
+      reward: "+2000 DOLPHINS",
+      action: "Share",
+      variant: "default",
+      category: "social"
+    },
+    {
+      title: "Complete Daily Quiz",
+      reward: "+1500 DOLPHINS",
+      action: "Start",
+      variant: "default",
+      category: "daily"
+    },
+    {
+      title: "Invite 3 Friends",
+      reward: "+5000 DOLPHINS",
+      action: "Invite",
+      variant: "outline",
+      category: "social"
+    },
+    {
+      title: "Play Dolphin Maze Game",
+      reward: "+2000 DOLPHINS",
+      action: "Play",
+      variant: "default",
+      category: "other"
+    }
+  ];
+
+  const visibleTasks = showAllTasks ? tasks : tasks.slice(0, 6);
+
+  const renderTaskSection = (title: string, icon: any, category: Task["category"], bgColor: string) => {
+    const categoryTasks = visibleTasks.filter(task => task.category === category);
+    if (categoryTasks.length === 0) return null;
 
     return (
-      <div className={`${gradientClass} rounded-2xl p-6 shadow-lg`}>
-        <div className="flex items-center gap-2 mb-6">
-          <div className={`${iconColorClass} p-2 rounded-lg`}>
-            {icon}
-          </div>
-          <h2 className="text-xl font-bold text-gray-800">{title}</h2>
+      <div className={`${bgColor} rounded-2xl p-6 space-y-4`}>
+        <div className="flex items-center space-x-2 mb-4">
+          {icon}
+          <h2 className="text-xl font-bold text-gray-800">
+            {title}
+          </h2>
         </div>
-        <div className="grid gap-4">
-          {tasks.map((task, index) => (
-            <TaskCard key={`${task.category}-${index}`} {...task} />
+        <div className="space-y-3">
+          {categoryTasks.map((task, index) => (
+            <TaskCard key={`${category}-${index}`} {...task} />
           ))}
         </div>
       </div>
@@ -82,26 +129,38 @@ const TaskSection = () => {
   return (
     <div className="space-y-6">
       {renderTaskSection(
-        "Daily Tasks",
-        <Calendar className="w-6 h-6" />,
-        tasks.daily,
-        "bg-gradient-to-br from-blue-50 to-cyan-50",
-        "bg-blue-100 text-blue-500"
+        "Featured Tasks",
+        <Star className="w-6 h-6 text-amber-500" />,
+        "featured",
+        "bg-amber-50"
       )}
       {renderTaskSection(
-        "Social Tasks",
-        <MessageSquare className="w-6 h-6" />,
-        tasks.social,
-        "bg-gradient-to-br from-purple-50 to-pink-50",
-        "bg-purple-100 text-purple-500"
+        "Daily Tasks",
+        <Gift className="w-6 h-6 text-blue-500" />,
+        "daily",
+        "bg-blue-50"
+      )}
+      {renderTaskSection(
+        "Social Media Tasks",
+        <Share2 className="w-6 h-6 text-purple-500" />,
+        "social",
+        "bg-purple-50"
       )}
       {renderTaskSection(
         "Other Tasks",
-        <List className="w-6 h-6" />,
-        tasks.other,
-        "bg-gradient-to-br from-green-50 to-teal-50",
-        "bg-green-100 text-green-500"
+        <Sparkles className="w-6 h-6 text-green-500" />,
+        "other",
+        "bg-green-50"
       )}
+
+      <Button
+        variant="ghost"
+        className="w-full text-blue-600 hover:text-blue-700 hover:bg-blue-50 flex items-center gap-2"
+        onClick={() => setShowAllTasks(!showAllTasks)}
+      >
+        {showAllTasks ? "Show less tasks" : "Show more tasks"}
+        <span className={`transition-transform ${showAllTasks ? "rotate-180" : ""}`}>↓</span>
+      </Button>
     </div>
   );
 };

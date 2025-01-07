@@ -1,37 +1,51 @@
-import { Star, Calendar, MessageSquare, List, Sparkles, Trophy, Users } from "lucide-react";
+import { Cat, Sparkles, Trophy, Gift } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import Header from "@/components/home/Header";
 import TaskSection from "@/components/home/TaskSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pb-20">
+    <div className="pb-20 bg-gradient-to-b from-blue-50 to-white">
       <Header />
       
-      <div className="px-4 max-w-4xl mx-auto space-y-6">
-        <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-400 rounded-2xl p-6 shadow-lg text-white">
-          <div className="flex items-center gap-2 mb-4">
-            <Trophy className="w-6 h-6" />
-            <h2 className="text-2xl font-bold">Featured Challenge</h2>
+      <div className="px-4 space-y-6">
+        <div className="bg-white rounded-2xl p-6 shadow-lg">
+          <div className="flex items-center space-x-2 mb-6">
+            <Sparkles className="w-6 h-6 text-blue-500" />
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+              Featured Task
+            </h2>
           </div>
-          
-          <div className="glass-effect rounded-xl p-6 hover:bg-white/20 transition-all">
-            <div className="flex justify-between items-start">
+
+          <Card className="p-6 border-2 border-blue-100 hover:border-blue-200 transition-all">
+            <div className="flex justify-between items-center">
               <div>
-                <h3 className="text-xl font-semibold mb-2">Ocean Guardian Challenge</h3>
-                <p className="text-white/80 mb-4">Complete daily tasks to earn special rewards</p>
+                <p className="font-bold text-lg mb-2">Ocean Guardian Challenge</p>
                 <div className="flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" />
-                  <span className="font-medium">+5000 DOLPHINS</span>
+                  <Trophy className="w-4 h-4 text-amber-500" />
+                  <p className="text-blue-600 font-medium">+5000 DOLPHINS</p>
                 </div>
               </div>
-              <div className="bg-white/20 p-3 rounded-full">
-                <Trophy className="w-8 h-8" />
-              </div>
+              <Button 
+                variant="default" 
+                className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:opacity-90 transition-opacity"
+              >
+                Accept
+              </Button>
             </div>
-          </div>
+          </Card>
         </div>
 
-        <TaskSection />
+        <div className="bg-white rounded-2xl p-6 shadow-lg">
+          <div className="flex items-center space-x-2 mb-6">
+            <Gift className="w-6 h-6 text-blue-500" />
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+              Daily Tasks
+            </h2>
+          </div>
+          <TaskSection />
+        </div>
       </div>
     </div>
   );
