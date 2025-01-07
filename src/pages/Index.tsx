@@ -1,4 +1,4 @@
-import { Cat, Sparkles, Trophy, Gift } from "lucide-react";
+import { Sparkles, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Header from "@/components/home/Header";
@@ -37,15 +37,7 @@ const Index = () => {
           </Card>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 shadow-lg">
-          <div className="flex items-center space-x-2 mb-6">
-            <Gift className="w-6 h-6 text-blue-500" />
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-              Daily Tasks
-            </h2>
-          </div>
-          <TaskSection />
-        </div>
+        <TaskSection />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { Gift, Sparkles, Share2, Star } from "lucide-react";
+import { Gift, Sparkles, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import TaskCard from "./TaskCard";
 import { useState } from "react";
@@ -9,21 +9,13 @@ interface Task {
   action: string;
   variant: "default" | "outline";
   isHighlighted?: boolean;
-  category: "featured" | "daily" | "social" | "other";
+  category: "daily" | "social" | "other";
 }
 
 const TaskSection = () => {
   const [showAllTasks, setShowAllTasks] = useState(false);
 
   const tasks: Task[] = [
-    {
-      title: "Complete Ocean Guardian Challenge",
-      reward: "+5000 DOLPHINS",
-      action: "Start",
-      variant: "default",
-      isHighlighted: true,
-      category: "featured"
-    },
     {
       title: "Daily Wave Rider Task",
       reward: "+2000 DOLPHINS",
@@ -60,46 +52,11 @@ const TaskSection = () => {
       category: "social"
     },
     {
-      title: "Add 🐬 to nickname",
-      reward: "+3000 DOLPHINS",
-      action: "Check",
-      variant: "outline",
-      category: "other"
-    },
-    {
-      title: "Join DOLPHINS Instagram",
-      reward: "+500 DOLPHINS",
-      action: "Open",
-      variant: "outline",
-      category: "social"
-    },
-    {
-      title: "Share DOLPHINS on Twitter",
-      reward: "+2000 DOLPHINS",
-      action: "Share",
-      variant: "default",
-      category: "social"
-    },
-    {
       title: "Complete Daily Quiz",
       reward: "+1500 DOLPHINS",
       action: "Start",
       variant: "default",
       category: "daily"
-    },
-    {
-      title: "Invite 3 Friends",
-      reward: "+5000 DOLPHINS",
-      action: "Invite",
-      variant: "outline",
-      category: "social"
-    },
-    {
-      title: "Play Dolphin Maze Game",
-      reward: "+2000 DOLPHINS",
-      action: "Play",
-      variant: "default",
-      category: "other"
     }
   ];
 
@@ -128,12 +85,6 @@ const TaskSection = () => {
 
   return (
     <div className="space-y-6">
-      {renderTaskSection(
-        "Featured Tasks",
-        <Star className="w-6 h-6 text-amber-500" />,
-        "featured",
-        "bg-amber-50"
-      )}
       {renderTaskSection(
         "Daily Tasks",
         <Gift className="w-6 h-6 text-blue-500" />,
