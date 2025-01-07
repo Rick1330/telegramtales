@@ -1,4 +1,4 @@
-import { Gift } from "lucide-react";
+import { Gift, Sparkles, Share2, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import TaskCard from "./TaskCard";
 import { useState } from "react";
@@ -9,6 +9,7 @@ interface Task {
   action: string;
   variant: "default" | "outline";
   isHighlighted?: boolean;
+  category: "featured" | "daily" | "social" | "other";
 }
 
 const TaskSection = () => {
@@ -20,111 +21,141 @@ const TaskSection = () => {
       reward: "+5000 DOLPHINS",
       action: "Start",
       variant: "default",
-      isHighlighted: true
+      isHighlighted: true,
+      category: "featured"
     },
     {
       title: "Daily Wave Rider Task",
       reward: "+2000 DOLPHINS",
       action: "Play",
-      variant: "outline"
+      variant: "outline",
+      category: "daily"
     },
     {
       title: "Complete avatar task",
       reward: "+6000 DOLPHINS",
       action: "Start",
-      variant: "outline"
+      variant: "outline",
+      category: "daily"
     },
     {
       title: "Watch RoOLZ & Earn Gems",
       reward: "+500 DOLPHINS",
       action: "Open",
-      variant: "outline"
+      variant: "outline",
+      category: "other"
     },
     {
       title: "Follow Activity on X 🚀",
       reward: "+1000 DOLPHINS",
       action: "Open",
-      variant: "outline"
+      variant: "outline",
+      category: "social"
     },
     {
       title: "Join Activity News Channel 🚀",
       reward: "+1000 DOLPHINS",
       action: "Join",
-      variant: "default"
+      variant: "default",
+      category: "social"
     },
     {
       title: "Add 🐬 to nickname",
       reward: "+3000 DOLPHINS",
       action: "Check",
-      variant: "outline"
+      variant: "outline",
+      category: "other"
     },
     {
       title: "Join DOLPHINS Instagram",
       reward: "+500 DOLPHINS",
       action: "Open",
-      variant: "outline"
+      variant: "outline",
+      category: "social"
     },
     {
       title: "Share DOLPHINS on Twitter",
       reward: "+2000 DOLPHINS",
       action: "Share",
-      variant: "default"
+      variant: "default",
+      category: "social"
     },
     {
       title: "Complete Daily Quiz",
       reward: "+1500 DOLPHINS",
       action: "Start",
-      variant: "default"
+      variant: "default",
+      category: "daily"
     },
     {
       title: "Invite 3 Friends",
       reward: "+5000 DOLPHINS",
       action: "Invite",
-      variant: "outline"
+      variant: "outline",
+      category: "social"
     },
     {
       title: "Play Dolphin Maze Game",
       reward: "+2000 DOLPHINS",
       action: "Play",
-      variant: "default"
-    },
-    {
-      title: "Complete Water Sort Challenge",
-      reward: "+2500 DOLPHINS",
-      action: "Play",
-      variant: "default"
-    },
-    {
-      title: "Subscribe to Newsletter",
-      reward: "+1000 DOLPHINS",
-      action: "Subscribe",
-      variant: "outline"
-    },
-    {
-      title: "Join Discord Community",
-      reward: "+2000 DOLPHINS",
-      action: "Join",
-      variant: "default"
-    },
-    {
-      title: "Complete Profile",
-      reward: "+1500 DOLPHINS",
-      action: "Complete",
-      variant: "outline"
+      variant: "default",
+      category: "other"
     }
   ];
 
-  const visibleTasks = showAllTasks ? tasks : tasks.slice(0, 4);
+  const visibleTasks = showAllTasks ? tasks : tasks.slice(0, 6);
+
+  const renderTaskSection = (title: string, icon: any, category: Task["category"], bgColor: string) => {
+    const categoryTasks = visibleTasks.filter(task => task.category === category);
+    if (categoryTasks.length === 0) return null;
+
+    return (
+      <div className={`${bgColor} rounded-2xl p-6 space-y-4`}>
+        <div className="flex items-center space-x-2 mb-4">
+          {icon}
+          <h2 className="text-xl font-bold text-gray-800">
+            {title}
+          </h2>
+        </div>
+        <div className="space-y-3">
+          {categoryTasks.map((task, index) => (
+            <TaskCard key={`${category}-${index}`} {...task} />
+          ))}
+        </div>
+      </div>
+    );
+  };
 
   return (
-    <div className="space-y-4">
-      {visibleTasks.map((task, index) => (
-        <TaskCard key={index} {...task} />
-      ))}
+    <div className="space-y-6">
+      {renderTaskSection(
+        "Featured Tasks",
+        <Star className="w-6 h-6 text-amber-500" />,
+        "featured",
+        "bg-amber-50"
+      )}
+      {renderTaskSection(
+        "Daily Tasks",
+        <Gift className="w-6 h-6 text-blue-500" />,
+        "daily",
+        "bg-blue-50"
+      )}
+      {renderTaskSection(
+        "Social Media Tasks",
+        <Share2 className="w-6 h-6 text-purple-500" />,
+        "social",
+        "bg-purple-50"
+      )}
+      {renderTaskSection(
+        "Other Tasks",
+        <Sparkles className="w-6 h-6 text-green-500" />,
+        "other",
+        "bg-green-50"
+      )}
 
       <Button
         variant="ghost"
-        className="w-full text-blue-600 hover:text-blue-700 hover:bg-blue-50 flex items-center gap-2 mt-4"
+        className="w-full text-blue-600 hover:text-blue-700 hover:bg-blue-50 flex items-center gap-2"
         onClick={() => setShowAllTasks(!showAllTasks)}
       >
         {showAllTasks ? "Show less tasks" : "Show more tasks"}
