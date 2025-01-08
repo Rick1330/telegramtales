@@ -1,18 +1,9 @@
-import { ChevronLeft, Shell, Droplets, Trophy } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Shell, Droplets, Trophy } from "lucide-react";
 
 const AvatarHeader = () => {
   return (
     <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-400 text-white p-6 rounded-b-[2rem] shadow-lg">
-      <div className="flex items-center gap-4 mb-8">
-        <Button 
-          variant="ghost" 
-          size="icon"
-          className="hover:bg-white/20 text-white rounded-full transition-colors"
-          onClick={() => history.back()}
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </Button>
+      <div className="mb-8">
         <h1 className="text-3xl font-bold">Customize Your Avatar</h1>
       </div>
 
