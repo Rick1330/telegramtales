@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Badge } from "@/components/ui/badge";
 import { LeaderboardHeader } from "@/components/leaderboard/LeaderboardHeader";
 import { UserList } from "@/components/leaderboard/UserList";
+import { Gem, CircleDollarSign, Coins } from "lucide-react";
 
 interface UserDetails {
   id: number;
@@ -120,14 +121,14 @@ const Top = () => {
                 <div className="grid grid-cols-3 gap-4">
                   <div className="bg-blue-50 p-4 rounded-lg">
                     <div className="flex items-center gap-2 mb-2">
-                      <Shell className="w-5 h-5 text-blue-500" />
+                      <CircleDollarSign className="w-5 h-5 text-blue-500" />
                       <h3 className="font-semibold">Dolphins</h3>
                     </div>
                     <p className="text-xl font-bold text-blue-700">${selectedUser.balance}</p>
                   </div>
                   <div className="bg-amber-50 p-4 rounded-lg">
                     <div className="flex items-center gap-2 mb-2">
-                      <Crown className="w-5 h-5 text-amber-500" />
+                      <Coins className="w-5 h-5 text-amber-500" />
                       <h3 className="font-semibold">Pearl Coins</h3>
                     </div>
                     <p className="text-xl font-bold text-amber-700">{selectedUser.pearlCoins}</p>
