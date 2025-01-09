@@ -9,6 +9,11 @@ import Avatar from "./pages/Avatar";
 import Top from "./pages/Top";
 import Games from "./pages/Games";
 import Profile from "./pages/Profile";
+import DailyQuiz from "./components/games/DailyQuiz";
+import OceanExplorer from "./components/games/OceanExplorer";
+import WaterSort from "./components/games/WaterSort";
+import MarineQuiz from "./components/games/MarineQuiz";
+import EcoWarrior from "./components/games/EcoWarrior";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +31,11 @@ function App() {
                 <Route path="/avatar" element={<Avatar />} />
                 <Route path="/top" element={<Top />} />
                 <Route path="/games" element={<Games />} />
+                <Route path="/games/daily-quiz" element={<DailyQuiz />} />
+                <Route path="/games/ocean-explorer" element={<OceanExplorer />} />
+                <Route path="/games/water-sort" element={<WaterSort />} />
+                <Route path="/games/marine-quiz" element={<MarineQuiz />} />
+                <Route path="/games/eco-warrior" element={<EcoWarrior />} />
                 <Route path="/profile" element={<Profile />} />
               </Routes>
             </div>

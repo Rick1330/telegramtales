@@ -1,4 +1,4 @@
-import { Brain, Compass, Coins, Fish, Shield } from "lucide-react";
+import { Brain, Compass, Coins, Fish, Shield, Waves } from "lucide-react";
 import { CurrencyDisplay } from "@/components/wallet/CurrencyDisplay";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -24,30 +24,30 @@ const Games = () => {
   const games: Game[] = [
     {
       id: "daily-quiz",
-      title: "Daily Quiz",
+      title: "Daily Ocean Quiz",
       description: "Test your ocean knowledge with our daily quiz challenge!",
       icon: Brain,
       reward: "+1500 DOLPHINS",
       available: true,
-      route: "/games/quiz"
+      route: "/games/daily-quiz"
     },
     {
       id: "ocean-explorer",
-      title: "Ocean Explorer Challenge",
-      description: "Explore the depths of the ocean in this exciting adventure!",
+      title: "Ocean Explorer",
+      description: "Navigate through the ocean depths to find hidden treasures!",
       icon: Compass,
       reward: "+3000 DOLPHINS",
       available: true,
-      route: "/games/explorer"
+      route: "/games/ocean-explorer"
     },
     {
-      id: "treasure-hunt",
-      title: "Daily Treasure Hunt",
-      description: "Find hidden treasures in the deep blue sea!",
-      icon: Coins,
+      id: "water-sort",
+      title: "Water Sort Puzzle",
+      description: "Sort the colored water in the tubes!",
+      icon: Waves,
       reward: "+2500 DOLPHINS",
       available: true,
-      route: "/games/treasure"
+      route: "/games/water-sort"
     },
     {
       id: "marine-quiz",
@@ -61,7 +61,7 @@ const Games = () => {
     {
       id: "eco-warrior",
       title: "Eco-Warrior Challenge",
-      description: "Protect the ocean and earn rewards!",
+      description: "Clean the ocean and protect marine life!",
       icon: Shield,
       reward: "+4000 DOLPHINS",
       available: true,
