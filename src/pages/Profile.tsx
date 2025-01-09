@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import { ConversionSection } from "@/components/wallet/ConversionSection";
+import { CurrencyDisplay } from "@/components/wallet/CurrencyDisplay";
 
 const Profile = () => {
   const { toast } = useToast();
@@ -118,12 +119,19 @@ const Profile = () => {
           ))}
         </div>
 
-        {/* Conversion Section */}
-        <ConversionSection
-          dolphins={dolphins}
-          onConvertToPearls={handleConvertToPearls}
-          onConvertToGems={handleConvertToGems}
-        />
+        {/* Currency and Conversion Section */}
+        <div className="space-y-4">
+          <CurrencyDisplay
+            dolphins={dolphins}
+            pearlCoins={pearlCoins}
+            oceanGems={oceanGems}
+          />
+          <ConversionSection
+            dolphins={dolphins}
+            onConvertToPearls={handleConvertToPearls}
+            onConvertToGems={handleConvertToGems}
+          />
+        </div>
 
         {/* Referral Section */}
         <Card className="p-6 border-blue-100">
