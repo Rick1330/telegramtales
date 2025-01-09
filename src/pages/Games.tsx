@@ -1,4 +1,4 @@
-import { Brain, Compass, Treasure, Fish, Shield } from "lucide-react";
+import { Brain, Compass, Coins, Fish, Shield } from "lucide-react";
 import { CurrencyDisplay } from "@/components/wallet/CurrencyDisplay";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -44,7 +44,7 @@ const Games = () => {
       id: "treasure-hunt",
       title: "Daily Treasure Hunt",
       description: "Find hidden treasures in the deep blue sea!",
-      icon: Treasure,
+      icon: Coins,
       reward: "+2500 DOLPHINS",
       available: true,
       route: "/games/treasure"
