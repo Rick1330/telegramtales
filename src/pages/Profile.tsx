@@ -3,9 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/components/ui/use-toast";
+import { useState } from "react";
+import { ConversionSection } from "@/components/wallet/ConversionSection";
 
 const Profile = () => {
   const { toast } = useToast();
+  const [dolphins, setDolphins] = useState(1000);
+  const [pearlCoins, setPearlCoins] = useState(12500);
+  const [oceanGems, setOceanGems] = useState(25);
   
   const stats = [
     { 
@@ -37,6 +42,18 @@ const Profile = () => {
       gradient: "from-purple-500 to-pink-400"
     }
   ];
+
+  const handleConvertToPearls = (amount: number, rate: number) => {
+    const convertedAmount = amount * rate;
+    setDolphins(prev => prev - amount);
+    setPearlCoins(prev => prev + convertedAmount);
+  };
+
+  const handleConvertToGems = (amount: number, rate: number) => {
+    const convertedAmount = Math.floor(amount / rate);
+    setDolphins(prev => prev - (convertedAmount * rate));
+    setOceanGems(prev => prev + convertedAmount);
+  };
 
   const achievements = [
     { title: "Maze Master", description: "Completed 5 mazes under 1 minute", date: "2 days ago" },
@@ -100,6 +117,13 @@ const Profile = () => {
             </Card>
           ))}
         </div>
+
+        {/* Conversion Section */}
+        <ConversionSection
+          dolphins={dolphins}
+          onConvertToPearls={handleConvertToPearls}
+          onConvertToGems={handleConvertToGems}
+        />
 
         {/* Referral Section */}
         <Card className="p-6 border-blue-100">

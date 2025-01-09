@@ -1,28 +1,15 @@
-import { Diamond, Shield, Wallet as WalletIcon, Coins, Smartphone, Landmark } from "lucide-react";
+import { Diamond, Shield, WalletIcon, Coins, Smartphone, Landmark } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { CurrencyDisplay } from "@/components/wallet/CurrencyDisplay";
-import { ConversionSection } from "@/components/wallet/ConversionSection";
 
 const Wallet = () => {
   const [dolphins, setDolphins] = useState(1000);
   const [pearlCoins, setPearlCoins] = useState(12500);
   const [oceanGems, setOceanGems] = useState(25);
-
-  const handleConvertToPearls = (amount: number, rate: number) => {
-    const convertedAmount = amount * rate;
-    setDolphins(prev => prev - amount);
-    setPearlCoins(prev => prev + convertedAmount);
-  };
-
-  const handleConvertToGems = (amount: number, rate: number) => {
-    const convertedAmount = Math.floor(amount / rate);
-    setDolphins(prev => prev - (convertedAmount * rate));
-    setOceanGems(prev => prev + convertedAmount);
-  };
 
   const wallets = [
     { id: 1, name: "MyTonWallet", popular: true, icon: Diamond },
@@ -55,12 +42,6 @@ const Wallet = () => {
             oceanGems={oceanGems}
           />
         </div>
-
-        <ConversionSection
-          dolphins={dolphins}
-          onConvertToPearls={handleConvertToPearls}
-          onConvertToGems={handleConvertToGems}
-        />
 
         <div>
           <h2 className="text-lg font-semibold mb-4">Popular Wallets</h2>
