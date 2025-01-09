@@ -1,97 +1,121 @@
-import { Diamond, Shield, WalletIcon, Coins, Smartphone, Landmark } from "lucide-react";
+import { Brain, Compass, Treasure, Fish, Shield } from "lucide-react";
+import { CurrencyDisplay } from "@/components/wallet/CurrencyDisplay";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ChevronRight } from "lucide-react";
-import { useState } from "react";
-import { CurrencyDisplay } from "@/components/wallet/CurrencyDisplay";
 
-const Wallet = () => {
+interface Game {
+  id: string;
+  title: string;
+  description: string;
+  icon: any;
+  reward: string;
+  available: boolean;
+  route: string;
+}
+
+const Games = () => {
+  const navigate = useNavigate();
   const [dolphins, setDolphins] = useState(1000);
   const [pearlCoins, setPearlCoins] = useState(12500);
   const [oceanGems, setOceanGems] = useState(25);
 
-  const wallets = [
-    { id: 1, name: "MyTonWallet", popular: true, icon: Diamond },
-    { id: 2, name: "Tonkeeper", popular: true, icon: Shield },
-    { id: 3, name: "Tonhub", popular: true, icon: Diamond },
-  ];
-
-  const otherWallets = [
-    { id: 4, name: "Binance Wallet", icon: Diamond },
-    { id: 5, name: "Bitget Wallet", icon: Coins },
-    { id: 6, name: "Fintopio", icon: WalletIcon },
-    { id: 7, name: "OKX", icon: Smartphone },
-    { id: 8, name: "Phantom", icon: Shield },
-    { id: 9, name: "MetaMask", icon: WalletIcon },
-    { id: 10, name: "Bybit", icon: Landmark },
-    { id: 11, name: "Blockchain", icon: Diamond },
+  const games: Game[] = [
+    {
+      id: "daily-quiz",
+      title: "Daily Quiz",
+      description: "Test your ocean knowledge with our daily quiz challenge!",
+      icon: Brain,
+      reward: "+1500 DOLPHINS",
+      available: true,
+      route: "/games/quiz"
+    },
+    {
+      id: "ocean-explorer",
+      title: "Ocean Explorer Challenge",
+      description: "Explore the depths of the ocean in this exciting adventure!",
+      icon: Compass,
+      reward: "+3000 DOLPHINS",
+      available: true,
+      route: "/games/explorer"
+    },
+    {
+      id: "treasure-hunt",
+      title: "Daily Treasure Hunt",
+      description: "Find hidden treasures in the deep blue sea!",
+      icon: Treasure,
+      reward: "+2500 DOLPHINS",
+      available: true,
+      route: "/games/treasure"
+    },
+    {
+      id: "marine-quiz",
+      title: "Marine Biology Quiz",
+      description: "Challenge yourself with marine biology questions!",
+      icon: Fish,
+      reward: "+1800 DOLPHINS",
+      available: true,
+      route: "/games/marine-quiz"
+    },
+    {
+      id: "eco-warrior",
+      title: "Eco-Warrior Challenge",
+      description: "Protect the ocean and earn rewards!",
+      icon: Shield,
+      reward: "+4000 DOLPHINS",
+      available: true,
+      route: "/games/eco-warrior"
+    }
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50 pb-24">
       <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-400 text-white p-6 rounded-b-[2rem] shadow-lg">
-        <h1 className="text-3xl font-bold">Connect Wallet</h1>
+        <h1 className="text-3xl font-bold mb-6">Ocean Games</h1>
+        <CurrencyDisplay
+          dolphins={dolphins}
+          pearlCoins={pearlCoins}
+          oceanGems={oceanGems}
+        />
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 space-y-6">
-        <div className="-mt-6">
-          <CurrencyDisplay
-            dolphins={dolphins}
-            pearlCoins={pearlCoins}
-            oceanGems={oceanGems}
-          />
-        </div>
-
-        <div>
-          <h2 className="text-lg font-semibold mb-4">Popular Wallets</h2>
-          <div className="space-y-3">
-            {wallets.map((wallet) => (
-              <Button
-                key={wallet.id}
-                variant="ghost"
-                className="w-full justify-between h-auto py-3 hover:bg-primary/5 group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center group-hover:from-blue-500/30 group-hover:to-cyan-500/20 transition-colors">
-                    <wallet.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div className="text-left">
-                    <p className="font-medium">{wallet.name}</p>
-                    {wallet.popular && (
-                      <Badge variant="secondary" className="mt-1 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 text-primary">
-                        Popular
-                      </Badge>
+      <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
+        <div className="grid gap-4">
+          {games.map((game) => (
+            <Card
+              key={game.id}
+              className="p-4 hover:shadow-lg transition-all duration-200 bg-white/80 backdrop-blur-sm border-primary/10"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center">
+                  <game.icon className="w-6 h-6 text-primary" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-gray-900">{game.title}</h3>
+                  <p className="text-sm text-gray-500">{game.description}</p>
+                  <div className="flex items-center gap-2 mt-2">
+                    <span className="text-sm font-medium text-primary">{game.reward}</span>
+                    {!game.available && (
+                      <span className="text-xs text-gray-500">(Available in 12h)</span>
                     )}
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-lg font-semibold mb-4">Other Wallets</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {otherWallets.map((wallet) => (
-              <Card 
-                key={wallet.id}
-                className="p-4 hover:bg-primary/5 transition-all duration-200 border-primary/10 hover:scale-105 cursor-pointer"
-              >
-                <div className="flex flex-col items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center">
-                    <wallet.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <p className="text-sm font-medium text-center">{wallet.name}</p>
-                </div>
-              </Card>
-            ))}
-          </div>
+                <Button
+                  variant="default"
+                  className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:opacity-90 transition-opacity"
+                  onClick={() => navigate(game.route)}
+                  disabled={!game.available}
+                >
+                  Play Now
+                </Button>
+              </div>
+            </Card>
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default Wallet;
+export default Games;
