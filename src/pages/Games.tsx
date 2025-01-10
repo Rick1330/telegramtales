@@ -1,131 +1,118 @@
+import { Brain, Compass, Coins, Fish, Shield, Waves } from "lucide-react";
+import { CurrencyDisplay } from "@/components/wallet/CurrencyDisplay";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Brain, Compass, Waves, Fish, Shield } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 interface Game {
   id: string;
   title: string;
+  description: string;
   icon: any;
   reward: string;
   available: boolean;
   route: string;
-  bgColor: string;
-  iconBgColor: string;
 }
 
 const Games = () => {
   const navigate = useNavigate();
-  const { toast } = useToast();
+  const [dolphins, setDolphins] = useState(1000);
+  const [pearlCoins, setPearlCoins] = useState(12500);
+  const [oceanGems, setOceanGems] = useState(25);
 
   const games: Game[] = [
     {
       id: "daily-quiz",
       title: "Daily Ocean Quiz",
+      description: "Test your ocean knowledge with our daily quiz challenge!",
       icon: Brain,
       reward: "+1500 DOLPHINS",
       available: true,
-      route: "/games/daily-quiz",
-      bgColor: "bg-blue-50",
-      iconBgColor: "bg-blue-500"
+      route: "/games/daily-quiz"
     },
     {
       id: "ocean-explorer",
       title: "Ocean Explorer",
+      description: "Navigate through the ocean depths to find hidden treasures!",
       icon: Compass,
       reward: "+3000 DOLPHINS",
       available: true,
-      route: "/games/ocean-explorer",
-      bgColor: "bg-emerald-50",
-      iconBgColor: "bg-emerald-500"
+      route: "/games/ocean-explorer"
     },
     {
       id: "water-sort",
       title: "Water Sort Puzzle",
+      description: "Sort the colored water in the tubes!",
       icon: Waves,
       reward: "+2500 DOLPHINS",
       available: true,
-      route: "/games/water-sort",
-      bgColor: "bg-purple-50",
-      iconBgColor: "bg-purple-500"
+      route: "/games/water-sort"
     },
     {
       id: "marine-quiz",
       title: "Marine Biology Quiz",
+      description: "Challenge yourself with marine biology questions!",
       icon: Fish,
       reward: "+1800 DOLPHINS",
       available: true,
-      route: "/games/marine-quiz",
-      bgColor: "bg-pink-50",
-      iconBgColor: "bg-pink-500"
+      route: "/games/marine-quiz"
     },
     {
       id: "eco-warrior",
       title: "Eco-Warrior Challenge",
+      description: "Clean the ocean and protect marine life!",
       icon: Shield,
       reward: "+4000 DOLPHINS",
       available: true,
-      route: "/games/eco-warrior",
-      bgColor: "bg-amber-50",
-      iconBgColor: "bg-amber-500"
+      route: "/games/eco-warrior"
     }
   ];
 
-  const handleGameClick = (route: string) => {
-    try {
-      console.log("Navigating to:", route);
-      // Remove the leading slash for relative routing
-      const cleanRoute = route.startsWith('/') ? route.slice(1) : route;
-      navigate(cleanRoute);
-    } catch (error) {
-      console.error("Navigation error:", error);
-      toast({
-        variant: "destructive",
-        title: "Error",
-        description: "Unable to load the game. Please try again.",
-      });
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-500 to-cyan-400">
-      <div className="px-4 py-6 text-white">
-        <h1 className="text-3xl font-bold mb-2">Ocean Games</h1>
-        <p className="text-blue-50">
-          Dive into our collection of ocean-themed games!
-        </p>
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50 pb-24">
+      <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-400 text-white p-6 rounded-b-[2rem] shadow-lg">
+        <h1 className="text-3xl font-bold mb-6">Ocean Games</h1>
+        <CurrencyDisplay
+          dolphins={dolphins}
+          pearlCoins={pearlCoins}
+          oceanGems={oceanGems}
+        />
       </div>
 
-      <div className="px-4 pb-20 space-y-4">
-        {games.map((game) => (
-          <div
-            key={game.id}
-            className={`${game.bgColor} rounded-2xl p-4 shadow-sm`}
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <div className={`${game.iconBgColor} p-3 rounded-2xl`}>
-                  <game.icon className="w-6 h-6 text-white" />
+      <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
+        <div className="grid gap-4">
+          {games.map((game) => (
+            <Card
+              key={game.id}
+              className="p-4 hover:shadow-lg transition-all duration-200 bg-white/80 backdrop-blur-sm border-primary/10"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center">
+                  <game.icon className="w-6 h-6 text-primary" />
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {game.title}
-                  </h3>
-                  <div className="flex items-center mt-1">
-                    <span className="text-sm font-medium text-blue-600">
-                      {game.reward}
-                    </span>
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold text-gray-900">{game.title}</h3>
+                  <p className="text-sm text-gray-500">{game.description}</p>
+                  <div className="flex items-center gap-2 mt-2">
+                    <span className="text-sm font-medium text-primary">{game.reward}</span>
+                    {!game.available && (
+                      <span className="text-xs text-gray-500">(Available in 12h)</span>
+                    )}
                   </div>
                 </div>
+                <Button
+                  variant="default"
+                  className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:opacity-90 transition-opacity"
+                  onClick={() => navigate(game.route)}
+                  disabled={!game.available}
+                >
+                  Play Now
+                </Button>
               </div>
-              <button
-                onClick={() => handleGameClick(game.route)}
-                className={`${game.iconBgColor} text-white px-6 py-2 rounded-full font-medium hover:opacity-90 transition-opacity`}
-              >
-                Play Now
-              </button>
-            </div>
-          </div>
-        ))}
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   );

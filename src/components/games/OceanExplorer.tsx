@@ -10,10 +10,6 @@ interface Treasure {
   x: number;
   y: number;
   found: boolean;
-  type: 'gold' | 'silver' | 'bronze';
-  points: number;
-  rotation: number;
-  scale: number;
 }
 
 const OceanExplorer = () => {
@@ -21,133 +17,54 @@ const OceanExplorer = () => {
   const [moves, setMoves] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [playerPosition, setPlayerPosition] = useState({ x: 0, y: 0 });
-  const [playerVelocity, setPlayerVelocity] = useState({ x: 0, y: 0 });
-  const [score, setScore] = useState(0);
-  const [particles, setParticles] = useState<Array<{ x: number; y: number; vx: number; vy: number; life: number }>>([]);
 
   useEffect(() => {
     initializeGame();
   }, []);
 
-  useEffect(() => {
-    const updatePosition = () => {
-      // Apply physics-based movement with momentum and smooth deceleration
-      setPlayerPosition(prev => ({
-        x: Math.max(0, Math.min(9, prev.x + playerVelocity.x)),
-        y: Math.max(0, Math.min(9, prev.y + playerVelocity.y))
-      }));
-
-      // Apply friction to gradually slow down
-      setPlayerVelocity(prev => ({
-        x: prev.x * 0.95,
-        y: prev.y * 0.95
-      }));
-
-      // Update particle effects
-      setParticles(prevParticles => 
-        prevParticles
-          .map(p => ({
-            ...p,
-            x: p.x + p.vx,
-            y: p.y + p.vy,
-            life: p.life - 1,
-            vx: p.vx * 0.98,
-            vy: p.vy * 0.98
-          }))
-          .filter(p => p.life > 0)
-      );
-    };
-
-    const gameLoop = setInterval(updatePosition, 16); // ~60fps
-    return () => clearInterval(gameLoop);
-  }, [playerVelocity]);
-
-  const createParticles = (x: number, y: number, color: string) => {
-    const newParticles = Array(10).fill(null).map(() => ({
-      x,
-      y,
-      vx: (Math.random() - 0.5) * 2,
-      vy: (Math.random() - 0.5) * 2,
-      life: 50 + Math.random() * 20
-    }));
-    setParticles(prev => [...prev, ...newParticles]);
-  };
-
   const initializeGame = () => {
-    const treasureTypes = ['gold', 'silver', 'bronze'] as const;
-    const points = { gold: 300, silver: 200, bronze: 100 };
-    
-    const newTreasures = Array(8).fill(null).map((_, index) => {
-      const type = treasureTypes[Math.floor(Math.random() * treasureTypes.length)];
-      return {
-        id: index,
-        x: Math.floor(Math.random() * 10),
-        y: Math.floor(Math.random() * 10),
-        found: false,
-        type,
-        points: points[type],
-        rotation: Math.random() * Math.PI * 2,
-        scale: 0.8 + Math.random() * 0.4
-      };
-    });
-
+    const newTreasures = Array(5).fill(null).map((_, index) => ({
+      id: index,
+      x: Math.floor(Math.random() * 10),
+      y: Math.floor(Math.random() * 10),
+      found: false
+    }));
     setTreasures(newTreasures);
     setPlayerPosition({ x: 0, y: 0 });
-    setPlayerVelocity({ x: 0, y: 0 });
     setMoves(0);
-    setScore(0);
     setGameOver(false);
-    setParticles([]);
   };
 
   const handleMove = (dx: number, dy: number) => {
     if (gameOver) return;
 
-    const acceleration = 0.5;
-    setPlayerVelocity(prev => ({
-      x: prev.x + dx * acceleration,
-      y: prev.y + dy * acceleration
-    }));
-
+    const newX = Math.max(0, Math.min(9, playerPosition.x + dx));
+    const newY = Math.max(0, Math.min(9, playerPosition.y + dy));
+    
+    setPlayerPosition({ x: newX, y: newY });
     setMoves(moves + 1);
 
+    // Check for treasures
     const updatedTreasures = treasures.map(treasure => {
-      if (!treasure.found) {
-        const distance = Math.sqrt(
-          Math.pow(playerPosition.x - treasure.x, 2) + 
-          Math.pow(playerPosition.y - treasure.y, 2)
-        );
-        
-        if (distance < 1.5) {
-          createParticles(treasure.x, treasure.y, getTreasureColor(treasure.type));
-          toast.success(`Found ${treasure.type} treasure! +${treasure.points} points!`);
-          setScore(prev => prev + treasure.points);
-          return { ...treasure, found: true };
-        }
+      if (!treasure.found && treasure.x === newX && treasure.y === newY) {
+        toast.success("You found a treasure!");
+        return { ...treasure, found: true };
       }
       return treasure;
     });
 
     setTreasures(updatedTreasures);
 
+    // Check if all treasures are found
     if (updatedTreasures.every(t => t.found)) {
       setGameOver(true);
-      toast.success(`Congratulations! Final Score: ${score}`);
-    }
-  };
-
-  const getTreasureColor = (type: Treasure['type']) => {
-    switch (type) {
-      case 'gold': return 'bg-yellow-400';
-      case 'silver': return 'bg-gray-300';
-      case 'bronze': return 'bg-amber-600';
-      default: return 'bg-blue-100';
+      toast.success(`Congratulations! You found all treasures in ${moves} moves!`);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-900 via-blue-600 to-blue-400">
-      <div className="gradient-bg p-4 flex items-center gap-4 text-white backdrop-blur-lg">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50">
+      <div className="gradient-bg p-4 flex items-center gap-4 text-white">
         <Link to="/games">
           <ArrowLeft className="h-6 w-6" />
         </Link>
@@ -155,98 +72,48 @@ const OceanExplorer = () => {
       </div>
 
       <div className="p-6 max-w-lg mx-auto">
-        <Card className="p-6 mb-4 bg-white/10 backdrop-blur-md border-white/20">
-          <div className="grid grid-cols-10 gap-1 mb-4 relative">
+        <Card className="p-6 mb-4">
+          <div className="grid grid-cols-10 gap-1 mb-4">
             {Array(100).fill(null).map((_, index) => {
               const x = Math.floor(index / 10);
               const y = index % 10;
-              const isPlayer = Math.floor(playerPosition.x) === x && Math.floor(playerPosition.y) === y;
+              const isPlayer = x === playerPosition.x && y === playerPosition.y;
               const treasure = treasures.find(t => t.x === x && t.y === y);
               
               return (
                 <div
                   key={index}
-                  className={`aspect-square rounded-lg transition-all duration-200 ${
+                  className={`aspect-square rounded ${
                     isPlayer
-                      ? "bg-blue-500 shadow-lg scale-110 z-10 animate-pulse"
+                      ? "bg-blue-500"
                       : treasure?.found
-                      ? `${getTreasureColor(treasure.type)} opacity-50`
-                      : "bg-white/5 hover:bg-white/10"
+                      ? "bg-yellow-300"
+                      : "bg-blue-100"
                   }`}
-                  style={{
-                    transform: treasure && !treasure.found 
-                      ? `rotate(${treasure.rotation}rad) scale(${treasure.scale})`
-                      : undefined
-                  }}
                 />
               );
             })}
-            
-            {/* Particle effects */}
-            {particles.map((particle, index) => (
-              <div
-                key={`particle-${index}`}
-                className="absolute w-2 h-2 rounded-full bg-yellow-400"
-                style={{
-                  left: `${particle.x * 10}%`,
-                  top: `${particle.y * 10}%`,
-                  opacity: particle.life / 50,
-                  transform: `scale(${particle.life / 50})`
-                }}
-              />
-            ))}
           </div>
 
-          <div className="grid grid-cols-3 gap-3 max-w-[200px] mx-auto">
+          <div className="grid grid-cols-3 gap-2 max-w-[200px] mx-auto">
             <div />
-            <Button 
-              onClick={() => handleMove(-1, 0)}
-              className="bg-white/20 hover:bg-white/30 text-white"
-            >
-              ↑
-            </Button>
+            <Button onClick={() => handleMove(-1, 0)}>↑</Button>
             <div />
-            <Button 
-              onClick={() => handleMove(0, -1)}
-              className="bg-white/20 hover:bg-white/30 text-white"
-            >
-              ←
-            </Button>
-            <Button 
-              onClick={() => initializeGame()}
-              className="bg-white/20 hover:bg-white/30 text-white"
-            >
-              ↺
-            </Button>
-            <Button 
-              onClick={() => handleMove(0, 1)}
-              className="bg-white/20 hover:bg-white/30 text-white"
-            >
-              →
-            </Button>
+            <Button onClick={() => handleMove(0, -1)}>←</Button>
+            <Button onClick={() => initializeGame()}>↺</Button>
+            <Button onClick={() => handleMove(0, 1)}>→</Button>
             <div />
-            <Button 
-              onClick={() => handleMove(1, 0)}
-              className="bg-white/20 hover:bg-white/30 text-white"
-            >
-              ↓
-            </Button>
+            <Button onClick={() => handleMove(1, 0)}>↓</Button>
             <div />
           </div>
         </Card>
 
-        <Card className="p-4 text-center bg-white/10 backdrop-blur-md border-white/20">
-          <div className="grid grid-cols-2 gap-4 text-white">
-            <div>
-              <p className="text-sm opacity-75">Score</p>
-              <p className="text-2xl font-bold">{score}</p>
-            </div>
-            <div>
-              <p className="text-sm opacity-75">Moves</p>
-              <p className="text-2xl font-bold">{moves}</p>
-            </div>
-          </div>
-        </Card>
+        <div className="text-center">
+          <p className="text-lg font-semibold mb-2">
+            Treasures Found: {treasures.filter(t => t.found).length} / {treasures.length}
+          </p>
+          <p className="text-gray-600">Moves: {moves}</p>
+        </div>
       </div>
     </div>
   );
