@@ -96,7 +96,7 @@ const OceanExplorer = () => {
     // Check if all treasures are found
     if (updatedTreasures.every(t => t.found)) {
       setGameOver(true);
-      toast.success(`Congratulations! Final Score: ${score + treasure.points}`);
+      toast.success(`Congratulations! Final Score: ${score + updatedTreasures.find(t => !t.found)?.points || 0}`);
     }
   };
 
