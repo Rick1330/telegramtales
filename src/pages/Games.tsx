@@ -2,6 +2,7 @@ import { Brain, Compass, Coins, Fish, Shield, Waves } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Game {
   id: string;
@@ -15,6 +16,7 @@ interface Game {
 
 const Games = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const games: Game[] = [
     {
@@ -65,7 +67,17 @@ const Games = () => {
   ];
 
   const handleGameClick = (route: string) => {
-    navigate(route);
+    try {
+      console.log("Navigating to:", route);
+      navigate(route);
+    } catch (error) {
+      console.error("Navigation error:", error);
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Unable to load the game. Please try again.",
+      });
+    }
   };
 
   return (
