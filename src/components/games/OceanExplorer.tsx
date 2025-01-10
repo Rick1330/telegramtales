@@ -12,6 +12,8 @@ interface Treasure {
   found: boolean;
   type: 'gold' | 'silver' | 'bronze';
   points: number;
+  rotation: number;
+  scale: number;
 }
 
 const OceanExplorer = () => {
@@ -21,6 +23,7 @@ const OceanExplorer = () => {
   const [playerPosition, setPlayerPosition] = useState({ x: 0, y: 0 });
   const [playerVelocity, setPlayerVelocity] = useState({ x: 0, y: 0 });
   const [score, setScore] = useState(0);
+  const [particles, setParticles] = useState<Array<{ x: number; y: number; vx: number; vy: number; life: number }>>([]);
 
   useEffect(() => {
     initializeGame();
@@ -28,16 +31,47 @@ const OceanExplorer = () => {
 
   useEffect(() => {
     const updatePosition = () => {
+      // Apply physics-based movement with momentum and smooth deceleration
       setPlayerPosition(prev => ({
         x: Math.max(0, Math.min(9, prev.x + playerVelocity.x)),
         y: Math.max(0, Math.min(9, prev.y + playerVelocity.y))
       }));
+
+      // Apply friction to gradually slow down
+      setPlayerVelocity(prev => ({
+        x: prev.x * 0.95,
+        y: prev.y * 0.95
+      }));
+
+      // Update particle effects
+      setParticles(prevParticles => 
+        prevParticles
+          .map(p => ({
+            ...p,
+            x: p.x + p.vx,
+            y: p.y + p.vy,
+            life: p.life - 1,
+            vx: p.vx * 0.98,
+            vy: p.vy * 0.98
+          }))
+          .filter(p => p.life > 0)
+      );
     };
 
     const gameLoop = setInterval(updatePosition, 16); // ~60fps
-
     return () => clearInterval(gameLoop);
   }, [playerVelocity]);
+
+  const createParticles = (x: number, y: number, color: string) => {
+    const newParticles = Array(10).fill(null).map(() => ({
+      x,
+      y,
+      vx: (Math.random() - 0.5) * 2,
+      vy: (Math.random() - 0.5) * 2,
+      life: 50 + Math.random() * 20
+    }));
+    setParticles(prev => [...prev, ...newParticles]);
+  };
 
   const initializeGame = () => {
     const treasureTypes = ['gold', 'silver', 'bronze'] as const;
@@ -51,7 +85,9 @@ const OceanExplorer = () => {
         y: Math.floor(Math.random() * 10),
         found: false,
         type,
-        points: points[type]
+        points: points[type],
+        rotation: Math.random() * Math.PI * 2,
+        scale: 0.8 + Math.random() * 0.4
       };
     });
 
@@ -61,6 +97,7 @@ const OceanExplorer = () => {
     setMoves(0);
     setScore(0);
     setGameOver(false);
+    setParticles([]);
   };
 
   const handleMove = (dx: number, dy: number) => {
@@ -68,13 +105,12 @@ const OceanExplorer = () => {
 
     const acceleration = 0.5;
     setPlayerVelocity(prev => ({
-      x: dx * acceleration,
-      y: dy * acceleration
+      x: prev.x + dx * acceleration,
+      y: prev.y + dy * acceleration
     }));
 
     setMoves(moves + 1);
 
-    // Check for treasures with improved collision detection
     const updatedTreasures = treasures.map(treasure => {
       if (!treasure.found) {
         const distance = Math.sqrt(
@@ -83,6 +119,7 @@ const OceanExplorer = () => {
         );
         
         if (distance < 1.5) {
+          createParticles(treasure.x, treasure.y, getTreasureColor(treasure.type));
           toast.success(`Found ${treasure.type} treasure! +${treasure.points} points!`);
           setScore(prev => prev + treasure.points);
           return { ...treasure, found: true };
@@ -93,10 +130,9 @@ const OceanExplorer = () => {
 
     setTreasures(updatedTreasures);
 
-    // Check if all treasures are found
     if (updatedTreasures.every(t => t.found)) {
       setGameOver(true);
-      toast.success(`Congratulations! Final Score: ${score + updatedTreasures.find(t => !t.found)?.points || 0}`);
+      toast.success(`Congratulations! Final Score: ${score}`);
     }
   };
 
@@ -120,7 +156,7 @@ const OceanExplorer = () => {
 
       <div className="p-6 max-w-lg mx-auto">
         <Card className="p-6 mb-4 bg-white/10 backdrop-blur-md border-white/20">
-          <div className="grid grid-cols-10 gap-1 mb-4">
+          <div className="grid grid-cols-10 gap-1 mb-4 relative">
             {Array(100).fill(null).map((_, index) => {
               const x = Math.floor(index / 10);
               const y = index % 10;
@@ -132,14 +168,33 @@ const OceanExplorer = () => {
                   key={index}
                   className={`aspect-square rounded-lg transition-all duration-200 ${
                     isPlayer
-                      ? "bg-blue-500 shadow-lg scale-110 z-10"
+                      ? "bg-blue-500 shadow-lg scale-110 z-10 animate-pulse"
                       : treasure?.found
                       ? `${getTreasureColor(treasure.type)} opacity-50`
                       : "bg-white/5 hover:bg-white/10"
                   }`}
+                  style={{
+                    transform: treasure && !treasure.found 
+                      ? `rotate(${treasure.rotation}rad) scale(${treasure.scale})`
+                      : undefined
+                  }}
                 />
               );
             })}
+            
+            {/* Particle effects */}
+            {particles.map((particle, index) => (
+              <div
+                key={`particle-${index}`}
+                className="absolute w-2 h-2 rounded-full bg-yellow-400"
+                style={{
+                  left: `${particle.x * 10}%`,
+                  top: `${particle.y * 10}%`,
+                  opacity: particle.life / 50,
+                  transform: `scale(${particle.life / 50})`
+                }}
+              />
+            ))}
           </div>
 
           <div className="grid grid-cols-3 gap-3 max-w-[200px] mx-auto">

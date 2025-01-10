@@ -44,6 +44,7 @@ const MarineQuiz = () => {
   const [timeLeft, setTimeLeft] = useState(30);
   const [showExplanation, setShowExplanation] = useState(false);
   const [gameOver, setGameOver] = useState(false);
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
 
   useEffect(() => {
     if (!gameOver && !showExplanation && timeLeft > 0) {
@@ -68,6 +69,7 @@ const MarineQuiz = () => {
   };
 
   const handleAnswer = (answerIndex: number) => {
+    setSelectedAnswer(answerIndex);
     const correct = answerIndex === questions[currentQuestion].correctAnswer;
     
     if (correct) {
@@ -82,6 +84,7 @@ const MarineQuiz = () => {
 
   const nextQuestion = () => {
     setShowExplanation(false);
+    setSelectedAnswer(null);
     setTimeLeft(30);
     
     if (currentQuestion < questions.length - 1) {
@@ -97,6 +100,7 @@ const MarineQuiz = () => {
     setTimeLeft(30);
     setShowExplanation(false);
     setGameOver(false);
+    setSelectedAnswer(null);
   };
 
   return (
@@ -110,7 +114,7 @@ const MarineQuiz = () => {
 
       <div className="p-6 max-w-2xl mx-auto">
         {!gameOver ? (
-          <Card className="p-6">
+          <Card className="p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
             <div className="mb-6">
               <div className="flex justify-between items-center mb-2">
                 <span className="text-sm font-medium text-gray-500">
@@ -121,9 +125,12 @@ const MarineQuiz = () => {
                 </span>
               </div>
               
-              <Progress value={(timeLeft / 30) * 100} className="mb-4" />
+              <Progress 
+                value={(timeLeft / 30) * 100} 
+                className="mb-4 h-2 bg-gray-100"
+              />
               
-              <h2 className="text-xl font-semibold mb-4">
+              <h2 className="text-xl font-semibold mb-4 text-gray-800">
                 {questions[currentQuestion].question}
               </h2>
 
@@ -131,8 +138,14 @@ const MarineQuiz = () => {
                 {questions[currentQuestion].options.map((option, index) => (
                   <Button
                     key={index}
-                    className="w-full justify-start text-left"
-                    variant="outline"
+                    className={`w-full justify-start text-left transition-all duration-300 ${
+                      selectedAnswer === index
+                        ? index === questions[currentQuestion].correctAnswer
+                          ? "bg-green-500 hover:bg-green-600 text-white"
+                          : "bg-red-500 hover:bg-red-600 text-white"
+                        : "hover:translate-x-1"
+                    }`}
+                    variant={selectedAnswer === null ? "outline" : "default"}
                     onClick={() => handleAnswer(index)}
                     disabled={showExplanation}
                   >
@@ -142,12 +155,12 @@ const MarineQuiz = () => {
               </div>
 
               {showExplanation && (
-                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg animate-fade-in">
                   <p className="text-sm text-gray-700">
                     {questions[currentQuestion].explanation}
                   </p>
                   <Button
-                    className="w-full mt-4"
+                    className="w-full mt-4 bg-primary hover:bg-primary/90"
                     onClick={nextQuestion}
                   >
                     Next Question
@@ -157,12 +170,15 @@ const MarineQuiz = () => {
             </div>
           </Card>
         ) : (
-          <Card className="p-6 text-center">
-            <h2 className="text-2xl font-bold mb-4">Quiz Complete!</h2>
-            <p className="text-xl mb-6">
+          <Card className="p-6 text-center bg-white shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">Quiz Complete!</h2>
+            <p className="text-xl mb-6 text-gray-600">
               Your score: {score} out of {questions.length}
             </p>
-            <Button onClick={resetQuiz} className="w-full">
+            <Button 
+              onClick={resetQuiz} 
+              className="w-full bg-primary hover:bg-primary/90"
+            >
               Play Again
             </Button>
           </Card>
