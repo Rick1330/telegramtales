@@ -1,5 +1,4 @@
 import { Brain, Compass, Coins, Fish, Shield, Waves } from "lucide-react";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,7 +6,6 @@ import { Button } from "@/components/ui/button";
 interface Game {
   id: string;
   title: string;
-  description: string;
   icon: any;
   reward: string;
   available: boolean;
@@ -22,7 +20,6 @@ const Games = () => {
     {
       id: "daily-quiz",
       title: "Daily Ocean Quiz",
-      description: "Test your ocean knowledge with our daily quiz challenge!",
       icon: Brain,
       reward: "+1500 DOLPHINS",
       available: true,
@@ -32,7 +29,6 @@ const Games = () => {
     {
       id: "ocean-explorer",
       title: "Ocean Explorer",
-      description: "Navigate through the ocean depths to find hidden treasures!",
       icon: Compass,
       reward: "+3000 DOLPHINS",
       available: true,
@@ -42,7 +38,6 @@ const Games = () => {
     {
       id: "water-sort",
       title: "Water Sort Puzzle",
-      description: "Sort the colored water in the tubes!",
       icon: Waves,
       reward: "+2500 DOLPHINS",
       available: true,
@@ -52,7 +47,6 @@ const Games = () => {
     {
       id: "marine-quiz",
       title: "Marine Biology Quiz",
-      description: "Challenge yourself with marine biology questions!",
       icon: Fish,
       reward: "+1800 DOLPHINS",
       available: true,
@@ -62,7 +56,6 @@ const Games = () => {
     {
       id: "eco-warrior",
       title: "Eco-Warrior Challenge",
-      description: "Clean the ocean and protect marine life!",
       icon: Shield,
       reward: "+4000 DOLPHINS",
       available: true,
@@ -71,12 +64,16 @@ const Games = () => {
     }
   ];
 
+  const handleGameClick = (route: string) => {
+    navigate(route);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50 pb-24">
       <div className="bg-gradient-to-br from-blue-600 via-cyan-500 to-teal-400 text-white p-8 rounded-b-[2.5rem] shadow-lg">
         <h1 className="text-4xl font-bold mb-4 text-center">Ocean Games</h1>
         <p className="text-center text-blue-100 max-w-md mx-auto">
-          Dive into our collection of ocean-themed games and earn rewards while learning about marine life!
+          Dive into our collection of ocean-themed games!
         </p>
       </div>
 
@@ -94,10 +91,9 @@ const Games = () => {
                     <game.icon className="w-8 h-8 text-white" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
+                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-primary transition-colors">
                       {game.title}
                     </h3>
-                    <p className="text-gray-600">{game.description}</p>
                     <div className="flex items-center gap-2 mt-3">
                       <Coins className="w-4 h-4 text-primary" />
                       <span className="text-sm font-medium text-primary">{game.reward}</span>
@@ -109,7 +105,7 @@ const Games = () => {
                   <Button
                     variant="default"
                     className={`bg-gradient-to-r ${game.bgGradient} text-white hover:opacity-90 transition-all duration-300 px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl`}
-                    onClick={() => navigate(game.route)}
+                    onClick={() => handleGameClick(game.route)}
                     disabled={!game.available}
                   >
                     Play Now
