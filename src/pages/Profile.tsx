@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import { ConversionSection } from "@/components/wallet/ConversionSection";
-import { CurrencyDisplay } from "@/components/wallet/CurrencyDisplay";
 import { TonConnectButton } from '@tonconnect/ui-react';
 
 const Profile = () => {
@@ -13,7 +12,7 @@ const Profile = () => {
   const [dolphins, setDolphins] = useState(1000);
   const [pearlCoins, setPearlCoins] = useState(12500);
   const [oceanGems, setOceanGems] = useState(25);
-  
+
   const stats = [
     { 
       title: "Current Rank",
@@ -57,74 +56,32 @@ const Profile = () => {
     setOceanGems(prev => prev + convertedAmount);
   };
 
-  const achievements = [
-    { title: "Maze Master", description: "Completed 5 mazes under 1 minute", date: "2 days ago" },
-    { title: "Water Sort Pro", description: "Solved 10 puzzles", date: "1 week ago" },
-    { title: "Speed Runner", description: "Top 100 in weekly ranking", date: "2 weeks ago" }
-  ];
-
-  const referralInfo = {
-    code: "ALEX123",
-    totalReferred: 15,
-    activeReferrals: 8,
-    rewards: 2500,
-    recentReferrals: [
-      { name: "Emma Watson", date: "2 days ago", status: "active" },
-      { name: "John Smith", date: "1 week ago", status: "active" },
-      { name: "Sarah Parker", date: "2 weeks ago", status: "inactive" }
-    ]
-  };
-
-  const copyReferralCode = () => {
-    navigator.clipboard.writeText(referralInfo.code);
-    toast({
-      title: "Referral Code Copied!",
-      description: "Share this code with your friends to earn rewards.",
-      duration: 3000,
-    });
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50 pb-24">
       {/* Header Section */}
-      <div className="bg-gradient-to-br from-blue-500 to-cyan-400 text-white p-6 rounded-b-[2.5rem] mb-12">
-        <div className="flex flex-col items-center pt-4">
-          <div className="relative mb-3">
-            <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-4xl hover:bg-white/30 transition-all">
+      <div className="bg-gradient-to-br from-violet-500 to-purple-400 text-white p-8 rounded-b-[2.5rem] shadow-lg relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSI1MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiIGlkPSJhIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmIiBzdG9wLW9wYWNpdHk9Ii4xIiBvZmZzZXQ9IjAlIi8+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIwIiBvZmZzZXQ9IjEwMCUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBkPSJNMCAwaDEwMHYxMDBIMHoiIGZpbGw9InVybCgjYSkiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==')] opacity-50"></div>
+        <div className="relative z-10">
+          <div className="flex flex-col items-center">
+            <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-4xl mb-4">
               🐬
             </div>
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2">
-              <Badge className="bg-white/20 backdrop-blur-sm px-3 py-1">
-                <Crown className="w-4 h-4 mr-1 inline-block" /> Ocean Master
-              </Badge>
-            </div>
+            <h1 className="text-2xl font-bold">Alex Thompson</h1>
+            <p className="text-white/80 text-sm mb-4">Ocean Explorer since March 2024</p>
+            <Badge className="bg-white/20 backdrop-blur-sm">
+              <Crown className="w-4 h-4 mr-1" /> Ocean Master
+            </Badge>
           </div>
-          
-          <h1 className="text-2xl font-bold mt-4">Alex Thompson</h1>
-          <p className="text-white/80 text-sm">Member since March 2024</p>
         </div>
       </div>
 
-      <div className="px-4 space-y-6">
-        {/* Wallet Connection Section */}
-        <Card className="p-6 border-blue-100">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <Wallet className="w-6 h-6 text-blue-500" />
-              <h2 className="text-lg font-semibold">TON Wallet</h2>
-            </div>
-          </div>
-          <div className="flex justify-center">
-            <TonConnectButton />
-          </div>
-        </Card>
-
+      <div className="px-4 -mt-10 space-y-6 max-w-4xl mx-auto">
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {stats.map((stat, index) => (
-            <Card key={index} className="overflow-hidden hover:shadow-lg transition-all duration-300 border-blue-100">
-              <div className={`bg-gradient-to-br ${stat.gradient} p-4 text-white`}>
-                <stat.icon className="w-6 h-6 mb-2" />
+            <Card key={index} className="overflow-hidden hover:shadow-lg transition-all duration-300">
+              <div className={`bg-gradient-to-br ${stat.gradient} p-4 text-white h-full`}>
+                <stat.icon className="w-6 h-6 mb-2 opacity-80" />
                 <h3 className="text-2xl font-bold">{stat.value}</h3>
                 <p className="text-sm font-medium">{stat.title}</p>
                 <p className="text-xs opacity-80">{stat.subtext}</p>
@@ -133,84 +90,47 @@ const Profile = () => {
           ))}
         </div>
 
-        {/* Currency and Conversion Section */}
-        <div className="space-y-4">
-          <CurrencyDisplay
-            dolphins={dolphins}
-            pearlCoins={pearlCoins}
-            oceanGems={oceanGems}
-          />
+        {/* Wallet Section */}
+        <Card className="p-6 border-purple-100">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-2">
+              <Wallet className="w-6 h-6 text-purple-500" />
+              <h2 className="text-lg font-semibold">TON Wallet</h2>
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <TonConnectButton />
+          </div>
+        </Card>
+
+        {/* Currency Conversion */}
+        <Card className="p-6 border-purple-100">
           <ConversionSection
             dolphins={dolphins}
             onConvertToPearls={handleConvertToPearls}
             onConvertToGems={handleConvertToGems}
           />
-        </div>
-
-        {/* Referral Section */}
-        <Card className="p-6 border-blue-100">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <Users className="w-6 h-6 text-blue-500" />
-              <h2 className="text-lg font-semibold">Referral Program</h2>
-            </div>
-            <Badge variant="secondary" className="bg-blue-100 text-blue-700">
-              {referralInfo.totalReferred} Referrals
-            </Badge>
-          </div>
-
-          <div className="bg-blue-50 p-4 rounded-xl mb-4">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-sm text-blue-700 font-medium">Your Referral Code</p>
-              <Button variant="ghost" size="sm" onClick={copyReferralCode} className="text-blue-600">
-                <Link className="w-4 h-4 mr-1" />
-                Copy Code
-              </Button>
-            </div>
-            <p className="text-xl font-bold text-blue-800">{referralInfo.code}</p>
-          </div>
-
-          <div className="space-y-3">
-            <h3 className="text-sm font-medium text-gray-700">Recent Referrals</h3>
-            {referralInfo.recentReferrals.map((referral, index) => (
-              <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-                    {referral.name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="font-medium">{referral.name}</p>
-                    <p className="text-xs text-gray-500">{referral.date}</p>
-                  </div>
-                </div>
-                <Badge variant={referral.status === 'active' ? 'default' : 'secondary'}>
-                  {referral.status}
-                </Badge>
-              </div>
-            ))}
-          </div>
-
-          <Button className="w-full mt-4 bg-gradient-to-r from-blue-500 to-cyan-500">
-            <Share2 className="w-4 h-4 mr-2" />
-            Share Referral Link
-          </Button>
         </Card>
 
-        {/* Recent Achievements */}
-        <Card className="p-6 border-blue-100">
+        {/* Achievements Section */}
+        <Card className="p-6 border-purple-100">
           <div className="flex items-center gap-2 mb-4">
-            <Gift className="w-6 h-6 text-blue-500" />
+            <Gift className="w-6 h-6 text-purple-500" />
             <h2 className="text-lg font-semibold">Recent Achievements</h2>
           </div>
           <div className="space-y-3">
-            {achievements.map((achievement, index) => (
-              <div key={index} className="p-3 bg-gray-50 rounded-lg">
+            {[
+              { title: "Maze Master", description: "Completed 5 mazes under 1 minute", date: "2 days ago" },
+              { title: "Water Sort Pro", description: "Solved 10 puzzles", date: "1 week ago" },
+              { title: "Speed Runner", description: "Top 100 in weekly ranking", date: "2 weeks ago" }
+            ].map((achievement, index) => (
+              <div key={index} className="p-4 bg-purple-50 rounded-xl">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="font-semibold text-gray-800">{achievement.title}</h3>
-                    <p className="text-sm text-gray-600">{achievement.description}</p>
+                    <h3 className="font-semibold text-purple-900">{achievement.title}</h3>
+                    <p className="text-sm text-purple-600">{achievement.description}</p>
                   </div>
-                  <span className="text-xs text-gray-500">{achievement.date}</span>
+                  <span className="text-xs text-purple-500">{achievement.date}</span>
                 </div>
               </div>
             ))}

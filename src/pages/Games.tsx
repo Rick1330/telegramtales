@@ -1,5 +1,4 @@
-import { Brain, Compass, Coins, Fish, Shield, Waves } from "lucide-react";
-import { CurrencyDisplay } from "@/components/wallet/CurrencyDisplay";
+import { Brain, Compass, Fish, Shield, Waves } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card } from "@/components/ui/card";
@@ -17,9 +16,6 @@ interface Game {
 
 const Games = () => {
   const navigate = useNavigate();
-  const [dolphins, setDolphins] = useState(1000);
-  const [pearlCoins, setPearlCoins] = useState(12500);
-  const [oceanGems, setOceanGems] = useState(25);
 
   const games: Game[] = [
     {
@@ -72,12 +68,7 @@ const Games = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50 pb-24">
       <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-400 text-white p-6 rounded-b-[2rem] shadow-lg">
-        <h1 className="text-3xl font-bold mb-6">Ocean Games</h1>
-        <CurrencyDisplay
-          dolphins={dolphins}
-          pearlCoins={pearlCoins}
-          oceanGems={oceanGems}
-        />
+        <h1 className="text-3xl font-bold">Ocean Games</h1>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">

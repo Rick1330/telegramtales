@@ -14,41 +14,39 @@ interface LeaderboardHeaderProps {
 
 export const LeaderboardHeader = ({ playerCount, currentPlayer }: LeaderboardHeaderProps) => {
   return (
-    <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-400 text-white p-8 rounded-b-[2.5rem] mb-8 shadow-lg">
-      {/* Title Section */}
-      <div className="flex items-center justify-between mb-10">
-        <div className="flex items-center gap-4">
-          <div className="p-3 glass-effect rounded-xl">
-            <Trophy className="w-8 h-8" />
+    <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-400 text-white p-4 rounded-b-xl mb-6 shadow-lg">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <div className="p-2 glass-effect rounded-lg">
+            <Trophy className="w-5 h-5" />
           </div>
-          <h1 className="text-3xl font-bold">Ocean Leaders</h1>
+          <h1 className="text-xl font-bold">Ocean Leaders</h1>
         </div>
-        <div className="glass-effect px-4 py-2 rounded-xl">
-          <div className="flex items-center gap-2">
-            <Users className="w-5 h-5" />
-            <span className="text-sm font-medium">{playerCount} Players</span>
+        <div className="glass-effect px-3 py-1 rounded-lg">
+          <div className="flex items-center gap-1">
+            <Users className="w-4 h-4" />
+            <span className="text-sm">{playerCount} Players</span>
           </div>
         </div>
       </div>
 
-      {/* Stats Grid */}
-      <div className="glass-effect rounded-2xl p-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="space-y-2">
-            <p className="text-lg opacity-80">Current Rank</p>
-            <p className="text-4xl font-bold">#{currentPlayer.rank}</p>
+      <div className="glass-effect rounded-xl p-4">
+        <div className="grid grid-cols-4 gap-4">
+          <div>
+            <p className="text-sm opacity-80">Rank</p>
+            <p className="text-lg font-bold">#{currentPlayer.rank}</p>
           </div>
-          <div className="space-y-2">
-            <p className="text-lg opacity-80">Dolphins</p>
-            <p className="text-4xl font-bold">{currentPlayer.points}</p>
+          <div>
+            <p className="text-sm opacity-80">Dolphins</p>
+            <p className="text-lg font-bold">{currentPlayer.points}</p>
           </div>
-          <div className="space-y-2">
-            <p className="text-lg opacity-80">Pearl Coins</p>
-            <p className="text-4xl font-bold">{currentPlayer.pearlCoins}</p>
+          <div>
+            <p className="text-sm opacity-80">Pearls</p>
+            <p className="text-lg font-bold">{currentPlayer.pearlCoins}</p>
           </div>
-          <div className="space-y-2">
-            <p className="text-lg opacity-80">Ocean Gems</p>
-            <p className="text-4xl font-bold">{currentPlayer.oceanGems}</p>
+          <div>
+            <p className="text-sm opacity-80">Gems</p>
+            <p className="text-lg font-bold">{currentPlayer.oceanGems}</p>
           </div>
         </div>
       </div>
