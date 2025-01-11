@@ -1,142 +1,110 @@
-import { Crown, Sparkles, Trophy, Shell, Users, Link, Share2, Gift, Wallet } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Crown, Shell, Sparkles, Trophy, Users } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useToast } from "@/components/ui/use-toast";
-import { useState } from "react";
-import { ConversionSection } from "@/components/wallet/ConversionSection";
 import { TonConnectButton } from '@tonconnect/ui-react';
 
 const Profile = () => {
-  const { toast } = useToast();
-  const [dolphins, setDolphins] = useState(1000);
-  const [pearlCoins, setPearlCoins] = useState(12500);
-  const [oceanGems, setOceanGems] = useState(25);
-
-  const stats = [
-    { 
-      title: "Current Rank",
-      value: "#42",
-      subtext: "Top 10%",
-      icon: Trophy,
-      gradient: "from-blue-500 to-cyan-400"
-    },
-    {
-      title: "Total Points",
-      value: "74,250",
-      subtext: "+2,500 today",
-      icon: Shell,
-      gradient: "from-emerald-500 to-teal-400"
-    },
-    {
-      title: "Games Played",
-      value: "28",
-      subtext: "This week",
-      icon: Sparkles,
-      gradient: "from-amber-500 to-orange-400"
-    },
-    {
-      title: "Achievements",
-      value: "12",
-      subtext: "3 New",
-      icon: Gift,
-      gradient: "from-purple-500 to-pink-400"
-    }
-  ];
-
-  const handleConvertToPearls = (amount: number, rate: number) => {
-    const convertedAmount = amount * rate;
-    setDolphins(prev => prev - amount);
-    setPearlCoins(prev => prev + convertedAmount);
-  };
-
-  const handleConvertToGems = (amount: number, rate: number) => {
-    const convertedAmount = Math.floor(amount / rate);
-    setDolphins(prev => prev - (convertedAmount * rate));
-    setOceanGems(prev => prev + convertedAmount);
+  // Using the same stats as shown in the home page for consistency
+  const userStats = {
+    dolphins: "21,258",
+    rank: "#42",
+    pearlCoins: "12,500",
+    oceanGems: "850",
+    gamesWon: 28,
+    achievements: 12
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50 pb-24">
-      {/* Header Section */}
-      <div className="bg-gradient-to-br from-violet-500 to-purple-400 text-white p-8 rounded-b-[2.5rem] shadow-lg relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSI1MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiIGlkPSJhIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmIiBzdG9wLW9wYWNpdHk9Ii4xIiBvZmZzZXQ9IjAlIi8+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZiIgc3RvcC1vcGFjaXR5PSIwIiBvZmZzZXQ9IjEwMCUiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBkPSJNMCAwaDEwMHYxMDBIMHoiIGZpbGw9InVybCgjYSkiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvc3ZnPg==')] opacity-50"></div>
-        <div className="relative z-10">
-          <div className="flex flex-col items-center">
-            <div className="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-4xl mb-4">
-              🐬
-            </div>
-            <h1 className="text-2xl font-bold">Alex Thompson</h1>
-            <p className="text-white/80 text-sm mb-4">Ocean Explorer since March 2024</p>
-            <Badge className="bg-white/20 backdrop-blur-sm">
-              <Crown className="w-4 h-4 mr-1" /> Ocean Master
-            </Badge>
+    <div className="min-h-screen bg-background pb-24">
+      {/* Header Section - Matching the gradient style from other pages */}
+      <div className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white p-8 rounded-b-[2.5rem] mb-6 shadow-lg">
+        <div className="flex flex-col items-center mb-6">
+          <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-3xl mb-3">
+            🐬
           </div>
+          <h1 className="text-2xl font-bold">Alex Thompson</h1>
+          <p className="text-white/80 text-sm">Ocean Explorer since March 2024</p>
+        </div>
+
+        <div className="grid grid-cols-3 gap-4">
+          <StatsCard title="Dolphins" value={userStats.dolphins} icon={Shell} />
+          <StatsCard title="Rank" value={userStats.rank} icon={Trophy} />
+          <StatsCard title="Games Won" value={userStats.gamesWon.toString()} icon={Users} />
         </div>
       </div>
 
-      <div className="px-4 -mt-10 space-y-6 max-w-4xl mx-auto">
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {stats.map((stat, index) => (
-            <Card key={index} className="overflow-hidden hover:shadow-lg transition-all duration-300">
-              <div className={`bg-gradient-to-br ${stat.gradient} p-4 text-white h-full`}>
-                <stat.icon className="w-6 h-6 mb-2 opacity-80" />
-                <h3 className="text-2xl font-bold">{stat.value}</h3>
-                <p className="text-sm font-medium">{stat.title}</p>
-                <p className="text-xs opacity-80">{stat.subtext}</p>
-              </div>
-            </Card>
-          ))}
-        </div>
-
+      <div className="px-4 space-y-6">
         {/* Wallet Section */}
-        <Card className="p-6 border-purple-100">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-2">
-              <Wallet className="w-6 h-6 text-purple-500" />
-              <h2 className="text-lg font-semibold">TON Wallet</h2>
-            </div>
+        <Card className="p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-lg font-semibold flex items-center gap-2">
+              <Shell className="w-5 h-5 text-blue-500" />
+              TON Wallet
+            </h2>
           </div>
-          <div className="flex justify-center">
-            <TonConnectButton />
-          </div>
-        </Card>
-
-        {/* Currency Conversion */}
-        <Card className="p-6 border-purple-100">
-          <ConversionSection
-            dolphins={dolphins}
-            onConvertToPearls={handleConvertToPearls}
-            onConvertToGems={handleConvertToGems}
-          />
+          <TonConnectButton />
         </Card>
 
         {/* Achievements Section */}
-        <Card className="p-6 border-purple-100">
-          <div className="flex items-center gap-2 mb-4">
-            <Gift className="w-6 h-6 text-purple-500" />
-            <h2 className="text-lg font-semibold">Recent Achievements</h2>
-          </div>
+        <Card className="p-6">
+          <h2 className="text-lg font-semibold flex items-center gap-2 mb-4">
+            <Trophy className="w-5 h-5 text-blue-500" />
+            Recent Achievements
+          </h2>
           <div className="space-y-3">
             {[
-              { title: "Maze Master", description: "Completed 5 mazes under 1 minute", date: "2 days ago" },
-              { title: "Water Sort Pro", description: "Solved 10 puzzles", date: "1 week ago" },
-              { title: "Speed Runner", description: "Top 100 in weekly ranking", date: "2 weeks ago" }
+              { title: "Ocean Master", description: "Complete all daily tasks", date: "2 days ago" },
+              { title: "Pearl Hunter", description: "Collect 10,000 pearls", date: "1 week ago" },
+              { title: "Top Player", description: "Reach top 100 ranking", date: "2 weeks ago" }
             ].map((achievement, index) => (
-              <div key={index} className="p-4 bg-purple-50 rounded-xl">
+              <div key={index} className="p-4 bg-blue-50 rounded-xl hover:bg-blue-100 transition-colors">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="font-semibold text-purple-900">{achievement.title}</h3>
-                    <p className="text-sm text-purple-600">{achievement.description}</p>
+                    <h3 className="font-semibold text-blue-900">{achievement.title}</h3>
+                    <p className="text-sm text-blue-600">{achievement.description}</p>
                   </div>
-                  <span className="text-xs text-purple-500">{achievement.date}</span>
+                  <span className="text-xs text-blue-500">{achievement.date}</span>
                 </div>
               </div>
             ))}
           </div>
         </Card>
+
+        {/* Stats Overview */}
+        <Card className="p-6">
+          <h2 className="text-lg font-semibold flex items-center gap-2 mb-4">
+            <Sparkles className="w-5 h-5 text-blue-500" />
+            Stats Overview
+          </h2>
+          <div className="grid grid-cols-2 gap-4">
+            <StatItem title="Pearl Coins" value={userStats.pearlCoins} />
+            <StatItem title="Ocean Gems" value={userStats.oceanGems} />
+            <StatItem title="Total Games" value="156" />
+            <StatItem title="Win Rate" value="82%" />
+          </div>
+        </Card>
       </div>
+    </div>
+  );
+};
+
+const StatsCard = ({ title, value, icon: Icon }: { title: string; value: string; icon: any }) => {
+  return (
+    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 hover:bg-white/20 transition-all">
+      <div className="flex items-center gap-2 mb-1">
+        <p className="text-2xl font-bold">{value}</p>
+        <Icon className="w-4 h-4" />
+      </div>
+      <p className="text-sm opacity-90">{title}</p>
+    </div>
+  );
+};
+
+const StatItem = ({ title, value }: { title: string; value: string }) => {
+  return (
+    <div className="bg-blue-50 p-4 rounded-xl">
+      <p className="text-sm text-blue-600 mb-1">{title}</p>
+      <p className="text-xl font-bold text-blue-900">{value}</p>
     </div>
   );
 };
