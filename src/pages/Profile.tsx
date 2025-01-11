@@ -1,4 +1,4 @@
-import { Crown, Sparkles, Trophy, Shell, Users, Link, Share2, Gift } from "lucide-react";
+import { Crown, Sparkles, Trophy, Shell, Users, Link, Share2, Gift, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -6,6 +6,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import { ConversionSection } from "@/components/wallet/ConversionSection";
 import { CurrencyDisplay } from "@/components/wallet/CurrencyDisplay";
+import { TonConnectButton } from '@tonconnect/ui-react';
 
 const Profile = () => {
   const { toast } = useToast();
@@ -105,6 +106,19 @@ const Profile = () => {
       </div>
 
       <div className="px-4 space-y-6">
+        {/* Wallet Connection Section */}
+        <Card className="p-6 border-blue-100">
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <Wallet className="w-6 h-6 text-blue-500" />
+              <h2 className="text-lg font-semibold">TON Wallet</h2>
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <TonConnectButton />
+          </div>
+        </Card>
+
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-4">
           {stats.map((stat, index) => (
