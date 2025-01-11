@@ -3,7 +3,7 @@ import WebApp from '@twa-dev/sdk';
 
 type ThemeConfig = {
   route: string;
-  color?: string;
+  color?: `#${string}`;
   colorKey?: 'bg_color' | 'secondary_bg_color';
 };
 
