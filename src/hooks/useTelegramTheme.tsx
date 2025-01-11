@@ -10,23 +10,23 @@ type ThemeConfig = {
 const themeConfigs: ThemeConfig[] = [
   {
     route: '/profile',
-    color: '#0EA5E9', // Ocean Blue for profile page
+    color: '#0EA5E9',
   },
   {
     route: '/games',
-    color: '#8B5CF6', // Vivid Purple for games page
+    color: '#8B5CF6',
   },
   {
     route: '/avatar',
-    color: '#D946EF', // Magenta Pink for avatar page
+    color: '#D946EF',
   },
   {
     route: '/',
-    colorKey: 'bg_color', // Default theme matching for home page
+    color: '#2563EB', // Set a specific blue color for the home route
   },
   {
     route: '/top',
-    color: '#1EAEDB', // Bright Blue for leaderboard
+    color: '#1EAEDB',
   }
 ];
 
