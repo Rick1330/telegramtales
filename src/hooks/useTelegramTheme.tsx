@@ -42,7 +42,7 @@ export const useTelegramTheme = (currentRoute: string) => {
     if (config.colorKey) {
       WebApp.setHeaderColor(config.colorKey);
     } else if (config.color) {
-      WebApp.setHeaderColor('custom', config.color);
+      WebApp.setHeaderColor(config.color);
     }
   }, [currentRoute]);
 };
