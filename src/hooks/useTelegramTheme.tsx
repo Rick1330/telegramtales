@@ -4,7 +4,7 @@ import WebApp from '@twa-dev/sdk';
 type ThemeConfig = {
   route: string;
   color?: string;
-  colorKey?: 'bg_color' | 'secondary_bg_color' | 'header_bg_color';
+  colorKey?: 'bg_color' | 'secondary_bg_color';
 };
 
 const themeConfigs: ThemeConfig[] = [
@@ -32,7 +32,7 @@ const themeConfigs: ThemeConfig[] = [
 
 export const useTelegramTheme = (currentRoute: string) => {
   useEffect(() => {
-    if (!WebApp.isInitialized) {
+    if (!WebApp.ready) {
       console.warn('Telegram WebApp is not initialized');
       return;
     }
@@ -42,12 +42,7 @@ export const useTelegramTheme = (currentRoute: string) => {
     if (config.colorKey) {
       WebApp.setHeaderColor(config.colorKey);
     } else if (config.color) {
-      WebApp.setHeaderColor('custom', { color: config.color });
-    }
-
-    // Ensure MainButton is hidden by default
-    if (WebApp.MainButton.isVisible) {
-      WebApp.MainButton.hide();
+      WebApp.setHeaderColor('custom', config.color);
     }
   }, [currentRoute]);
 };
