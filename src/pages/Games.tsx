@@ -67,26 +67,26 @@ const Games = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50 pb-24">
-      <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-400 text-white p-6 rounded-b-[2rem] shadow-lg">
+      <div className="bg-gradient-to-br from-[#2563EB] to-[#0EA5E9] text-white p-6 rounded-b-[2rem] shadow-lg">
         <h1 className="text-3xl font-bold">Ocean Games</h1>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
+      <div className="max-w-4xl mx-auto px-4 py-6 space-y-4">
         <div className="grid gap-4">
           {games.map((game) => (
             <Card
               key={game.id}
-              className="p-4 hover:shadow-lg transition-all duration-200 bg-white/80 backdrop-blur-sm border-primary/10"
+              className="p-4 hover:shadow-lg transition-all duration-200 bg-white/90 backdrop-blur-sm border-primary/10 rounded-xl"
             >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/10 flex items-center justify-center">
-                  <game.icon className="w-6 h-6 text-primary" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#2563EB]/10 to-[#0EA5E9]/10 flex items-center justify-center">
+                  <game.icon className="w-6 h-6 text-[#2563EB]" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-lg font-semibold text-gray-900">{game.title}</h3>
                   <p className="text-sm text-gray-500">{game.description}</p>
                   <div className="flex items-center gap-2 mt-2">
-                    <span className="text-sm font-medium text-primary">{game.reward}</span>
+                    <span className="text-sm font-medium text-[#2563EB]">{game.reward}</span>
                     {!game.available && (
                       <span className="text-xs text-gray-500">(Available in 12h)</span>
                     )}
@@ -94,7 +94,7 @@ const Games = () => {
                 </div>
                 <Button
                   variant="default"
-                  className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white hover:opacity-90 transition-opacity"
+                  className="bg-gradient-to-r from-[#2563EB] to-[#0EA5E9] text-white hover:opacity-90 transition-opacity"
                   onClick={() => navigate(game.route)}
                   disabled={!game.available}
                 >
