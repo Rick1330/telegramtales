@@ -10,23 +10,23 @@ type ThemeConfig = {
 const themeConfigs: ThemeConfig[] = [
   {
     route: '/profile',
-    color: '#0EA5E9',
+    color: '#0EA5E9', // Sky blue for profile
   },
   {
     route: '/games',
-    color: '#8B5CF6',
+    color: '#2563EB', // Royal blue for games
   },
   {
     route: '/avatar',
-    color: '#D946EF',
-  },
-  {
-    route: '/',
-    color: '#2563EB', // Set a specific blue color for the home route
+    color: '#0EA5E9', // Sky blue for avatar
   },
   {
     route: '/top',
-    color: '#1EAEDB',
+    color: '#2563EB', // Royal blue for leaderboard
+  },
+  {
+    route: '/',
+    color: '#2563EB', // Royal blue for home
   }
 ];
 
