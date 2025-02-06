@@ -10,15 +10,15 @@ type ThemeConfig = {
 const themeConfigs: ThemeConfig[] = [
   {
     route: '/profile',
-    color: '#2563EB', // Royal blue for consistency
+    color: '#2563EB', // Royal blue to match profile header
   },
   {
     route: '/games',
-    color: '#2563EB', // Royal blue for games
+    color: '#2563EB', // Royal blue to match games gradient header
   },
   {
     route: '/avatar',
-    color: '#2563EB', // Royal blue for avatar
+    color: '#2563EB', // Royal blue for avatar page
   },
   {
     route: '/top',
@@ -26,7 +26,7 @@ const themeConfigs: ThemeConfig[] = [
   },
   {
     route: '/',
-    color: '#2563EB', // Royal blue for home
+    color: '#2563EB', // Royal blue for home page gradient
   }
 ];
 
