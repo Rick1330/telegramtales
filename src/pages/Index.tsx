@@ -1,6 +1,7 @@
 import { Sparkles, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { TonConnectButton } from '@tonconnect/ui-react';
 import Header from "@/components/home/Header";
 import TaskSection from "@/components/home/TaskSection";
 
@@ -11,11 +12,14 @@ const Index = () => {
       
       <div className="px-4 space-y-6">
         <div className="bg-white rounded-2xl p-6 shadow-lg">
-          <div className="flex items-center space-x-2 mb-6">
-            <Sparkles className="w-6 h-6 text-blue-500" />
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-              Featured Task
-            </h2>
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center space-x-2">
+              <Sparkles className="w-6 h-6 text-blue-500" />
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                Featured Task
+              </h2>
+            </div>
+            <TonConnectButton />
           </div>
 
           <Card className="p-6 border-2 border-blue-100 hover:border-blue-200 transition-all">

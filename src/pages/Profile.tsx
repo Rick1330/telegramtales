@@ -1,7 +1,5 @@
 import { Crown, Shell, Sparkles, Trophy, Users } from "lucide-react";
 import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { TonConnectButton } from '@tonconnect/ui-react';
 
 const Profile = () => {
   // Using the same stats as shown in the home page for consistency
@@ -34,17 +32,6 @@ const Profile = () => {
       </div>
 
       <div className="px-4 space-y-6">
-        {/* Wallet Section */}
-        <Card className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold flex items-center gap-2">
-              <Shell className="w-5 h-5 text-blue-500" />
-              TON Wallet
-            </h2>
-          </div>
-          <TonConnectButton />
-        </Card>
-
         {/* Achievements Section */}
         <Card className="p-6">
           <h2 className="text-lg font-semibold flex items-center gap-2 mb-4">
