@@ -13,8 +13,8 @@ export const TonConnectProviderWrapper: React.FC<{ children: React.ReactNode }> 
         timeout: 30_000,
       })}
       uiPreferences={{
-        // Use system theme by default
-        theme: 'system'
+        // Use SYSTEM theme as per correct type definition
+        theme: 'SYSTEM'
       }}
     >
       {children}

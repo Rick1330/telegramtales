@@ -2,14 +2,14 @@
 import { Sparkles, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { TonConnectButton, useTonConnect } from '@tonconnect/ui-react';
+import { TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react';
 import Header from "@/components/home/Header";
 import TaskSection from "@/components/home/TaskSection";
 import { useEffect } from "react";
 import { useToast } from "@/components/ui/use-toast";
 
 const Index = () => {
-  const { connected } = useTonConnect();
+  const { connected } = useTonConnectUI();
   const { toast } = useToast();
 
   useEffect(() => {
