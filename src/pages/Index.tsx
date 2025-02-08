@@ -1,11 +1,26 @@
+
 import { Sparkles, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { TonConnectButton } from '@tonconnect/ui-react';
+import { TonConnectButton, useTonConnect } from '@tonconnect/ui-react';
 import Header from "@/components/home/Header";
 import TaskSection from "@/components/home/TaskSection";
+import { useEffect } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 const Index = () => {
+  const { connected } = useTonConnect();
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (connected) {
+      toast({
+        title: "Connected to TON wallet",
+        description: "You have successfully connected your wallet.",
+      });
+    }
+  }, [connected]);
+
   return (
     <div className="pb-20 bg-gradient-to-b from-blue-50 to-white">
       <Header />
@@ -19,7 +34,9 @@ const Index = () => {
                 Featured Task
               </h2>
             </div>
-            <TonConnectButton />
+            <div className="z-10">
+              <TonConnectButton />
+            </div>
           </div>
 
           <Card className="p-6 border-2 border-blue-100 hover:border-blue-200 transition-all">
