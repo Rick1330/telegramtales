@@ -15,16 +15,32 @@ const Index = () => {
 
   useEffect(() => {
     const checkConnection = async () => {
-      const isConnected = await tonConnectUI.connected;
-      if (isConnected) {
+      try {
+        const wallet = await tonConnectUI.getWallet();
+        if (wallet) {
+          toast({
+            title: "Connected to TON wallet",
+            description: "You have successfully connected your wallet.",
+            duration: 3000,
+          });
+        }
+      } catch (error) {
+        console.error("Wallet connection error:", error);
         toast({
-          title: "Connected to TON wallet",
-          description: "You have successfully connected your wallet.",
+          title: "Connection Error",
+          description: "There was an error connecting to your wallet. Please try again.",
+          variant: "destructive",
+          duration: 3000,
         });
       }
     };
 
-    checkConnection();
+    // Add a small delay to ensure proper initialization
+    const timer = setTimeout(() => {
+      checkConnection();
+    }, 1000);
+
+    return () => clearTimeout(timer);
   }, [tonConnectUI, toast]);
 
   return (
