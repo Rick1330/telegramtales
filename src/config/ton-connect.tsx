@@ -13,9 +13,7 @@ export const TonConnectProviderWrapper: React.FC<{ children: React.ReactNode }> 
         twaReturnUrl: `https://${window.location.host}`,
       }}
       uiPreferences={{
-        theme: 'SYSTEM',
-        // Adding additional connection options for better stability
-        allowWalletConnectConnection: true
+        theme: 'SYSTEM'
       }}
       connectorConfiguration={{
         // Add connection configuration
