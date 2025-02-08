@@ -15,7 +15,7 @@ interface LeaderboardHeaderProps {
 
 export const LeaderboardHeader = ({ playerCount, currentPlayer }: LeaderboardHeaderProps) => {
   return (
-    <div className="bg-gradient-to-br from-blue-500 via-blue-400 to-cyan-400 text-white p-4 rounded-b-xl mb-6 shadow-lg">
+    <div className="bg-gradient-to-b from-blue-600 to-cyan-500 text-white p-4 rounded-b-xl mb-6 shadow-lg">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <div className="p-2 glass-effect rounded-lg">
