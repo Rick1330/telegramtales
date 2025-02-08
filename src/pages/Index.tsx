@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { TonConnectButton } from '@tonconnect/ui-react';
 import Header from "@/components/home/Header";
 import TaskSection from "@/components/home/TaskSection";
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { useTonConnectUI } from '@tonconnect/ui-react';
 
@@ -13,35 +13,36 @@ const Index = () => {
   const [tonConnectUI] = useTonConnectUI();
   const { toast } = useToast();
 
-  useEffect(() => {
-    const checkConnection = async () => {
-      try {
-        const wallets = await tonConnectUI.getWallets();
-        if (wallets && wallets.length > 0) {
-          toast({
-            title: "Connected to TON wallet",
-            description: "You have successfully connected your wallet.",
-            duration: 3000,
-          });
-        }
-      } catch (error) {
-        console.error("Wallet connection error:", error);
+  const checkConnection = useCallback(async () => {
+    try {
+      const wallets = await tonConnectUI.getWallets();
+      if (wallets && wallets.length > 0) {
         toast({
-          title: "Connection Error",
-          description: "There was an error connecting to your wallet. Please try again.",
-          variant: "destructive",
+          title: "Connected to TON wallet",
+          description: "You have successfully connected your wallet.",
           duration: 3000,
         });
       }
-    };
+    } catch (error) {
+      console.error("Wallet connection error:", error);
+      toast({
+        title: "Connection Error",
+        description: "There was an error connecting to your wallet. Please try again.",
+        variant: "destructive",
+        duration: 3000,
+      });
+    }
+  }, [tonConnectUI, toast]);
 
-    // Add a small delay to ensure proper initialization
+  useEffect(() => {
     const timer = setTimeout(() => {
       checkConnection();
-    }, 1000);
+    }, 1500); // Add delay for initialization
 
-    return () => clearTimeout(timer);
-  }, [tonConnectUI, toast]);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [checkConnection]);
 
   return (
     <div className="pb-20 bg-gradient-to-b from-blue-50 to-white">
