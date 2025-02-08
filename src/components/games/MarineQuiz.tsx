@@ -101,11 +101,11 @@ const MarineQuiz = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50">
-      <div className="gradient-bg p-4 flex items-center gap-4 text-white">
+      <div className="bg-gradient-to-b from-blue-600 to-cyan-500 text-white p-6 rounded-b-[2rem] flex items-center gap-4 shadow-lg">
         <Link to="/games">
           <ArrowLeft className="h-6 w-6" />
         </Link>
-        <h1 className="text-xl font-bold">Marine Biology Quiz</h1>
+        <h1 className="text-2xl font-bold">Marine Biology Quiz</h1>
       </div>
 
       <div className="p-6 max-w-2xl mx-auto">
