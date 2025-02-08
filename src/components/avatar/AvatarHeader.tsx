@@ -1,8 +1,9 @@
+
 import { Shell, Droplets, Trophy } from "lucide-react";
 
 const AvatarHeader = () => {
   return (
-    <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-400 text-white p-6 rounded-b-[2rem] shadow-lg">
+    <div className="bg-gradient-to-b from-blue-600 to-blue-400 text-white p-6 rounded-b-[2rem] shadow-lg">
       <div className="mb-8">
         <h1 className="text-3xl font-bold">Customize Your Avatar</h1>
       </div>
