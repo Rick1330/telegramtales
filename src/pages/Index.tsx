@@ -16,8 +16,8 @@ const Index = () => {
   useEffect(() => {
     const checkConnection = async () => {
       try {
-        const wallet = await tonConnectUI.getWallet();
-        if (wallet) {
+        const wallets = await tonConnectUI.getWallets();
+        if (wallets && wallets.length > 0) {
           toast({
             title: "Connected to TON wallet",
             description: "You have successfully connected your wallet.",

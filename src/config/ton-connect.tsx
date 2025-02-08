@@ -9,7 +9,7 @@ export const TonConnectProviderWrapper: React.FC<{ children: React.ReactNode }> 
     <TonConnectUIProvider
       manifestUrl={manifestUrl}
       actionsConfiguration={{
-        twaReturnUrl: window.location.origin,
+        twaReturnUrl: `https://${window.location.host}`,
       }}
       uiPreferences={{
         theme: 'SYSTEM'
