@@ -15,11 +15,7 @@ export const TonConnectProviderWrapper: React.FC<{ children: React.ReactNode }> 
       uiPreferences={{
         theme: 'SYSTEM'
       }}
-      connectorConfiguration={{
-        // Add connection configuration
-        maxTimeout: 60000, // Increase timeout to 60 seconds
-        retryDelay: 1500 // Add delay between retries
-      }}
+      connectionRestoreTimeout={60000}
     >
       {children}
     </TonConnectUIProvider>
