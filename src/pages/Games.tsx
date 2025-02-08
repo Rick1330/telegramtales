@@ -67,7 +67,7 @@ const Games = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50 pb-24">
-      <div className="bg-gradient-to-br from-[#2563EB] to-[#0EA5E9] text-white p-6 rounded-b-[2rem] shadow-lg">
+      <div className="bg-gradient-to-b from-[#2563EB] to-[#0EA5E9] text-white p-6 rounded-b-[2rem] shadow-lg">
         <h1 className="text-3xl font-bold">Ocean Games</h1>
       </div>
 

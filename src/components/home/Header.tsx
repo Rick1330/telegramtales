@@ -1,8 +1,9 @@
+
 import { Fish, Trophy, Users, Sparkles } from "lucide-react";
 
 const Header = () => {
   return (
-    <div className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white p-8 rounded-b-[2.5rem] mb-6 shadow-lg">
+    <div className="bg-gradient-to-b from-blue-600 to-cyan-500 text-white p-8 rounded-b-[2.5rem] mb-6 shadow-lg">
       <div className="text-center mb-10">
         <div className="flex items-center justify-center gap-2 mb-2">
           <h2 className="text-4xl font-bold">21,258</h2>

@@ -19,7 +19,7 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-background pb-24">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-cyan-500 text-white p-8 rounded-b-[2.5rem] mb-6 shadow-lg">
+      <div className="bg-gradient-to-b from-blue-600 to-cyan-500 text-white p-8 rounded-b-[2.5rem] mb-6 shadow-lg">
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-2xl font-bold mb-2">Friends</h1>
