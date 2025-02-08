@@ -8,12 +8,7 @@ export const TonConnectProviderWrapper: React.FC<{ children: React.ReactNode }> 
   return (
     <TonConnectUIProvider
       manifestUrl={manifestUrl}
-      getConnectParameters={() => ({
-        // Set the timeout for connection attempts
-        timeout: 30_000,
-      })}
       uiPreferences={{
-        // Use SYSTEM theme as per correct type definition
         theme: 'SYSTEM'
       }}
     >

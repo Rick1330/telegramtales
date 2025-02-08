@@ -2,24 +2,30 @@
 import { Sparkles, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { TonConnectButton, useTonConnectUI } from '@tonconnect/ui-react';
+import { TonConnectButton } from '@tonconnect/ui-react';
 import Header from "@/components/home/Header";
 import TaskSection from "@/components/home/TaskSection";
 import { useEffect } from "react";
 import { useToast } from "@/components/ui/use-toast";
+import { useTonConnectUI } from '@tonconnect/ui-react';
 
 const Index = () => {
-  const { connected } = useTonConnectUI();
+  const [tonConnectUI] = useTonConnectUI();
   const { toast } = useToast();
 
   useEffect(() => {
-    if (connected) {
-      toast({
-        title: "Connected to TON wallet",
-        description: "You have successfully connected your wallet.",
-      });
-    }
-  }, [connected]);
+    const checkConnection = async () => {
+      const isConnected = await tonConnectUI.connected;
+      if (isConnected) {
+        toast({
+          title: "Connected to TON wallet",
+          description: "You have successfully connected your wallet.",
+        });
+      }
+    };
+
+    checkConnection();
+  }, [tonConnectUI, toast]);
 
   return (
     <div className="pb-20 bg-gradient-to-b from-blue-50 to-white">
