@@ -9,15 +9,17 @@ export const TonConnectProviderWrapper: React.FC<{ children: React.ReactNode }> 
     <TonConnectUIProvider
       manifestUrl={manifestUrl}
       actionsConfiguration={{
-        // Use a more reliable twaReturnUrl configuration
-        twaReturnUrl: window.location.origin,
+        // Fix the twaReturnUrl type by ensuring it matches the expected format
+        twaReturnUrl: `https://${window.location.host}`,
         // Add reconnectTimeout to prevent abrupt disconnections
         reconnectTimeout: 2000,
       }}
       uiPreferences={{
         theme: 'SYSTEM',
-        // Add error handling configuration
-        showAllWallets: true,
+        // Remove the invalid showAllWallets property
+        walletsList: {
+          includeWallets: 'all'
+        },
         retryConfiguration: {
           maxRetryCount: 3,
           delayMs: 500,
