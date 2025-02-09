@@ -1,5 +1,5 @@
 
-import { UserPlus, ArrowLeft, MoreVertical, Dolphin } from "lucide-react";
+import { UserPlus, ArrowLeft, MoreVertical, Fish } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -34,7 +34,7 @@ const Profile = () => {
       <div className="px-4 py-12 text-center space-y-6">
         <div className="max-w-[280px] mx-auto">
           <div className="w-32 h-32 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
-            <Dolphin className="w-20 h-20 text-blue-500" />
+            <Fish className="w-20 h-20 text-blue-500" />
           </div>
           <h2 className="text-2xl font-bold mb-2">Invite friends</h2>
           <p className="text-gray-600 mb-6">and get more DOLPHINS</p>
