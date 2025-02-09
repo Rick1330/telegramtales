@@ -1,5 +1,5 @@
 
-import { UserPlus, ArrowLeft, MoreVertical } from "lucide-react";
+import { UserPlus, ArrowLeft, MoreVertical, Dolphin } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -16,15 +16,15 @@ const Profile = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header Section */}
-      <div className="bg-white border-b border-gray-100 p-4">
+      <div className="bg-gradient-to-b from-blue-600 to-cyan-500 text-white p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link to="/games">
-              <ArrowLeft className="h-6 w-6 text-gray-600" />
+              <ArrowLeft className="h-6 w-6 text-white" />
             </Link>
             <h1 className="text-xl font-bold">Dolphins</h1>
           </div>
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
             <MoreVertical className="h-5 w-5" />
           </Button>
         </div>
@@ -33,14 +33,12 @@ const Profile = () => {
       {/* Invite Section */}
       <div className="px-4 py-12 text-center space-y-6">
         <div className="max-w-[280px] mx-auto">
-          <img 
-            src="/lovable-uploads/1150b2b5-059e-4b61-b173-638d1e6877eb.png" 
-            alt="Invite friends illustration" 
-            className="w-32 h-32 mx-auto mb-6"
-          />
+          <div className="w-32 h-32 mx-auto mb-6 flex items-center justify-center bg-blue-100 rounded-full">
+            <Dolphin className="w-20 h-20 text-blue-500" />
+          </div>
           <h2 className="text-2xl font-bold mb-2">Invite friends</h2>
           <p className="text-gray-600 mb-6">and get more DOLPHINS</p>
-          <Button className="w-full bg-blue-500 hover:bg-blue-600" size="lg">
+          <Button className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 transition-opacity" size="lg">
             <UserPlus className="w-5 h-5 mr-2" />
             Invite friends
           </Button>
@@ -54,14 +52,14 @@ const Profile = () => {
         {/* Friends List */}
         <div className="space-y-4">
           {friends.map((friend) => (
-            <Card key={friend.id} className="p-4 flex items-center justify-between">
+            <Card key={friend.id} className="p-4 flex items-center justify-between hover:shadow-md transition-shadow">
               <div className="flex items-center gap-3">
-                <Avatar className="h-12 w-12 bg-blue-100">
+                <Avatar className="h-12 w-12 bg-gradient-to-br from-blue-100 to-cyan-100">
                   <AvatarFallback>{friend.avatar}</AvatarFallback>
                 </Avatar>
                 <div>
                   <p className="font-medium">{friend.name}</p>
-                  <Badge variant="secondary" className="mt-1">
+                  <Badge variant="secondary" className="mt-1 bg-blue-50 text-blue-700">
                     +{friend.dolphins} Dolphins
                   </Badge>
                 </div>
