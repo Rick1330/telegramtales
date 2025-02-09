@@ -1,3 +1,4 @@
+
 import { Home, Trophy, Gamepad2, User, Fish } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -10,7 +11,7 @@ const Navigation = () => {
     { icon: Trophy, label: "Leaderboard", path: "/top" },
     { icon: Gamepad2, label: "Games", path: "/games" },
     { icon: Fish, label: "Avatar", path: "/avatar", badge: "5" },
-    { icon: User, label: "Profile", path: "/profile" },
+    { icon: User, label: "Friends", path: "/profile" },
   ];
 
   return (
