@@ -37,7 +37,7 @@ const Index = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       checkConnection();
-    }, 1500);
+    }, 1500); // Add delay for initialization
 
     return () => {
       clearTimeout(timer);
@@ -45,15 +45,15 @@ const Index = () => {
   }, [checkConnection]);
 
   return (
-    <div className="pb-20 bg-[#0A0B0E] min-h-screen">
+    <div className="pb-20 bg-gradient-to-b from-blue-50 to-white">
       <Header />
       
       <div className="px-4 space-y-6">
-        <div className="bg-gray-900/50 backdrop-blur-xl rounded-2xl p-6 border border-gray-800">
+        <div className="bg-white rounded-2xl p-6 shadow-lg">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center space-x-2">
-              <Sparkles className="w-6 h-6 text-blue-400" />
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+              <Sparkles className="w-6 h-6 text-blue-500" />
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
                 Featured Task
               </h2>
             </div>
@@ -62,18 +62,18 @@ const Index = () => {
             </div>
           </div>
 
-          <Card className="p-6 bg-gray-800/50 border-gray-700 hover:border-gray-600 transition-all">
+          <Card className="p-6 border-2 border-blue-100 hover:border-blue-200 transition-all">
             <div className="flex justify-between items-center">
               <div>
-                <p className="font-bold text-lg mb-2 text-gray-100">Ocean Guardian Challenge</p>
+                <p className="font-bold text-lg mb-2">Ocean Guardian Challenge</p>
                 <div className="flex items-center gap-2">
-                  <Trophy className="w-4 h-4 text-amber-400" />
-                  <p className="text-blue-400 font-medium">+5000 DOLPHINS</p>
+                  <Trophy className="w-4 h-4 text-amber-500" />
+                  <p className="text-blue-600 font-medium">+5000 DOLPHINS</p>
                 </div>
               </div>
               <Button 
                 variant="default" 
-                className="bg-gradient-to-r from-blue-500 to-blue-600 hover:opacity-90 transition-opacity text-white"
+                className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:opacity-90 transition-opacity"
               >
                 Accept
               </Button>
