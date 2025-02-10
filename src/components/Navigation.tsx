@@ -1,4 +1,5 @@
-import { Home, Trophy, Gamepad2, User, Fish } from "lucide-react";
+
+import { Wallet, ArrowUpDown, Grid, Fish } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const Navigation = () => {
@@ -6,35 +7,38 @@ const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   const navItems = [
-    { icon: Home, label: "Home", path: "/" },
-    { icon: Trophy, label: "Leaderboard", path: "/top" },
-    { icon: Gamepad2, label: "Games", path: "/games" },
-    { icon: Fish, label: "Avatar", path: "/avatar", badge: "5" },
-    { icon: User, label: "Profile", path: "/profile" },
+    { icon: Wallet, label: "Wallet", path: "/" },
+    { icon: ArrowUpDown, label: "Swap", path: "/top" },
+    { icon: Grid, label: "Apps", path: "/games" },
+    { icon: Fish, label: "Fintopio", path: "/avatar" },
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 py-2">
-      <div className="w-full px-4">
+    <nav className="fixed bottom-0 left-0 right-0 bg-[#0A0B0E] border-t border-gray-800">
+      <div className="w-full px-4 py-2">
         <div className="flex justify-between items-center max-w-screen-xl mx-auto">
-          {navItems.map(({ icon: Icon, label, path, badge }) => (
+          {navItems.map(({ icon: Icon, label, path }) => (
             <Link
               key={path}
               to={path}
-              className="flex flex-col items-center relative"
+              className="flex flex-col items-center relative group"
             >
-              <div className={`p-2 rounded-lg ${
-                isActive(path) ? "text-primary" : "text-gray-500"
-              }`}>
-                <Icon size={24} />
-                {badge && (
-                  <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                    {badge}
-                  </span>
-                )}
+              <div className={`p-3 rounded-full transition-all duration-300 ${
+                isActive(path)
+                  ? "bg-gradient-to-br from-blue-500 to-blue-600 text-white"
+                  : "text-gray-500 hover:text-gray-300"
+              } ${isActive(path) ? "scale-110" : ""}`}>
+                <Icon 
+                  size={24} 
+                  className={`transition-all duration-300 ${
+                    isActive(path) ? "stroke-[1.5]" : "stroke-1"
+                  }`}
+                />
               </div>
-              <span className={`text-xs ${
-                isActive(path) ? "text-primary" : "text-gray-500"
+              <span className={`text-xs mt-1 transition-all duration-300 ${
+                isActive(path)
+                  ? "text-gray-200"
+                  : "text-gray-500 group-hover:text-gray-300"
               }`}>
                 {label}
               </span>
