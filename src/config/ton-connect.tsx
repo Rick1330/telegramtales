@@ -12,11 +12,7 @@ export const TonConnectProviderWrapper: React.FC<{ children: React.ReactNode }> 
         twaReturnUrl: `https://${window.location.host}`,
       }}
       uiPreferences={{
-        theme: 'SYSTEM',
-        retryConfiguration: {
-          maxRetryCount: 3,
-          delayMs: 500,
-        }
+        theme: 'SYSTEM'
       }}
     >
       {children}
