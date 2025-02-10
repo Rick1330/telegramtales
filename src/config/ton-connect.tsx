@@ -11,10 +11,6 @@ export const TonConnectProviderWrapper: React.FC<{ children: React.ReactNode }> 
       actionsConfiguration={{
         twaReturnUrl: `https://${window.location.host}` as `${string}://${string}`,
       }}
-      connectRequestParameters={{
-        state: 'ready',
-        timeout: 60_000, // 60 seconds timeout
-      }}
     >
       {children}
     </TonConnectUIProvider>
