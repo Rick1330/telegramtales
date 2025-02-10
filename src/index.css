@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -59,3 +60,19 @@
 .hover-scale:hover {
   transform: scale(1.05);
 }
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.animate-fade-out {
+  animation: fade-out 1s ease-out forwards;
+}
+
