@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Trophy, Gift, HandCoins, Zap, Users, Building2, Flame, Battery } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -55,13 +54,11 @@ const Games = () => {
 
   return (
     <div className="min-h-screen bg-white pb-20">
-      {/* Header Section */}
       <div className="bg-[#2563EB] text-white p-4 pb-16">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-xl font-bold">Dolphins</h1>
         </div>
 
-        {/* Resources Bar */}
         <div className="flex justify-between items-center bg-white/10 backdrop-blur-md rounded-xl p-2.5">
           <div className="flex items-center gap-2">
             <img 
@@ -85,7 +82,6 @@ const Games = () => {
           </Button>
         </div>
 
-        {/* Daily Boosters */}
         <div className="mt-4">
           <h2 className="text-sm font-semibold mb-2">Your daily boosters:</h2>
           <div className="grid grid-cols-2 gap-3">
@@ -111,30 +107,27 @@ const Games = () => {
         </div>
       </div>
 
-      {/* Main Game Section */}
       <div className="max-w-4xl mx-auto px-4 -mt-12" id="game-container">
         <Card className="p-5 bg-white shadow-xl rounded-xl">
-          {/* Top Section with Tap Button */}
           <div className="flex-1 flex flex-col items-center justify-center mb-8">
             <div 
-              className="relative w-64 h-64 rounded-full bg-gradient-to-br from-blue-400/20 to-cyan-400/20 flex items-center justify-center cursor-pointer hover:scale-105 transition-transform mb-8"
+              className="relative w-64 h-64 rounded-full bg-gradient-to-br from-amber-400/20 to-yellow-400/20 flex items-center justify-center cursor-pointer hover:scale-105 transition-transform mb-8 shadow-lg"
               onClick={handleTap}
             >
               <img 
-                src="/lovable-uploads/422fa017-0f2a-4fa9-9dc4-0138911f07d4.png" 
-                alt="Tap Area"
-                className="w-48 h-48 object-contain"
+                src="/lovable-uploads/4a3ee2e9-0b6a-4b06-978b-b6a677bac025.png" 
+                alt="Golden Dolphin Coin"
+                className="w-56 h-56 object-contain hover:rotate-12 transition-transform"
               />
-              <div className="absolute -top-2 -right-2 text-xs bg-green-400 text-white px-2 py-0.5 rounded-full">
+              <div className="absolute -top-2 -right-2 text-xs bg-amber-500 text-white px-2 py-0.5 rounded-full font-bold">
                 +{1 * multiplier}
               </div>
             </div>
 
-            {/* Energy Bar */}
             <div className="w-full max-w-md">
               <div className="bg-gray-100 rounded-full h-3 mb-1">
                 <div 
-                  className="bg-gradient-to-r from-blue-400 to-cyan-400 h-full rounded-full transition-all duration-300"
+                  className="bg-gradient-to-r from-amber-400 to-yellow-500 h-full rounded-full transition-all duration-300"
                   style={{ width: `${(energy / maxEnergy) * 100}%` }}
                 />
               </div>
@@ -144,9 +137,7 @@ const Games = () => {
             </div>
           </div>
 
-          {/* Bottom Section */}
           <div className="space-y-4 mt-8">
-            {/* Social Features */}
             <div className="grid grid-cols-2 gap-3 w-full">
               <Button variant="ghost" className="bg-gray-50 hover:bg-gray-100">
                 <Users className="w-4 h-4 mr-2" />
@@ -158,11 +149,10 @@ const Games = () => {
               </Button>
             </div>
 
-            {/* Stats */}
             <div className="grid grid-cols-2 gap-3 w-full">
               <Card className="p-3 bg-gray-50 hover:bg-gray-100 transition-colors">
                 <div className="flex items-center gap-2">
-                  <HandCoins className="w-4 h-4 text-yellow-500" />
+                  <HandCoins className="w-4 h-4 text-amber-500" />
                   <div className="text-left">
                     <div className="text-xs text-gray-500">Income / hour</div>
                     <div className="text-lg font-semibold text-gray-700">{idleIncome}</div>
@@ -171,7 +161,7 @@ const Games = () => {
               </Card>
               <Card className="p-3 bg-gray-50 hover:bg-gray-100 transition-colors">
                 <div className="flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-green-500" />
+                  <Zap className="w-4 h-4 text-amber-500" />
                   <div className="text-left">
                     <div className="text-xs text-gray-500">Income / tap</div>
                     <div className="text-lg font-semibold text-gray-700">{1 * multiplier}</div>
