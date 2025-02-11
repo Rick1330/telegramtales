@@ -56,7 +56,7 @@ const Games = () => {
   return (
     <div className="min-h-screen bg-white pb-20">
       {/* Header Section */}
-      <div className="bg-gradient-to-b from-[#2E86C1] to-[#1B4F72] text-white p-4 pb-16">
+      <div className="bg-gradient-to-b from-[#0EA5E9] to-[#0369A1] text-white p-4 pb-16">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-xl font-bold">Dolphins</h1>
         </div>
@@ -87,17 +87,18 @@ const Games = () => {
       </div>
 
       {/* Main Game Section */}
-      <div className="max-w-4xl mx-auto px-4 -mt-12" id="game-container">
-        <Card className="p-5 text-center bg-white shadow-xl rounded-xl">
-          <div className="flex flex-col items-center gap-5">
+      <div className="max-w-4xl mx-auto px-4 -mt-12 flex flex-col h-[calc(100vh-240px)]" id="game-container">
+        <Card className="flex-1 p-5 text-center bg-white shadow-xl rounded-xl flex flex-col justify-between">
+          {/* Top Section with Tap Button */}
+          <div className="flex-1 flex flex-col items-center justify-center mb-8">
             <div 
-              className="relative w-32 h-32 rounded-full bg-gradient-to-br from-blue-400/20 to-cyan-400/20 flex items-center justify-center cursor-pointer hover:scale-105 transition-transform"
+              className="relative w-48 h-48 rounded-full bg-gradient-to-br from-blue-400/20 to-cyan-400/20 flex items-center justify-center cursor-pointer hover:scale-105 transition-transform mb-8"
               onClick={handleTap}
             >
               <img 
                 src="/lovable-uploads/422fa017-0f2a-4fa9-9dc4-0138911f07d4.png" 
                 alt="Tap Area"
-                className="w-24 h-24 object-contain"
+                className="w-36 h-36 object-contain"
               />
               <div className="absolute -top-2 -right-2 text-xs bg-green-400 text-white px-2 py-0.5 rounded-full">
                 +{1 * multiplier}
@@ -105,7 +106,7 @@ const Games = () => {
             </div>
 
             {/* Energy Bar */}
-            <div className="w-full">
+            <div className="w-full max-w-md">
               <div className="bg-gray-100 rounded-full h-3 mb-1">
                 <div 
                   className="bg-gradient-to-r from-blue-400 to-cyan-400 h-full rounded-full transition-all duration-300"
@@ -116,7 +117,10 @@ const Games = () => {
                 Energy: {energy}/{maxEnergy}
               </div>
             </div>
+          </div>
 
+          {/* Bottom Section */}
+          <div className="space-y-4">
             {/* Social Features */}
             <div className="grid grid-cols-2 gap-3 w-full">
               <Button variant="ghost" className="bg-gray-50 hover:bg-gray-100">
@@ -129,9 +133,9 @@ const Games = () => {
               </Button>
             </div>
 
-            {/* Stats Moved to Bottom */}
-            <div className="grid grid-cols-2 gap-3 w-full mt-4">
-              <Card className="p-3 bg-gray-50">
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-3 w-full">
+              <Card className="p-3 bg-gray-50 hover:bg-gray-100 transition-colors">
                 <div className="flex items-center gap-2">
                   <HandCoins className="w-4 h-4 text-yellow-500" />
                   <div className="text-left">
@@ -140,7 +144,7 @@ const Games = () => {
                   </div>
                 </div>
               </Card>
-              <Card className="p-3 bg-gray-50">
+              <Card className="p-3 bg-gray-50 hover:bg-gray-100 transition-colors">
                 <div className="flex items-center gap-2">
                   <Zap className="w-4 h-4 text-green-500" />
                   <div className="text-left">
