@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Trophy, Gift, HandCoins, Zap, Users, Building2 } from "lucide-react";
+import { Trophy, Gift, HandCoins, Zap, Users, Building2, Flame, Battery } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -56,7 +56,7 @@ const Games = () => {
   return (
     <div className="min-h-screen bg-white pb-20">
       {/* Header Section */}
-      <div className="bg-gradient-to-b from-[#0EA5E9] to-[#0369A1] text-white p-4 pb-16">
+      <div className="bg-[#2563EB] text-white p-4 pb-16">
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-xl font-bold">Dolphins</h1>
         </div>
@@ -84,21 +84,46 @@ const Games = () => {
             Claim Rewards
           </Button>
         </div>
+
+        {/* Daily Boosters */}
+        <div className="mt-4">
+          <h2 className="text-sm font-semibold mb-2">Your daily boosters:</h2>
+          <div className="grid grid-cols-2 gap-3">
+            <Card className="bg-indigo-900/50 border-0 p-3">
+              <div className="flex items-center gap-2">
+                <Flame className="w-5 h-5 text-orange-400" />
+                <div>
+                  <div className="text-sm font-medium">Tapping Guru</div>
+                  <div className="text-xs text-gray-300">3/3</div>
+                </div>
+              </div>
+            </Card>
+            <Card className="bg-indigo-900/50 border-0 p-3">
+              <div className="flex items-center gap-2">
+                <Battery className="w-5 h-5 text-yellow-400" />
+                <div>
+                  <div className="text-sm font-medium">Full Tank</div>
+                  <div className="text-xs text-gray-300">3/3</div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
       </div>
 
       {/* Main Game Section */}
-      <div className="max-w-4xl mx-auto px-4 -mt-12 flex flex-col h-[calc(100vh-240px)]" id="game-container">
-        <Card className="flex-1 p-5 text-center bg-white shadow-xl rounded-xl flex flex-col justify-between">
+      <div className="max-w-4xl mx-auto px-4 -mt-12" id="game-container">
+        <Card className="p-5 bg-white shadow-xl rounded-xl">
           {/* Top Section with Tap Button */}
           <div className="flex-1 flex flex-col items-center justify-center mb-8">
             <div 
-              className="relative w-48 h-48 rounded-full bg-gradient-to-br from-blue-400/20 to-cyan-400/20 flex items-center justify-center cursor-pointer hover:scale-105 transition-transform mb-8"
+              className="relative w-64 h-64 rounded-full bg-gradient-to-br from-blue-400/20 to-cyan-400/20 flex items-center justify-center cursor-pointer hover:scale-105 transition-transform mb-8"
               onClick={handleTap}
             >
               <img 
                 src="/lovable-uploads/422fa017-0f2a-4fa9-9dc4-0138911f07d4.png" 
                 alt="Tap Area"
-                className="w-36 h-36 object-contain"
+                className="w-48 h-48 object-contain"
               />
               <div className="absolute -top-2 -right-2 text-xs bg-green-400 text-white px-2 py-0.5 rounded-full">
                 +{1 * multiplier}
@@ -120,7 +145,7 @@ const Games = () => {
           </div>
 
           {/* Bottom Section */}
-          <div className="space-y-4">
+          <div className="space-y-4 mt-8">
             {/* Social Features */}
             <div className="grid grid-cols-2 gap-3 w-full">
               <Button variant="ghost" className="bg-gray-50 hover:bg-gray-100">
