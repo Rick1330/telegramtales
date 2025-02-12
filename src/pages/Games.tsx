@@ -1,6 +1,8 @@
-
 import { useState, useEffect } from "react";
-import { Trophy, Gift, HandCoins, Zap, Users, Building2, Flame, Battery } from "lucide-react";
+import { 
+  Trophy, Gift, HandCoins, Zap, Users, Building2, Flame, Battery,
+  Waves, Target, Award, Crown, Swords, Rocket, GaugeCircle, Gamepad2
+} from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -79,7 +81,10 @@ const Games = () => {
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50 pb-20">
       <div className="bg-gradient-to-b from-blue-600 to-cyan-500 text-white p-6 rounded-b-[2rem] shadow-lg">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold">Dolphins</h1>
+          <h1 className="text-2xl font-bold flex items-center gap-2">
+            <Waves className="w-6 h-6" />
+            Dolphins
+          </h1>
         </div>
 
         <div className="flex justify-between items-center glass-effect backdrop-blur-md rounded-xl p-3 mb-6">
@@ -127,19 +132,20 @@ const Games = () => {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 -mt-12" id="game-container">
-        <Card className="p-6 bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl border-0">
+      <div className="max-w-4xl mx-auto px-4 mt-8" id="game-container">
+        <Card className="p-6 bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl border-0 mb-8">
           <div className="flex-1 flex flex-col items-center justify-center mb-8">
             <div 
               className="relative w-72 h-72 rounded-full bg-gradient-to-br from-blue-400/10 to-cyan-400/10 flex items-center justify-center cursor-pointer hover:scale-105 transition-transform mb-8 shadow-lg group"
               onClick={handleTap}
             >
               <svg 
-                viewBox="0 0 24 24" 
+                viewBox="0 0 512 512" 
                 className="w-48 h-48 text-blue-500 group-hover:scale-110 transition-transform"
                 fill="currentColor"
               >
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-14c-.83 0-1.5.67-1.5 1.5S10.17 9 11 9s1.5-.67 1.5-1.5S11.83 6 11 6zm3 8.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/>
+                <path d="M455.2,367.1c-8.7-3.8-18.2-5.7-27.7-5.7c-14.8,0-29.3,4.4-41.5,12.7c-16.8,11.5-27.9,29.1-31.1,49.1 c-1.6,9.9-1.1,19.9,1.5,29.5c-32.1,13.5-66.5,20.4-102,20.4c-44.1,0-86.8-10.5-125.3-30.6c-37.4-19.5-70.3-47.5-95.1-80.9 c-3.2-4.3-9.3-5.1-13.6-1.9c-4.3,3.2-5.1,9.3-1.9,13.6c26.5,35.8,61.6,65.7,101.5,86.4c41.3,21.5,87,32.5,134.4,32.5 c38.1,0,75.1-7.3,109.7-21.8c9.3,11.1,21.6,19.4,35.4,23.8c6.9,2.2,14,3.3,21.2,3.3c8.8,0,17.5-1.6,25.8-4.8 c19.5-7.4,35-22.5,42.9-41.8C497.3,411.5,484.2,379.8,455.2,367.1z"/>
+                <path d="M247.5,290.8c26.7,0,48.5-21.8,48.5-48.5s-21.8-48.5-48.5-48.5s-48.5,21.8-48.5,48.5S220.8,290.8,247.5,290.8z"/>
               </svg>
               <div className="absolute -top-2 -right-2 text-sm bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-3 py-1 rounded-full font-bold shadow-lg">
                 +{1 * multiplier}
@@ -159,38 +165,98 @@ const Games = () => {
             </div>
           </div>
 
-          <div className="space-y-4 mt-8">
-            <div className="grid grid-cols-2 gap-4">
-              <Button variant="ghost" className="bg-white hover:bg-gray-50 shadow-sm h-12">
-                <Users className="w-5 h-5 mr-2 text-blue-500" />
-                Pod Members
-              </Button>
-              <Button variant="ghost" className="bg-white hover:bg-gray-50 shadow-sm h-12">
-                <Building2 className="w-5 h-5 mr-2 text-blue-500" />
-                Ocean Clans
-              </Button>
-            </div>
+          <div className="grid grid-cols-2 gap-4">
+            <Card className="p-4 bg-white hover:bg-gray-50 transition-colors shadow-sm">
+              <div className="flex items-center gap-3">
+                <HandCoins className="w-6 h-6 text-blue-500" />
+                <div>
+                  <div className="text-sm text-gray-500">Income / hour</div>
+                  <div className="text-xl font-semibold text-gray-700">{idleIncome}</div>
+                </div>
+              </div>
+            </Card>
+            <Card className="p-4 bg-white hover:bg-gray-50 transition-colors shadow-sm">
+              <div className="flex items-center gap-3">
+                <Zap className="w-6 h-6 text-blue-500" />
+                <div>
+                  <div className="text-sm text-gray-500">Income / tap</div>
+                  <div className="text-xl font-semibold text-gray-700">{1 * multiplier}</div>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </Card>
 
-            <div className="grid grid-cols-2 gap-4">
-              <Card className="p-4 bg-white hover:bg-gray-50 transition-colors shadow-sm">
-                <div className="flex items-center gap-3">
-                  <HandCoins className="w-6 h-6 text-blue-500" />
-                  <div>
-                    <div className="text-sm text-gray-500">Income / hour</div>
-                    <div className="text-xl font-semibold text-gray-700">{idleIncome}</div>
-                  </div>
-                </div>
-              </Card>
-              <Card className="p-4 bg-white hover:bg-gray-50 transition-colors shadow-sm">
-                <div className="flex items-center gap-3">
-                  <Zap className="w-6 h-6 text-blue-500" />
-                  <div>
-                    <div className="text-sm text-gray-500">Income / tap</div>
-                    <div className="text-xl font-semibold text-gray-700">{1 * multiplier}</div>
-                  </div>
-                </div>
-              </Card>
+        <Card className="p-6 bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl border-0 mb-8">
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+            <Award className="w-6 h-6 text-yellow-500" />
+            Achievements
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="p-4 bg-gray-50 rounded-lg text-center">
+              <Target className="w-8 h-8 text-blue-500 mx-auto mb-2" />
+              <h3 className="font-semibold">Master Tapper</h3>
+              <p className="text-sm text-gray-500">1,000 taps</p>
             </div>
+            <div className="p-4 bg-gray-50 rounded-lg text-center">
+              <Crown className="w-8 h-8 text-purple-500 mx-auto mb-2" />
+              <h3 className="font-semibold">Wave King</h3>
+              <p className="text-sm text-gray-500">100k points</p>
+            </div>
+            <div className="p-4 bg-gray-50 rounded-lg text-center">
+              <Rocket className="w-8 h-8 text-orange-500 mx-auto mb-2" />
+              <h3 className="font-semibold">Speed Demon</h3>
+              <p className="text-sm text-gray-500">10 taps/sec</p>
+            </div>
+          </div>
+        </Card>
+
+        <Card className="p-6 bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl border-0 mb-8">
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+            <Swords className="w-6 h-6 text-red-500" />
+            Battle Pass
+          </h2>
+          <div className="space-y-4">
+            <div className="bg-gray-50 p-4 rounded-lg">
+              <div className="flex justify-between items-center mb-2">
+                <span className="font-semibold">Level 5</span>
+                <span className="text-sm text-blue-500">500/1000 XP</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div className="bg-blue-500 rounded-full h-2" style={{ width: '50%' }}></div>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-4">
+              <Button variant="outline" className="w-full">
+                <GaugeCircle className="w-4 h-4 mr-2" />
+                Boost
+              </Button>
+              <Button variant="outline" className="w-full">
+                <Gamepad2 className="w-4 h-4 mr-2" />
+                Tasks
+              </Button>
+              <Button variant="outline" className="w-full">
+                <Gift className="w-4 h-4 mr-2" />
+                Rewards
+              </Button>
+            </div>
+          </div>
+        </Card>
+
+        <Card className="p-6 bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl border-0">
+          <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+            <Users className="w-6 h-6 text-green-500" />
+            Social Hub
+          </h2>
+          <div className="grid grid-cols-2 gap-4">
+            <Button variant="ghost" className="bg-white hover:bg-gray-50 shadow-sm h-12">
+              <Users className="w-5 h-5 mr-2 text-blue-500" />
+              Pod Members
+            </Button>
+            <Button variant="ghost" className="bg-white hover:bg-gray-50 shadow-sm h-12">
+              <Building2 className="w-5 h-5 mr-2 text-blue-500" />
+              Ocean Clans
+            </Button>
           </div>
         </Card>
       </div>
