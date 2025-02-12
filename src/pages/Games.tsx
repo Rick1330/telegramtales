@@ -4,8 +4,10 @@ import { Trophy, Gift, HandCoins, Zap, Users, Building2, Flame, Battery } from "
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { useTonConnectUI } from '@tonconnect/ui-react';
 
 const Games = () => {
+  const [tonConnectUI] = useTonConnectUI();
   const [score, setScore] = useState(0);
   const [energy, setEnergy] = useState(492);
   const [multiplier, setMultiplier] = useState(1);
@@ -14,6 +16,19 @@ const Games = () => {
   const maxEnergy = 500;
 
   useEffect(() => {
+    const checkWalletConnection = async () => {
+      try {
+        const wallets = await tonConnectUI.getWallets();
+        if (!wallets.length) {
+          console.log("No wallets connected");
+        }
+      } catch (error) {
+        console.error("Wallet connection error:", error);
+      }
+    };
+
+    checkWalletConnection();
+
     const timer = setInterval(() => {
       const now = Date.now();
       const timeDiff = now - lastClaimTime;
@@ -23,8 +38,10 @@ const Games = () => {
       }
     }, 60000);
 
-    return () => clearInterval(timer);
-  }, [lastClaimTime, idleIncome]);
+    return () => {
+      clearInterval(timer);
+    };
+  }, [lastClaimTime, idleIncome, tonConnectUI]);
 
   const handleTap = () => {
     if (energy > 0) {
@@ -42,14 +59,19 @@ const Games = () => {
     }
   };
 
-  const claimIdleIncome = () => {
-    const now = Date.now();
-    const timeDiff = now - lastClaimTime;
-    const income = Math.floor((timeDiff / 1000) * (idleIncome / 3600));
-    if (income > 0) {
-      setScore(prev => prev + income);
-      setLastClaimTime(now);
-      toast.success(`Claimed ${income} Wave Points! 🌊`);
+  const claimIdleIncome = async () => {
+    try {
+      const now = Date.now();
+      const timeDiff = now - lastClaimTime;
+      const income = Math.floor((timeDiff / 1000) * (idleIncome / 3600));
+      if (income > 0) {
+        setScore(prev => prev + income);
+        setLastClaimTime(now);
+        toast.success(`Claimed ${income} Wave Points! 🌊`);
+      }
+    } catch (error) {
+      console.error("Error claiming income:", error);
+      toast.error("Failed to claim rewards. Please try again.");
     }
   };
 
