@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Trophy, Gift, HandCoins, Zap, Users, Building2, Flame, Battery } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -53,13 +54,13 @@ const Games = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white pb-20">
-      <div className="bg-[#2563EB] text-white p-4 pb-16">
-        <div className="flex justify-between items-center mb-4">
-          <h1 className="text-xl font-bold">Dolphins</h1>
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-cyan-50 pb-20">
+      <div className="bg-gradient-to-b from-blue-600 to-cyan-500 text-white p-6 rounded-b-[2rem] shadow-lg">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold">Dolphins</h1>
         </div>
 
-        <div className="flex justify-between items-center bg-white/10 backdrop-blur-md rounded-xl p-2.5">
+        <div className="flex justify-between items-center glass-effect backdrop-blur-md rounded-xl p-3 mb-6">
           <div className="flex items-center gap-2">
             <img 
               src="/lovable-uploads/a039950a-ce56-492f-95c1-a328ec688694.png" 
@@ -82,89 +83,88 @@ const Games = () => {
           </Button>
         </div>
 
-        <div className="mt-4">
-          <h2 className="text-sm font-semibold mb-2">Your daily boosters:</h2>
-          <div className="grid grid-cols-2 gap-3">
-            <Card className="bg-indigo-900/50 border-0 p-3">
-              <div className="flex items-center gap-2">
-                <Flame className="w-5 h-5 text-orange-400" />
-                <div>
-                  <div className="text-sm font-medium">Tapping Guru</div>
-                  <div className="text-xs text-gray-300">3/3</div>
-                </div>
+        <div className="grid grid-cols-2 gap-4">
+          <Card className="glass-effect border-0 p-4">
+            <div className="flex items-center gap-3">
+              <Flame className="w-6 h-6 text-orange-400" />
+              <div>
+                <div className="text-sm font-medium">Tapping Guru</div>
+                <div className="text-xs text-white/80">3/3</div>
               </div>
-            </Card>
-            <Card className="bg-indigo-900/50 border-0 p-3">
-              <div className="flex items-center gap-2">
-                <Battery className="w-5 h-5 text-yellow-400" />
-                <div>
-                  <div className="text-sm font-medium">Full Tank</div>
-                  <div className="text-xs text-gray-300">3/3</div>
-                </div>
+            </div>
+          </Card>
+          <Card className="glass-effect border-0 p-4">
+            <div className="flex items-center gap-3">
+              <Battery className="w-6 h-6 text-yellow-400" />
+              <div>
+                <div className="text-sm font-medium">Full Tank</div>
+                <div className="text-xs text-white/80">3/3</div>
               </div>
-            </Card>
-          </div>
+            </div>
+          </Card>
         </div>
       </div>
 
       <div className="max-w-4xl mx-auto px-4 -mt-12" id="game-container">
-        <Card className="p-5 bg-white shadow-xl rounded-xl">
+        <Card className="p-6 bg-white/80 backdrop-blur-sm shadow-xl rounded-2xl border-0">
           <div className="flex-1 flex flex-col items-center justify-center mb-8">
             <div 
-              className="relative w-64 h-64 rounded-full bg-gradient-to-br from-amber-400/20 to-yellow-400/20 flex items-center justify-center cursor-pointer hover:scale-105 transition-transform mb-8 shadow-lg"
+              className="relative w-72 h-72 rounded-full bg-gradient-to-br from-blue-400/10 to-cyan-400/10 flex items-center justify-center cursor-pointer hover:scale-105 transition-transform mb-8 shadow-lg group"
               onClick={handleTap}
             >
-              <img 
-                src="/lovable-uploads/4a3ee2e9-0b6a-4b06-978b-b6a677bac025.png" 
-                alt="Golden Dolphin Coin"
-                className="w-56 h-56 object-contain hover:rotate-12 transition-transform"
-              />
-              <div className="absolute -top-2 -right-2 text-xs bg-amber-500 text-white px-2 py-0.5 rounded-full font-bold">
+              <svg 
+                viewBox="0 0 24 24" 
+                className="w-48 h-48 text-blue-500 group-hover:scale-110 transition-transform"
+                fill="currentColor"
+              >
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-14c-.83 0-1.5.67-1.5 1.5S10.17 9 11 9s1.5-.67 1.5-1.5S11.83 6 11 6zm3 8.5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/>
+              </svg>
+              <div className="absolute -top-2 -right-2 text-sm bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-3 py-1 rounded-full font-bold shadow-lg">
                 +{1 * multiplier}
               </div>
             </div>
 
             <div className="w-full max-w-md">
-              <div className="bg-gray-100 rounded-full h-3 mb-1">
+              <div className="bg-gray-100/50 backdrop-blur-sm rounded-full h-4 mb-2">
                 <div 
-                  className="bg-gradient-to-r from-amber-400 to-yellow-500 h-full rounded-full transition-all duration-300"
+                  className="bg-gradient-to-r from-blue-500 to-cyan-500 h-full rounded-full transition-all duration-300"
                   style={{ width: `${(energy / maxEnergy) * 100}%` }}
                 />
               </div>
-              <div className="text-gray-500 text-xs">
+              <div className="text-gray-600 text-sm font-medium">
                 Energy: {energy}/{maxEnergy}
               </div>
             </div>
           </div>
 
           <div className="space-y-4 mt-8">
-            <div className="grid grid-cols-2 gap-3 w-full">
-              <Button variant="ghost" className="bg-gray-50 hover:bg-gray-100">
-                <Users className="w-4 h-4 mr-2" />
+            <div className="grid grid-cols-2 gap-4">
+              <Button variant="ghost" className="bg-white hover:bg-gray-50 shadow-sm h-12">
+                <Users className="w-5 h-5 mr-2 text-blue-500" />
                 Pod Members
               </Button>
-              <Button variant="ghost" className="bg-gray-50 hover:bg-gray-100">
-                <Building2 className="w-4 h-4 mr-2" />
+              <Button variant="ghost" className="bg-white hover:bg-gray-50 shadow-sm h-12">
+                <Building2 className="w-5 h-5 mr-2 text-blue-500" />
                 Ocean Clans
               </Button>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 w-full">
-              <Card className="p-3 bg-gray-50 hover:bg-gray-100 transition-colors">
-                <div className="flex items-center gap-2">
-                  <HandCoins className="w-4 h-4 text-amber-500" />
-                  <div className="text-left">
-                    <div className="text-xs text-gray-500">Income / hour</div>
-                    <div className="text-lg font-semibold text-gray-700">{idleIncome}</div>
+            <div className="grid grid-cols-2 gap-4">
+              <Card className="p-4 bg-white hover:bg-gray-50 transition-colors shadow-sm">
+                <div className="flex items-center gap-3">
+                  <HandCoins className="w-6 h-6 text-blue-500" />
+                  <div>
+                    <div className="text-sm text-gray-500">Income / hour</div>
+                    <div className="text-xl font-semibold text-gray-700">{idleIncome}</div>
                   </div>
                 </div>
               </Card>
-              <Card className="p-3 bg-gray-50 hover:bg-gray-100 transition-colors">
-                <div className="flex items-center gap-2">
-                  <Zap className="w-4 h-4 text-amber-500" />
-                  <div className="text-left">
-                    <div className="text-xs text-gray-500">Income / tap</div>
-                    <div className="text-lg font-semibold text-gray-700">{1 * multiplier}</div>
+              <Card className="p-4 bg-white hover:bg-gray-50 transition-colors shadow-sm">
+                <div className="flex items-center gap-3">
+                  <Zap className="w-6 h-6 text-blue-500" />
+                  <div>
+                    <div className="text-sm text-gray-500">Income / tap</div>
+                    <div className="text-xl font-semibold text-gray-700">{1 * multiplier}</div>
                   </div>
                 </div>
               </Card>
